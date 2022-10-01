@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+	<head>
+		<title> Autoevaluacion </title>
+		<link href="css\cssautoevaluacion.css" rel="stylesheet" type="text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+		<div id="columnader">
+		<p>Revisión de examen</p>
+		<hr>
+		<ul>
+		
+		
+		
+		{{^listaEjs.isEmpty}}
+		<!-- EJERCICIOS SIMPLES SIN IMAGEN -->
+		<li>Halla la salida S de las distintas funciones lógicas en con dos variables de entrada (a y b):</li>
+			
+			<table id="tabla1">
+				<tr id="fila1">
+					<th>a</th>
+					<th>b</th>
+					<th>Función Lógica</th>
+					<th>Solución</th>
+					<th style="display: none"></th>
+				</tr>
+				{{#listaEjs}}
+					<tr>
+						<th id="A">{{a}}<input type="hidden" name="A" value="{{a}}"></th>
+						<th id="B">{{b}}<input type="hidden" name="B" value="{{b}}"></th>
+						<th id="corr_1">{{auxiliar}}</th>
+						<th>S= <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+						<th style="display: none" id="P_1"></th>
+						{{#correcto.0}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.0}}
+						{{^correcto.0}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.0}}
+					</tr>
+				{{/listaEjs}}
+			</table>
+			{{/listaEjs.isEmpty}}
+			
+			
+			{{^listaEjsI.isEmpty}}
+			<!-- EJERCICIOS SIMPLES CON IMAGEN -->
+			
+			<li>Halla la salida S para las entradas (A y/o B) de las siguientes puertas lógicas:</li>
+			
+			
+			<table class="tabla4">
+				{{#listaEjsI}}
+					<tr>
+						<th>A =</th>	
+						<th id="A">{{a}}<input type="hidden" name="A" value="{{a}}"></th>
+						<th rowspan="2"><img src="{{auxiliar}}" id="imgpuertalogic"></th>
+						<th rowspan="2" id="corr_25">S = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+						{{#correcto.0}}
+							<th rowspan="2" id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.0}}
+						{{^correcto.0}}
+							<th rowspan="2" id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.0}}
+					</tr>
+					<tr>
+						<th>B =</th>	
+						<th id="B">{{b}}<input type="hidden" name="B" value="{{b}}"></th>
+					</tr>
+					<tr><th colspan="5"><hr></th>
+					</tr>
+				{{/listaEjsI}}
+			</table>
+			
+			{{/listaEjsI.isEmpty}}
+			
+			<!-- EJERCICIOS SIMPLES TABLA DE VERDAD -->
+			{{#listaEjsTV}}
+				<li>Completa la siguiente tabla de verdad:</li>
+				<table id="tabla3">
+					<tr id="fila1">
+						<th>a</th>
+						<th>b</th>
+						<th>{{auxiliar}}</th>
+						<th style="display: none"></th>
+					</tr><tr>
+						<th>0</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+						<th style="display: none" id="P_17"></th>
+						{{#correcto.0}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.0}}
+						{{^correcto.0}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.0}}
+					</tr><tr>
+						<th>0</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.1}}" readonly/></th>
+						{{#correcto.1}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.1}}
+						{{^correcto.1}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.1}}
+					</tr><tr>
+						<th>1</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.2}}" readonly/></th>
+						{{#correcto.2}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.2}}
+						{{^correcto.2}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.2}}
+					</tr><tr>
+						<th>1</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.3}}" readonly/></th>
+						{{#correcto.3}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.3}}
+						{{^correcto.3}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.3}}
+					</tr>
+				</table>
+			{{/listaEjsTV}}
+			
+			{{^listaEjm.isEmpty}}
+			<!-- EJERCICIOS MEDIOS SIN IMAGEN -->
+			
+			<li>Halla la salida S de las distintas funciones lógicas en con tres variables de entrada (a, b y c):</li>
+			<table id="tabla2">
+				<tr id="fila1">
+					<th>a</th>
+					<th>b</th>
+					<th>c</th>
+					<th>Función Lógica</th>
+					<th>Solución</th>
+					<th style="display: none"></th>
+				</tr>
+				{{#listaEjm}}
+					<tr>
+						<th id="A">{{a}}<input type="hidden" name="A" value="{{a}}"></th>
+						<th id="B">{{b}}<input type="hidden" name="B" value="{{b}}"></th>
+						<th id="C">{{c}}<input type="hidden" name="C" value="{{c}}"></th>
+						<th id="corr_2">{{auxiliar}}</th>
+						<th>S= <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+						{{#correcto.0}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.0}}
+						{{^correcto.0}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.0}}
+					</tr>
+				{{/listaEjm}}
+			</table>
+			{{/listaEjm.isEmpty}}
+			
+			<!-- EJERCICIOS MEDIOS CON IMAGEN -->
+			{{#listaEjmI}}
+			<li>Halla la salida S del siguiente circuito lógico:</li>
+	
+			<table id="tabla5">
+				<tr>
+					<th>A = </th>
+					<th id="A">{{a}}<input type="hidden" name="A" value="{{a}}"></th>
+					<th rowspan="3" id="corr_30"><img src="{{auxiliar}}" id="img18"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B">{{b}}<input type="hidden" name="B" value="{{b}}"></th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C">{{c}}<input type="hidden" name="C" value="{{c}}"></th>
+				</tr><tr>
+					<th colspan="2">S = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>	
+					{{#correcto.0}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.0}}
+					{{^correcto.0}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.0}}
+			</table>
+			{{/listaEjmI}}
+			
+			
+			<!-- EJERCICIOS MEDIOS TABLA DE VERDAD -->
+			{{#listaEjmTV}}
+				<li>Completa la siguiente tabla de verdad:</li>
+				<table id="tabla3">
+					<tr id="fila1">
+						<th>a</th>
+						<th>b</th>
+						<th>c</th>
+						<th>{{auxiliar}}</th>
+						<th style="display: none"></th>
+					</tr><tr>
+						<th>0</th>
+						<th>0</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+						{{#correcto.0}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.0}}
+						{{^correcto.0}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.0}}
+					</tr><tr>
+						<th>0</th>
+						<th>0</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.1}}" readonly/></th>
+						{{#correcto.1}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.1}}
+						{{^correcto.1}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.1}}
+					</tr><tr>
+						<th>0</th>
+						<th>1</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.2}}" readonly/></th>
+						{{#correcto.2}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.2}}
+						{{^correcto.2}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.2}}
+					</tr><tr>
+						<th>0</th>
+						<th>1</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.3}}" readonly/></th>
+						{{#correcto.3}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.3}}
+						{{^correcto.3}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.3}}
+					</tr><tr>
+						<th>1</th>
+						<th>0</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.4}}" readonly/></th>
+						{{#correcto.4}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.4}}
+						{{^correcto.4}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.4}}
+					</tr><tr>
+						<th>1</th>
+						<th>0</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.5}}" readonly/></th>
+						{{#correcto.5}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.5}}
+						{{^correcto.5}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.5}}
+					</tr><tr>
+						<th>1</th>
+						<th>1</th>
+						<th>0</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.6}}" readonly/></th>
+						{{#correcto.6}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.6}}
+						{{^correcto.6}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.6}}
+					</tr><tr>
+						<th>1</th>
+						<th>1</th>
+						<th>1</th>
+						<th><input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.7}}" readonly/></th>
+						{{#correcto.7}}
+							<th id="P_1" style="color: green;">Correcto</th>
+						{{/correcto.7}}
+						{{^correcto.7}}
+							<th id="P_1" style="color: red;">Incorrecto</th>
+						{{/correcto.7}}
+					</tr>
+				</table>
+			{{/listaEjmTV}}
+			
+			
+			<!-- EJERCICIOS COMPLEJOS -->
+			{{#listaEjc}}
+			<li>Halla la salida S y los puntos intermedio (D,E,F,G y H) del siguiente circuito lógico:</li>
+			
+			<table id="tabla7">
+				<tr>
+					<th>A = </th>
+					<th id="A">{{a}}<input type="hidden" name="A" value="{{a}}"></th>
+					<th rowspan="3"><img src="{{auxiliar}}" id="img20"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B">{{b}}<input type="hidden" name="B" value="{{b}}"></th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C">{{c}}<input type="hidden" name="C" value="{{c}}"></th>
+				</tr>
+			</table>
+			
+			<table id="tabla8">
+				<tr>
+					<th id="corr_D_32"> D = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.0}}" readonly/></th>
+					{{#correcto.0}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.0}}
+					{{^correcto.0}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.0}}
+				</tr><tr>
+					<th id="corr_E_32"> E = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.1}}" readonly/></th>
+					{{#correcto.1}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.1}}
+					{{^correcto.1}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.1}}
+				</tr><tr>
+					<th id="corr_F_32"> F = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.2}}" readonly/></th>
+					{{#correcto.2}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.2}}
+					{{^correcto.2}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.2}}
+				</tr><tr>
+					<th id="corr_G_32"> G = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.3}}" readonly/></th>
+					{{#correcto.3}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.3}}
+					{{^correcto.3}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.3}}
+				</tr><tr>
+					<th id="corr_H_32"> H = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.4}}" readonly/></th>
+					{{#correcto.4}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.4}}
+					{{^correcto.4}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.4}}
+				</tr><tr>
+					<th id="corr_S_32"> S = <input type="text" name="S" id="S_1" class="cuadrotexto" value="{{s.5}}" readonly/></th>
+					{{#correcto.5}}
+						<th id="P_1" style="color: green;">Correcto</th>
+					{{/correcto.5}}
+					{{^correcto.5}}
+						<th id="P_1" style="color: red;">Incorrecto</th>
+					{{/correcto.5}}
+				</tr>
+			</table>
+			{{/listaEjc}}
+			
+			</ul>
+							
+		</div>
+			<div class="clear">
+			</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
+</html>

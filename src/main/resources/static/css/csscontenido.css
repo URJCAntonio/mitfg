@@ -1,0 +1,172 @@
+body{
+	background-image:url(background.png);
+	background-attachment: fixed;
+    background-size: cover;
+}
+#principal{
+	width:1000px;
+	border:1px solid #000000;
+	margin:0 auto;
+	padding:5px;
+	font-family:"Verdana", cursive, sans-serif;
+	background-color:#89C22B;
+	border-radius:5px;
+}
+#cabecera{
+	height:100px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	font-variant:small-caps;
+	background-color:#B1DC6C;
+	border-radius:5px;
+	text-align:center;
+	font-size:30px;
+}
+#menu{
+	height:30 px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	background-color:#B1DC6C;
+	border-radius:5px;
+	font-weight:bold;
+	font-size:20px;
+}
+#logout_button{
+	display:inline;
+	background-color:white;
+	border:none;
+	font-family:"Verdana", cursive, sans-serif;
+	font-weight:bold;
+	font-size:20px;
+	cursor: pointer;
+	color: #551a8b;
+}
+#menu form{
+	display:inline;
+	border-radius:5px;
+	background-color:white;
+	text-decoration: underline;
+	color: #551a8b;
+	
+}
+#menu li{
+	display:inline;
+	border:1px solid #000000;
+	padding:15px;
+	border-radius:5px;
+	margin:20px;
+	background-color:white;
+}
+
+#menu ul{
+	margin: 15 px;
+	text-align:center;
+	
+}
+#columnaizq{
+	width:200px;
+	border:2px solid green;
+	margin:5px;
+	float:left;
+	padding:5px;
+	background-color:#B1DC6C;
+	border-radius:5px;
+	font-size:15px;
+	
+}
+
+#columnader{
+	width:750px;
+	border:1px solid #000000;
+	margin:5px;
+	float:left;
+	padding:5px;
+	background-color:white;
+	border-radius:5px;
+}
+p.recuadro{
+	border:2px solid green;
+	margin:auto;
+	padding:5px;
+	border-radius:3px;
+
+}
+p.ecuacion{
+	font-style: italic;
+
+	text-align:center
+}
+/*_____________TABLAS_____________*/
+table.tabla1{
+	border:2px solid green;
+	margin: 0 auto;
+	padding: 5px;
+	text-align:center;
+	
+}
+th, td{
+	border: 1px solid green;
+	padding:5px;
+}
+tr.fila1{
+	background-color:#B1DC6C;
+	font-weight:bold;
+}
+
+table.tabla2{
+	margin: 0 auto;
+	padding: 5px;
+	text-align:center;
+	float:left;
+	margin-left:20px;
+}
+tr.fila1_2{
+	background-color:#B1DC6C;
+	font-weight:bold;
+}
+
+/*______________IMAGENES___________________*/
+#imgcentrada´{
+	
+}
+#img1{
+	width:500px;
+}
+#imgpuertalogic{
+	height:70px;
+}
+#img17{
+	width: 580px;
+}
+
+input.cuadrotexto{
+	height:30px;
+	width:30px;
+	font-size:20px;
+	text-align:center;
+}
+input.botoncorregir{
+	height:30px;
+	font-size:20px;
+	text-align:center;
+	background-color:#004d1a;
+	color:white;
+	border-radius:10px;
+}
+
+
+.clear{
+	clear:both;
+}
+#pie{
+	height:160px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	background-color:#2B7E07;
+	border-radius:5px;
+	color:white;
+	text-align:center;
+}

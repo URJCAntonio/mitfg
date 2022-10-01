@@ -1,0 +1,1200 @@
+<!DOCTYPE html>
+<html lang="es">
+
+	<head>
+		<title> Contenido </title>
+		<link href="css\csscontenido.css" rel="stylesheet" type"text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div id="principal">
+		
+			<div id="cabecera">
+				<h2>Electrónica Digital</h2>
+			</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div class="clear">
+			</div>
+			<!--------------------------MENU IZQUIERDO---------------------------------->
+			<div id="columnas">
+				<div id="columnaizq">
+					<ul>
+						<li><a href="#algebradeboole">Algebra de Boole</a></li><br>
+							<ul>
+							<li>Suma lógica</li>
+							<li>Producto lógico</li>
+							<li>Negación</li>
+							</ul><br>
+						<li><a href="#funcioneslogicas">Funciones lógicas</a></li><br>
+						<li><a href="#tablasdeverdad">Tablas de verdad</a></li><br>
+						<li><a href="#puertaslogicas">Puertas lógicas</a></li><br>
+						<ul>
+							<li>OR (O)</li>
+							<li>AND (Y)</li>
+							<li>NOT (NO)</li>
+							<li>NOR (NO O)</li>
+							<li>NAND (NO Y)</li>
+						</ul><br>
+						<li><a href="#circuitoslogicos">Circuitos lógicos</a></li><br>
+						<br>
+					</ul>
+				</div>
+				<div id="columnader">
+				<ul>
+	<!---------------------------------------------ALGEBRA DE BOOLE------------------------------------------------>
+					<li><h2><a name="algebradeboole">Álgebra de Boole</a></h2></li>
+							<p class="recuadro">Un <b>álgebra de Boole</b> es la estructura algebraica que corresponde a un conjunto de elementos que pueden tomar los valores <b>0 y 1</b>.</p>
+							<p>Sobre esta estructura algebraica existen tres operaciones básicas: <b>suma lógica, producto lógico y negación</b>. Es importante tener en cuenta que los valores que pueden tomar los distintos elementos son 0 y 1, ya que se trabaja en código binario.</p>
+
+						<ul>
+						<li><h3>Suma lógica</h3></li>
+						
+							<p>Esta operación se define como <b>S = a + b</b>, siendo a y b los distintos valores que puedan tomar (en binario 0 y 1), y su solución es positiva (1) si al menos uno de los valores es 1, de lo contrario tomará valor 0.</p>
+							<table class="tabla1">
+								<tr class="fila1">
+									<th>a</th>	<th>b</th>	<th>S = a + b</th>
+								</tr><tr>
+									<th>0</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>1</th>
+								</tr>
+							</table>
+
+						<li><h3>Producto lógico</h3></li>
+							<p>Esta operación se define como <b>S = a * b = a b</b>. Su solución es positiva (1) sólo en el caso que los dos elementos a y b sean 1, en el resto de los casos su valor es 0.</p>
+							<table class="tabla1">
+								<tr class="fila1">
+									<th>a</th>	<th>b</th>	<th>S = a * b</th>
+								</tr><tr>
+									<th>0</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>1</th>
+								</tr>
+							</table>
+
+						<li><h3>Negación</h3></li>
+							<p>Todo elemento <b>a </b>tiene un elemento simétrico <b><span style="text-decoration:overline">a</span></b> que será el contrario del valor de a.</li>
+							<table class="tabla1">
+								<tr class="fila1">
+									<th>a</th>	<th>S = <span style="text-decoration:overline">a</span></th>	
+								</tr><tr>
+									<th>0</th>	<th>1</th>	
+								</tr><tr>
+									<th>1</th>	<th>0</th>	
+								</tr>
+							</table>
+					</ul>
+				<p>Estas operaciones tienen las siguientes <b><u>propiedades</b></u>:</p>
+					<ul>
+						<li>El elemento negado de a posee dos propiedades notables:</li>
+						<ul>
+							<li><b>a + <span style="text-decoration:overline">a</span> = 1</b></li> 
+							<li><b>a * <span style="text-decoration:overline">a</span> = 0</b></li>
+						</ul></br>
+					<li>Las operaciones de suma y producto tienen propiedades conmutativa, asociativa y distributiva:</li>
+						</br>
+						<ul>
+							<li><u>Conmutativa:</u></li> 
+								<ul>
+									<li><b>a + b = b + a</b></li> 
+									<li><b>a * b = b * a</b></li>
+								</ul></br>
+
+							<li><u>Asociativa:</u></li>
+								<ul>
+									<li><b>(a + b) + c = a + (b + c) </b></li> 
+									<li><b>(a * b) * c = a * (b * c)</b></li>
+								</ul></br>
+							<li><u>Distributiva:</u></li>
+								<ul>
+									<li><b>a * (b + c) = a*b + a*c  </b></li> 
+									<li><b>a + (b * c) = (a + b) * (a + c) </b><i>(ojo, esta propiedad es distinta a la matemática)</i></li>
+								</ul>
+							</ul></br>
+						</ul>
+						
+			<h3 style="color:green">Ejercicio</h3>
+			<p><b>Realiza las siguientes operaciones mediante álgebra de Boole:</b></p>
+						<!-----------------------------------------EJERCICIO 1: ALGEBRA DE BOOLE OR AND NOT NOR NAND ----------------------------------->
+			<table class="tabla2">
+				<form name="preg1">
+				<tr class="fila1_2"><!--La primera fila es de informacion-->
+					<th>a</th>	
+					<th>b</th> 	
+					<th>Operación</th>
+					<th colspan="3"style="text-align:left">Solución</th>
+					<th id="col_texto"style="display: none"></th>
+					<th id="con_boton"style="display: none"></th>
+					<th id="col_texto_correccion"style="display: none">
+					<th id="C"style="display: none"></th><!--Esta columna almacena una variable
+					document.getElementById("C1").value=puertaOR(A1,B1)
+					que es el valor de salida de a+b correcto para compararlo con el texto-->
+					
+				</tr><tr><!--------------------A+B------------------------------------>
+					<th id="A1"> </th>	<!--variable aleatoria A1-->
+					<th id="B1"> </th>	 <!--variable aleatoria B1-->
+					<th>S= a+b</th>
+					<th><input type="text" name="S1" id="S1" class="cuadrotexto"/></th> <!--caja de texto S1-->
+					<th><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("C1").value,document.getElementById("S1").value,"correccion1")></th><!--boton-->
+					<!--variables de entrada al boton: C1=puertaOR(A1,B1) y S1:Valor de la caja de texto 
+					con ellas realiza la funcion corregir1-->
+					<th id="correccion1"style="text-align:left"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th id="C1"style="display: none"></th><!--casilla de almacenaje unicamente-->
+					
+				</tr><tr><!--------------------A*B------------------------------------>
+					<th id="A2"> </th>	<!--variable aleatoria-->
+					<th id="B2"> </th>	 <!--variable aleatoria-->
+					<th>S= a*b</th>
+					<th><input type="text" name="S2" id="S2"class="cuadrotexto"/></th> <!--caja de texto S1-->
+					<th><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("C2").value,document.getElementById("S2").value,"correccion2")></th><!--boton-->
+					<th id="correccion2"style="text-align:left"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th id="C2"style="display: none"></th><!--casilla de almacenaje unicamente-->
+				
+				</tr><tr><!--------------------NOT A------------------------------------>
+					<th id="A3"> </th>	<!--variable aleatoria-->
+					<th></th>
+					<th>S= <span style="text-decoration:overline">a<span></th>
+					<th><input type="text" name="S3" id="S3"class="cuadrotexto"/></th> <!--caja de texto S1-->
+					<th><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("C3").value,document.getElementById("S3").value,"correccion3")></th><!--boton-->
+					<!--variables de entrada al boton: C1=puertaOR(A1,B1) y S1:Valor de la caja de texto 
+					con ellas realiza la funcion corregir1-->
+					<th id="correccion3"style="text-align:left"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th id="C3"style="display: none"></th><!--casilla de almacenaje unicamente-->
+					
+				</tr><tr><!--------------------NOT (A+B)------------------------------------>
+					<th id="A4"> </th>	<!--variable aleatoria a-->
+					<th id="B4"> </th>	 <!--variable aleatoria B-->
+					<th>S= <span style="text-decoration:overline">a+b<span></th>
+					<th><input type="text" name="S4" id="S4"class="cuadrotexto"/></th> <!--caja de texto S1-->
+					<th><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("C4").value,document.getElementById("S4").value,"correccion4")></th><!--boton-->
+					<!--variables de entrada al boton: C1=puertaOR(A1,B1) y S1:Valor de la caja de texto 
+					con ellas realiza la funcion corregir1-->
+					<th id="correccion4"style="text-align:left"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th id="C4"style="display: none"></th><!--casilla de almacenaje unicamente-->
+					
+				</tr><tr><!--------------------NOT(A*B)------------------------------------>
+					<th id="A5"> </th>	<!--variable aleatoria -->
+					<th id="B5"> </th>	 <!--variable aleatoria -->
+					<th>S= <span style="text-decoration:overline">a*b<span></th>
+					<th><input type="text" name="S5" id="S5"class="cuadrotexto"/></th> <!--caja de texto S1-->
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir1(getElementById("C5").value,document.getElementById("S5").value,"correccion5")></th><!--boton-->
+					<!--variables de entrada al boton: C1=puertaOR(A1,B1) y S1:Valor de la caja de texto 
+					con ellas realiza la funcion corregir1-->
+					<th id="correccion5"style="text-align:left"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th id="C5"style="display: none"></th><!--casilla de almacenaje unicamente-->
+					
+				</tr>
+			</table>
+			<div class="clear">
+			</div><br><hr>
+	<!-------------------------------------FUNCIONES LÓGICAS----------------------------->
+					<li><h2><a name="funcioneslogicas">Funciones lógicas</a></h2></li>
+						<p>La propiedad fundamental del control digital es que la magnitud que varía lo hace entre dos estados. A estos estados se les puede denominar de diferentes maneras y son representados por los valores 0 y 1.</p>
+						<table class="tabla1">
+							<tr> <th><b>0</b></th>	<th>No activo</th>	<th>OFF</th>	<th>Bajo</th>	<th>L (low)</th>	<th>Circuito abierto</th>	<th>Sin corriente</th> </tr>
+							<tr> <th><b>1</b></th>	<th>Activo</th>	<th>ON</th>	<th>Alto</th>	<th>H (high)</th>	<th>Circuito cerrado</th>	<th>Con corriente</th> </tr>
+						</table>
+						
+						<p>Como puede deducirse de lo visto anteriormente las cifras 0 y 1 representan un <b>estado lógico</b>.</p>
+
+						<p>Supongamos que tenemos un circuito con un interruptor que controla una lámpara como en la figura siguiente. Existen dos estados distintos:</p>
+						<ul>
+							<li><b>0</b> : Cuando el circuito está <b>desactivado</b> (izquierda) el interruptor está <b>abierto</b> y la lámpara <b>apagada</b>.</li></br>
+							<li><b>1</b>: Cuando el circuito está <b>activado</b> (derecha) el interruptor está <b>cerrado</b> y la lámpara <b>encendida</b>.</li></br>
+						</ul>
+						<div id="imgcentrada" style="text-align:center">
+							<img id="img1" src="img/img1.jpg">
+						</div>
+
+						<p>Una vez conocemos los estados de una variable podemos aplicar los conocimientos que tenemos del álgebra de Boole para analizar circuitos lógicos.</p>
+
+						<p>En un circuito lógico la señal de salida está relacionada con las de entrada mediante una función lógica.</p>
+
+						<p class="recuadro"> Una <b>función lógica </b>es una expresión algebraica formada por una combinación de operaciones del álgebra de Boole de diversas variables.</p>
+
+						<p>Un ejemplo de función lógica puede ser:</p>
+
+						<p class="ecuacion">  <b>S= a * b + a * <span style="text-decoration:overline">b</span></b></p>
+
+						<p>Donde:</p>
+						<ul>
+							<li><b>S</b>: es la señal de salida que depende de las señales de entrada.</li>
+							<li><b>a y b</b>: son las señales de entrada que pueden tomar distintas combinaciones de los estados lógicos 0 y 1.</li>
+						</ul>
+						<p>Para poder saber qué valores toma S en función de a y b utilizamos las tablas de verdad.</p>
+						<br>
+						<hr>
+	<!---------------------------------TABLAS DE VERDAD--------------------------------->					
+					<li><h2><a name="tablasdeverdad">Tablas de verdad</a></h2></li>
+					
+						<p class="recuadro"> Una <b>tabla de verdad</b> es un cuadro en el que se representan todos los posibles valores de las señales de entrada a la izquierda y a la derecha el valor de salida en función de las variables de entrada.</p>
+
+						<p>Dependiendo de la cantidad de variables que tenga nuestra función lógica nuestra tabla será más o menos larga. Por ejemplo si sólo tenemos una entrada (a), sólo tendremos dos combinaciones posibles (a=0 y a=1). Sin embargo, si tenemos 2 entradas (a y b) tendremos 4 combinaciones  posibles, si tenemos 3 entradas (a, b y c) tendremos 8 combinaciones posibles, etc.</p>
+
+						<p>El número de combinaciones posibles se rige por la ecuación siguiente:</p>
+
+						<p class="ecuacion"><b>N = 2 <sup>n</sup></b></p>
+
+						<p>Donde:</p>
+						<ul>
+							<li><b>N</b> : es el número de combinaciones posibles.</li>
+							<li><b>n</b> : es el número de variables de entradas.</li>
+						</ul>
+
+						<p><b>¿Cómo construimos una tabla de verdad? </b></p>
+
+						<p>Para construir una tabla de verdad hay que realizar una serie de pasos. Vamos a ver cómo realizar una tabla de verdad para la función lógica de ejemplo:</p>
+						<p class="ecuacion"><b>S= a * b + a * <span style="text-decoration:overline">b</span></b></p>
+						<ul>
+							<li><b><u>Paso 1: Confeccionar la tabla de verdad de la función lógica.</u></b></li>
+
+								<p>Lo primero que debemos averiguar es la cantidad de variables de entradas que tenemos. En este caso tendremos n = 2 (a y b). </p>
+
+								<p>Aplicamos la ecuación para determinar la cantidad de filas:</p>
+
+								<p class="ecuacion">N=2<sup>n</sup>=2<sup>2</sup>=4 </p>
+
+								<p>Por ello tendremos 4 combinaciones posibles. Construimos la tabla con 4 filas y colocamos los valores de las variables a y b: (0,0); (0,1); (1,0) y (1,1).</p>
+
+								<table class="tabla1">
+									<tr class="fila1">
+										<th colspan="2">Variables de entrada</th> <th>Salida</th>
+									</tr> <tr class="fila1">
+										<th>a</th> <th>b</th><th>S= a * b + a * <span style="text-decoration:overline">b</span></th>
+									</tr><tr>
+										<th>0</th><th>0</th><th>?</th>
+									</tr><tr>
+										<th>0</th><th>1</th><th>?</th>
+									</tr><tr>
+										<th>1</th><th>0</th><th>?</th>
+									</tr><tr>
+										<th>1</th><th>1</th><th>?</th>
+									</tr>
+								</table><br>
+
+							<li><b><u>Paso 2: Establecemos las funciones simples en las que puede dividirse la función.</u></b></li>
+
+								<p>Para esto debemos observar nuestra función <b>S= (a * b) + (a * <span style="text-decoration:overline">b</span>)</b> y descomponerla en operaciones más sencillas. Como puedes ver lo hemos puesto con paréntesis para separarlo porque el producto tiene prioridad sobre la suma.</p>
+								<p>En este caso las podemos dividir en 2 operaciones distintas sumadas: </p>
+
+								<ul><li><b>(a * b)</b> : Para esta empleamos la tabla del producto lógico con a y b:</li>
+								<table class="tabla1">
+								<tr class="fila1">
+										<th>a</th>	<th>b</th>	<th>S = a * b</th>
+									</tr><tr>
+										<th>0</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+										<th>0</th>	<th>1</th>	<th>0</th>
+								</tr><tr>
+										<th>1</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+										<th>1</th>	<th>1</th>	<th>1</th>
+									</tr>
+								</table>
+
+								<li><b>(a * <span style="text-decoration:overline">b</span>)</b> : Para esta operación en primer lugar debemos hacer una columna de <span style="text-decoration:overline">b</span>:</li>
+								<p>- En la columna  <b><span style="text-decoration:overline">b</span></b> pondremos el valor contrario de b.</p>
+
+								<p>- En la columna <b>a * <span style="text-decoration:overline">b</span></b> pondremos el producto lógico entre la columna a y a * <span style="text-decoration:overline">b</span>.</p>
+
+								<table class="tabla1">
+								<tr class="fila1">
+										<th>a</th>	<th>b</th>	<th><span style="text-decoration:overline">b</span></th>	<th>a * <span style="text-decoration:overline">b</span></th>
+									</tr><tr>
+										<th>0</th>	<th>0</th>	<th>1</th>	<th>0*1=0</th>
+								</tr><tr>
+										<th>0</th>	<th>1</th>	<th>0</th>	<th>0*0=0</th>
+								</tr><tr>
+										<th>1</th>	<th>0</th>	<th>1</th>	<th>1*1=1</th>
+								</tr><tr>
+										<th>1</th>	<th>1</th>	<th>0</th>	<th>1*0=0</th>
+									</tr>
+								</table><br>
+								</ul>
+							<li><b><u>Paso 3: Cuando tenemos todas las partes de nuestra función simplificadas completamos para obtener la señal de salida:</u></b></li><br>
+
+								<table class="tabla1">
+									<tr class="fila1">
+										<th colspan="2">Variables de entrada</th> <th colspan="3">Operaciones intermedias</th> <th>Salida</th>
+									</tr><tr class="fila1">
+										<th>a</th> <th>b</th><th>a * b</th><th><span style="text-decoration:overline">b</span></th> <th>a * b&#773;</th> <th>S=(a*b)+(a*<span style="text-decoration:overline">b</span>)</th>
+									</tr><tr>
+										<th>0</th><th>0</th><th>0</th> <th>1</th> <th>0</th> <th>0+0=0</th>
+								</tr><tr>
+										<th>0</th><th>1</th><th>0</th><th>0</th> <th>0</th> <th>0+0=0</th>
+								</tr><tr>
+										<th>1</th><th>0</th><th>0</th><th>1</th> <th>1</th> <th>0+1=1</th>
+								</tr><tr>
+										<th>1</th><th>1</th><th>1</th><th>0</th> <th>0</th> <th>1+0=1</th>
+									</tr>
+								</table>
+
+
+								<p><b>Así pues, tendremos señal de salida (1) en dos combinaciones de las cuatro posibles: </b></p>
+								<ul>
+								<li> Cuando <b>a=1 y b=0</b></li>
+								<li>Cuando <b>a=1 y b=1</b></li>
+								</ul>
+								</ul>
+					
+					<h3 style="color:green">Ejercicios</h3>
+					<p><b>Completa las siguientes tablas de verdad:</b></p>
+					
+					<!------------------------------------------------------------TABLA DE VERDAD S=A*(NOT-A+B)-----------------------TV1---------TRES RESPUESTAS---->
+
+			<table class="tabla2">
+				<tr class="fila1_2"><!--La primera fila es de informacion-->
+					<th>a</th>	
+					<th>b</th> 
+					<th> <span style="text-decoration:overline">a</span></th>
+					<th> <span style="text-decoration:overline">a</span> + b</th>	
+					<th id="col_texto">S=a*(<span style="text-decoration:overline">a</span>+b)</th>
+					<th id="con_boton"style="display:none"></th>
+					<th id="col_texto_correccion"style="display:none">
+					
+												
+				</tr><tr>
+					<th>0</th>	
+					<th>0</th> 
+					<th><input type="text" name="corrA1" id="corrA1"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrB1" id="corrB1"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrC1" id="corrC1"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrA1").value,document.getElementById("corrB1").value,document.getElementById("corrC1").value,1,1,0,"textocorreccionTV1_fila1")></th><!--boton-->
+					<th id="textocorreccionTV1_fila1">
+					
+												
+				</tr><tr>
+					<th>0</th>	
+					<th>1</th> 
+					<th><input type="text" name="corrA2" id="corrA2"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrB2" id="corrB2"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrC2" id="corrC2"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrA2").value,document.getElementById("corrB2").value,document.getElementById("corrC2").value,1,1,0,"textocorreccionTV1_fila2")></th><!--boton-->
+					<th id="textocorreccionTV1_fila2">
+					
+												
+				</tr><tr>	
+					<th>1</th> 
+					<th>0</th>
+					<th><input type="text" name="corrA3" id="corrA3"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrB3" id="corrB3"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrC3" id="corrC3"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrA3").value,document.getElementById("corrB3").value,document.getElementById("corrC3").value,0,0,0,"textocorreccionTV1_fila3")></th><!--boton-->
+					<th id="textocorreccionTV1_fila3">
+					
+												
+				</tr><tr>
+					<th>1</th>	
+					<th>1</th> 
+					<th><input type="text" name="corrA4" id="corrA4"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrB4" id="corrB4"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrC4" id="corrC4"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrA4").value,document.getElementById("corrB4").value,document.getElementById("corrC4").value,0,1,1,"textocorreccionTV1_fila4")></th><!--boton-->
+					<th id="textocorreccionTV1_fila4">
+					
+												
+				</tr>
+			</table>
+			<div class="clear">
+			</div><br>
+			<p> En el siguiente caso, tenemos una tabla de verdad con 3 variables (a, b y c). Por ello la tabla tendrá 8 filas:</p>
+			<p class="ecuacion">N=2<sup>n</sup>=2<sup>3</sup>=8 </p>
+<!------------------------------------------------TABLA DE VERDAD S=(noA+B)*C-----------TV2-------------TRES RESPUESTAS-------->
+
+
+			<table class="tabla2">
+				<tr class="fila1_2"><!--La primera fila es de informacion-->
+					<th>a</th>	
+					<th>b</th> 
+					<th>c</th>
+					<th> <span style="text-decoration:overline">a</span></th>
+					<th> (<span style="text-decoration:overline">a</span> + b)</th>	
+					<th id="col_texto">S=(<span style="text-decoration:overline">a</span>+b)*c</th>
+					<th id="con_boton"style="display:none"></th>
+					<th id="col_texto_correccion"style="display:none">
+					
+												
+				</tr><tr><!--Fila 1---------------------------------------------->
+					<th>0</th>	
+					<th>0</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV2_A1" id="corrTV2_A1"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B1" id="corrTV2_B1"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C1" id="corrTV2_C1"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A1").value,document.getElementById("corrTV2_B1").value,document.getElementById("corrTV2_C1").value,1,1,0,"textocorreccionTV2_fila1")></th><!--boton-->
+					<th id="textocorreccionTV2_fila1">
+					
+												
+				</tr><tr><!--Fila 2---------------------------------------------->
+					<th>0</th>	
+					<th>0</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV2_A2" id="corrTV2_A2"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B2" id="corrTV2_B2"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C2" id="corrTV2_C2"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A2").value,document.getElementById("corrTV2_B2").value,document.getElementById("corrTV2_C2").value,1,1,1,"textocorreccionTV2_fila2")></th><!--boton-->
+					<th id="textocorreccionTV2_fila2">
+					
+												
+				</tr><tr><!--Fila 3---------------------------------------------->
+					<th>0</th>	
+					<th>1</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV2_A3" id="corrTV2_A3"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B3" id="corrTV2_B3"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C3" id="corrTV2_C3"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A3").value,document.getElementById("corrTV2_B3").value,document.getElementById("corrTV2_C3").value,1,1,0,"textocorreccionTV2_fila3")></th><!--boton-->
+					<th id="textocorreccionTV2_fila3">
+					
+												
+				</tr><tr><!--Fila 4---------------------------------------------->
+					<th>0</th>	
+					<th>1</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV2_A4" id="corrTV2_A4"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B4" id="corrTV2_B4"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C4" id="corrTV2_C4"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A4").value,document.getElementById("corrTV2_B4").value,document.getElementById("corrTV2_C4").value,1,1,1,"textocorreccionTV2_fila4")></th><!--boton-->
+					<th id="textocorreccionTV2_fila4">
+					
+												
+				</tr><tr><!--Fila 5---------------------------------------------->
+					<th>1</th>	
+					<th>0</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV2_A5" id="corrTV2_A5"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B5" id="corrTV2_B5"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C5" id="corrTV2_C5"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A5").value,document.getElementById("corrTV2_B5").value,document.getElementById("corrTV2_C5").value,0,0,0,"textocorreccionTV2_fila5")></th><!--boton-->
+					<th id="textocorreccionTV2_fila5">
+					
+												
+				</tr><tr><!--Fila 6---------------------------------------------->
+					<th>1</th>	
+					<th>0</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV2_A6" id="corrTV2_A6"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B6" id="corrTV2_B6"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C6" id="corrTV2_C6"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A6").value,document.getElementById("corrTV2_B6").value,document.getElementById("corrTV2_C6").value,0,0,0,"textocorreccionTV2_fila6")></th><!--boton-->
+					<th id="textocorreccionTV2_fila6">
+					
+												
+				</tr><tr><!--Fila 7---------------------------------------------->
+					<th>1</th>	
+					<th>1</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV2_A7" id="corrTV2_A7"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B7" id="corrTV2_B7"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C7" id="corrTV2_C7"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A7").value,document.getElementById("corrTV2_B7").value,document.getElementById("corrTV2_C7").value,0,1,0,"textocorreccionTV2_fila7")></th><!--boton-->
+					<th id="textocorreccionTV2_fila7">
+					
+												
+				</tr><tr><!--Fila 8---------------------------------------------->
+					<th>1</th>	
+					<th>1</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV2_A8" id="corrTV2_A8"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV2_B8" id="corrTV2_B8"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV2_C8" id="corrTV2_C8"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV2_A8").value,document.getElementById("corrTV2_B8").value,document.getElementById("corrTV2_C8").value,0,1,1,"textocorreccionTV2_fila8")></th><!--boton-->
+					<th id="textocorreccionTV2_fila8">
+					
+												
+				</tr>
+			</table>
+			
+			<div class="clear">
+			</div><br><hr>
+					
+					<li><h2><a name="puertaslogicas">Puertas lógicas</a></h2></li>
+					<p class="recuadro">Las <b>puertas lógicas</b> son bloques son bloques de construcción básica de los sistemas digitales. Están basados una operación del algebra de Boole o conbinaciones de ellas.</p>
+					<p>Las puertas lógicas generan uns salida a partir de los datos de entrada (a,b...) de entrada que les suministramos.<br>Las tres puertas <b>básicas</b> son la <b>OR, AND y NOT</b>. También tenemos puertas <b>complementarias</b> como <b>NOR o NAND</b>.
+					<ul>
+						<li><h3>OR (O)</h3></li>
+							<p>La puerta lógica OR se identifica con la suma lógica <b>S= a + b</b>, suma las señales que recibe.</p>
+							<p>Genera un 1 en la salida si al menos una de las variables es 1. Su circuito eléctrico equivalente son dos interruptores en paralelo. Cada interruptor será cada una de las entradas de nuestra puerta lógica, por lo que si al menos uno de ellos está pulsado el circuito tendrá corriente</p>					
+						
+							<table class="tabla1">
+								<tr class="fila1">
+									<th>Símbolo</th>	<th>a</th>	<th>b</th>	<th>S = a + b</th>	<th>Circuito</th>
+								</tr><tr>
+									<th rowspan="4"><img id="img7" src="img/img7.jpg"></th>	<th>0</th>	<th>0</th>	<th>0</th>	<th rowspan="4"><img id="img12" src="img/img12.jpg"></th>
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>1</th>
+								</tr>
+							</table>
+						<p><b>Se denomina OR a esta puerta lógica ya que si la entrada A es 1 "O" la entrada B es 1, la salida es 1.</b></p>
+						<li><h3>AND (Y)</h3></li>
+							<p>La puerta lógica AND se identifica con el producto lógico <b>S= a * b</b>, multiplica las señales que recibe.</p>
+							<p>Genera un 1 en la salida si las dos entradas son 1. Su circuito eléctrico equivalente son dos interruptores en serie, por lo que si los dos están pulsados el circuito tendrá corriente</p>
+						
+							<table class="tabla1">
+								<tr class="fila1">
+									<th>Símbolo</th>	<th>a</th>	<th>b</th>	<th>S = a * b</th>	<th>Circuito</th>
+								</tr><tr>
+									<th rowspan="4"><img id="img8" src="img/img8.jpg"></th>	<th>0</th>	<th>0</th>	<th>0</th>	<th rowspan="4"><img id="img13" src="img/img13.jpg"></th>
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>1</th>
+								</tr>
+							</table>
+						<p><b>Se denomina AND a esta puerta lógica ya que si la entrada A es 1 "Y" la entrada B es 1, la salida es 1.</b></p>
+						<li><h3>NOT (NO)</h3></li>
+						<p>La puerta lógica NOT se identifica con la negación lógica <b>S= <span style="text-decoration:overline">a</span></b>, multiplica las señales que recibe.</p>
+							<p>Genera un 1 en la salida si las dos entradas son 1. Su circuito eléctrico equivalente es un único pulsador invertido (si no lo pulsamos cierra el circuito y cuando lo pulsamos lo abre), de manera que si A=1 la salida será 0 y viceversa.</p>
+						
+						<table class="tabla1">
+								<tr class="fila1">
+									<th>Símbolo</th>	<th>a</th>	<th>S=<span style="text-decoration:overline">a</span></th>		<th>Circuito</th>
+								</tr><tr>
+									<th rowspan="2"><img id="img9" src="img/img9.jpg"></th>	<th>0</th>	<th>1</th>   <th rowspan="2"><img id="img14" src="img/img14.jpg"></th>	
+								</tr><tr>
+									<th>1</th>	<th>0</th>
+								</tr>
+							</table>
+						<p><b>Se denomina NOT a esta puerta lógica ya que si la entrada es A, la salida es NO(A) por lo que será el valor contrario.</b></p>
+						<li><h3>NOR (NO O)</h3></li>
+						
+						<table class="tabla1">
+								<tr class="fila1">
+									<th>Símbolo</th>	<th>a</th>	<th>b</th>	<th>S = <span style="text-decoration:overline">(a + b)</span></th>	
+								</tr><tr>
+									<th rowspan="4"><img id="img10" src="img/img10.jpg"></th>	<th>0</th>	<th>0</th>	<th>1</th>	
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>0</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>0</th>
+								</tr>
+							</table>
+						<li><h3>NAND (NO Y)</h3></li>
+						
+						
+						<table class="tabla1">
+								<tr class="fila1">
+									<th>Símbolo</th>	<th>a</th>	<th>b</th>	<th>S = <span style="text-decoration:overline">(a * b)</span></th>	
+								</tr><tr>
+									<th rowspan="4"><img id="img11" src="img/img11.jpg"></th>	<th>0</th>	<th>0</th>	<th>1</th>	
+								</tr><tr>
+									<th>0</th>	<th>1</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>0</th>	<th>1</th>
+								</tr><tr>
+									<th>1</th>	<th>1</th>	<th>0</th>
+								</tr>
+							</table>
+					</ul>
+					
+					
+			<h3 style="color:green">Ejercicio</h3>
+			<p><b>Averigua la salida de estas puertas lógicas en función de las entradas:</b></p>		
+			<table>
+				<tr><th colspan="7"style="border:0px"><hr></th>
+				<tr><!-----------------------puerta OR con dibujo-------------------->	
+					<th style="border:0px"id="nada">A=</th>	
+					<th style="border:0px"id="ej1_A1"></th>
+					<th style="border:0px"rowspan="2"><img src="img/img2.jpg" id="imgpuertalogic"></th>
+					<th style="border:0px"rowspan="2"><input type="text" name="ej1_S1" id="ej1_S1"class="cuadrotexto"/></th>
+					<th style="border:0px"rowspan="2"><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("ej1_C1").value,document.getElementById("ej1_S1").value,"correccionej1_S1")></th><!--boton-->
+					<th style="border:0px"rowspan="2" id="correccionej1_S1"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+					<th style="border:0px"rowspan="2"id="ej1_C1"></th>		<!--casilla de almacenaje unicamente-->
+				</tr><tr>
+					<th style="border:0px">B=</th>	
+					<th style="border:0px"id="ej1_B1"></th>
+				</tr><tr><th style="border:0px"colspan="7"><hr></th>
+				</tr><tr><!-----------------------puerta AND con dibujo-------------------->	
+					<th style="border:0px">A=</th>	
+					<th style="border:0px"id="ej1_A2"></th>
+					<th style="border:0px"rowspan="2"><img src="img/img3.jpg" id="imgpuertalogic"></th>
+					<th style="border:0px"rowspan="2"><input type="text" name="ej1_S2" id="ej1_S2"class="cuadrotexto"/></th>
+					<th style="border:0px"rowspan="2"><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("ej1_C2").value,document.getElementById("ej1_S2").value,"correccionej1_S2")></th><!--boton-->
+					<th style="border:0px"rowspan="2" id="correccionej1_S2"></th><!--casilla de correccion muestra el párrafo de correccion-->
+					<th style="border:0px"rowspan="2"id="ej1_C2"></th><!--casilla de almacenaje unicamente-->
+				</tr><tr>
+					<th style="border:0px">B=</th>	
+					<th style="border:0px"id="ej1_B2"></th>
+				</tr><tr><th style="border:0px"colspan="7"><hr></th>
+				</tr><tr><!-----------------------puerta NOT con dibujo-------------------->	
+					<th style="border:0px">A=</th>	
+					<th style="border:0px"id="ej1_A3"></th>
+					<th style="border:0px"><img src="img/img4.jpg" id="imgpuertalogic"></th>
+					<th style="border:0px"><input type="text" name="ej1_S3" id="ej1_S3"class="cuadrotexto"/></th>
+					<th style="border:0px"><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("ej1_C3").value,document.getElementById("ej1_S3").value,"correccionej1_S3")></th><!--boton-->
+					<th style="border:0px"id="correccionej1_S3"></th>
+					<th style="border:0px"id="ej1_C3"></th><!--casilla de almacenaje unicamente-->
+				</tr><tr><th style="border:0px"colspan="7"><hr></th>	
+				</tr><tr><!-----------------------puerta NOR con dibujo-------------------->	
+					<th style="border:0px">A=</th>	
+					<th style="border:0px"id="ej1_A4"></th>
+					<th style="border:0px"rowspan="2"><img src="img/img5.jpg" id="imgpuertalogic"></th>
+					<th style="border:0px"rowspan="2"><input type="text" name="ej1_S4" id="ej1_S4"class="cuadrotexto"/></th>
+					<th style="border:0px"rowspan="2"><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("ej1_C4").value,document.getElementById("ej1_S4").value,"correccionej1_S4")></th><!--boton-->
+					<th style="border:0px"rowspan="2" id="correccionej1_S4"></th>
+					<th style="border:0px"rowspan="2"id="ej1_C4"></th><!--casilla de almacenaje unicamente-->
+				
+				</tr><tr>
+					<th style="border:0px">B=</th>	
+					<th style="border:0px"id="ej1_B4"></th>
+				</tr><tr><th style="border:0px"colspan="7"><hr></th>
+				</tr><tr><!-----------------------puerta NAND con dibujo-------------------->	
+					<th style="border:0px">A=</th>	
+					<th style="border:0px"id="ej1_A5"></th>
+					<th style="border:0px"rowspan="2"><img src="img/img6.jpg" id="imgpuertalogic"></th>
+					<th style="border:0px"rowspan="2"><input type="text" name="ej1_S5" id="ej1_S5"class="cuadrotexto"/></th>
+					<th style="border:0px"rowspan="2"><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir1(getElementById("ej1_C5").value,document.getElementById("ej1_S5").value,"correccionej1_S5")></th><!--boton-->
+					<th style="border:0px"rowspan="2" id="correccionej1_S5"></th>
+					<th style="border:0px"rowspan="2"id="ej1_C5"></th><!--casilla de almacenaje unicamente-->
+				</tr><tr>
+					<th style="border:0px">B=</th>	
+					<th style="border:0px"id="ej1_B5"></th>
+				</tr>
+				</tr><tr><th style="border:0px"colspan="7"><hr></th>
+			</table>
+			<div class="clear">
+			</div><br><hr>
+			
+			<!---------------------------------------------------CIRCUITOS LOGICOS--------------------------------------------------------------------------------->
+			
+					<li><h2><a name="circuitoslogicos">Circuitos lógicos</a></h2></li>
+					
+			
+			<p class="recuadro">Un <b>circuito lógico</b> es una combinación de <u>puertas lógicas</u> que permite ver gráficamente la construcción que se debe realizar para, a partir de unas entradas, tener la salida deseada de una determinada <u>función lógica.</u></p>
+			
+			<p>Un circuito lógico se compone de distintos <b>elementos</b>:</p>
+			<ul><li><b>Entradas:</b> Son las disntintas señales digitales de entrada que podemos introducir en un circuito. Serán los distintos componentes de la función lógica.</li><br>
+				<li><b>Salida:</b> Es la señal resultante de nuestro circuito lógico y de su función lógica correspondiente.</li><br>
+				<li><b>Puertas lógicas</b></li>
+			</ul>
+			<p>Además para ayudarnos a realizar los ejercicios y simplificar vamos a tener en cuenta ciertos <b>puntos intermedios</b> que los dispondremos a la salida de una puerta lógica. A continuación vemos un ejemplo de un circuito lógico</p>
+			<img id="img15" src="img/img15.jpg">
+			<p>Pero.. ¿cómo podemos saber la salida que vamos a tener en función de las entradas?<br><br> Para esto lo primero que vamos a hacer es construir la <b>función lógica correspondiente</b></p>
+			
+			<ol><li>Lo primero que haremos será identificar los <b>puntos intermedios D, E y F.</b></li><br>
+				<li>Ahora pondremos el valor de los puntos intermedios en función de las entradas:</li><br>
+				<ul><li><b>D = <span style="text-decoration:overline">B</span></li><br>
+					<li>E = <span style="text-decoration:overline">C</span></li><br>
+					<li>F = D * E </b> (sustituyendo)<b> F = <span style="text-decoration:overline">B</span> *  <span style="text-decoration:overline">C</span></b></li>
+				</ul><br>
+				<li>Por último hayaremos el valor de la <b>salida S</b>:</li><br>
+				<ul><li><b>S = A + F</b> (sustituyendo) <b>S = A + (<span style="text-decoration:overline">B</span> *  <span style="text-decoration:overline">C</span>)</b></li><ul><br>
+			</ol>
+			<p>A su vez, teniendo un circuito lógico podemos construir su <b>tabla de verdad.</b> Vamos a realizar la tabla de verdad del ejemplo anterior:</p>
+			
+			<table class="tabla1">
+						<tr class="fila1">
+						<th colspan="3">Entradas</th> <th colspan="3">Puntos intermedios</th> <th>Salida</th>
+						</tr><tr class="fila1">
+						<th>A</th> 
+						<th>B</th>
+						<th>C</th>
+						<th>D = <span style="text-decoration:overline">B</span></th> 
+						<th>E = <span style="text-decoration:overline">C</span></th> 
+						<th>F = <span style="text-decoration:overline">B</span> *  <span style="text-decoration:overline">C</span></th> 
+						<th>S = A + (<span style="text-decoration:overline">B</span> *  <span style="text-decoration:overline">C</span>)</th>
+					</tr><tr>
+							<th>0</th><th>0</th><th>0</th> <th>1</th> <th>1</th> <th>1</th> <th>1</th>
+					</tr><tr>
+							<th>0</th><th>0</th><th>1</th><th>1</th> <th>0</th>  <th>0</th> <th>0</th>
+					</tr><tr>
+							<th>0</th><th>1</th><th>0</th><th>0</th> <th>1</th>  <th>0</th> <th>0</th>
+					</tr><tr>
+							<th>0</th><th>1</th><th>1</th><th>0</th> <th>0</th>  <th>0</th> <th>0</th>
+					</tr><tr>
+							<th>1</th><th>0</th><th>0</th><th>1</th> <th>1</th>  <th>1</th> <th>1</th>
+					</tr><tr>
+							<th>1</th><th>0</th><th>1</th><th>1</th> <th>0</th>  <th>0</th> <th>1</th>
+					</tr><tr>
+							<th>1</th><th>1</th><th>0</th><th>0</th> <th>1</th>  <th>0</th> <th>1</th>
+					</tr><tr>
+							<th>1</th><th>1</th><th>1</th><th>0</th> <th>0</th>  <th>0</th> <th>1</th>
+					</tr>
+			</table><br>
+			
+			<h3 style="color:green">Ejercicios</h3>
+			<ul>
+				<li><p><b>Completa la tabla de verdad del siguiente circuito lógico</b></p></li>
+				<div id="imgcentrada" style="text-align:center">
+					<img id="img16" src="img/img16.jpg">
+				</div>
+				
+				<!--------------------------TABLA DE VERDAD CIRCUITO LOGICO 1-------------------------------->
+				
+				<table class="tabla2">
+				<tr class="fila1_2"><!--La primera fila es de informacion-->
+					<th>A</th>	
+					<th>B</th> 
+					<th>C</th>
+					<th>D</th>
+					<th>E</th>	
+					<th id="col_texto">S</th>
+					<th id="con_boton"style="display:none"></th>
+					<th id="col_texto_correccion"style="display:none">
+					
+												
+				</tr><tr><!--Fila 1---------------------------------------------->
+					<th>0</th>	
+					<th>0</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV3_A1" id="corrTV3_A1"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B1" id="corrTV3_B1"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C1" id="corrTV3_C1"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A1").value,document.getElementById("corrTV3_B1").value,document.getElementById("corrTV3_C1").value,1,0,0,"textocorreccionTV3_fila1")></th><!--boton-->
+					<th id="textocorreccionTV3_fila1">
+					
+												
+				</tr><tr><!--Fila 2---------------------------------------------->
+					<th>0</th>	
+					<th>0</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV3_A2" id="corrTV3_A2"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B2" id="corrTV3_B2"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C2" id="corrTV3_C2"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A2").value,document.getElementById("corrTV3_B2").value,document.getElementById("corrTV3_C2").value,1,0,1,"textocorreccionTV3_fila2")></th><!--boton-->
+					<th id="textocorreccionTV3_fila2">
+					
+												
+				</tr><tr><!--Fila 3---------------------------------------------->
+					<th>0</th>	
+					<th>1</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV3_A3" id="corrTV3_A3"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B3" id="corrTV3_B3"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C3" id="corrTV3_C3"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A3").value,document.getElementById("corrTV3_B3").value,document.getElementById("corrTV3_C3").value,1,1,1,"textocorreccionTV3_fila3")></th><!--boton-->
+					<th id="textocorreccionTV3_fila3">
+					
+												
+				</tr><tr><!--Fila 4---------------------------------------------->
+					<th>0</th>	
+					<th>1</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV3_A4" id="corrTV3_A4"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B4" id="corrTV3_B4"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C4" id="corrTV3_C4"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A4").value,document.getElementById("corrTV3_B4").value,document.getElementById("corrTV3_C4").value,1,1,1,"textocorreccionTV3_fila4")></th><!--boton-->
+					<th id="textocorreccionTV3_fila4">
+					
+												
+				</tr><tr><!--Fila 5---------------------------------------------->
+					<th>1</th>	
+					<th>0</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV3_A5" id="corrTV3_A5"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B5" id="corrTV3_B5"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C5" id="corrTV3_C5"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A5").value,document.getElementById("corrTV3_B5").value,document.getElementById("corrTV3_C5").value,0,0,0,"textocorreccionTV3_fila5")></th><!--boton-->
+					<th id="textocorreccionTV3_fila5">
+					
+												
+				</tr><tr><!--Fila 6---------------------------------------------->
+					<th>1</th>	
+					<th>0</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV3_A6" id="corrTV3_A6"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B6" id="corrTV3_B6"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C6" id="corrTV3_C6"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A6").value,document.getElementById("corrTV3_B6").value,document.getElementById("corrTV3_C6").value,0,0,1,"textocorreccionTV3_fila6")></th><!--boton-->
+					<th id="textocorreccionTV3_fila6">
+					
+												
+				</tr><tr><!--Fila 7---------------------------------------------->
+					<th>1</th>	
+					<th>1</th> 
+					<th>0</th>
+					<th><input type="text" name="corrTV3_A7" id="corrTV3_A7"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B7" id="corrTV3_B7"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C7" id="corrTV3_C7"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A7").value,document.getElementById("corrTV3_B7").value,document.getElementById("corrTV3_C7").value,0,0,0,"textocorreccionTV3_fila7")></th><!--boton-->
+					<th id="textocorreccionTV3_fila7">
+					
+												
+				</tr><tr><!--Fila 8---------------------------------------------->
+					<th>1</th>	
+					<th>1</th> 
+					<th>1</th>
+					<th><input type="text" name="corrTV3_A8" id="corrTV3_A8"class="cuadrotexto"/></th> <!--caja de texto corrA-->
+					<th><input type="text" name="corrTV3_B8" id="corrTV3_B8"class="cuadrotexto"/></th>
+					<th><input type="text" name="corrTV3_C8" id="corrTV3_C8"class="cuadrotexto"/></th>
+					<th><input type ="button" value= "corregir" id="botoncorregir" class="botoncorregir"onclick=corregir3respuestas(getElementById("corrTV3_A8").value,document.getElementById("corrTV3_B8").value,document.getElementById("corrTV3_C8").value,0,0,1,"textocorreccionTV3_fila8")></th><!--boton-->
+					<th id="textocorreccionTV3_fila8">
+					
+												
+				</tr>
+			</table>
+			<div class="clear">
+			</div><hr>
+			<li><p><b>Halla las señales intermedias y la salida S según el valor de las entradas (A, B, C) de este circuito lógico.</b></p></li></ul>
+			<table>
+				<tr>
+				<th style="border:0px">A = </th> 
+				<th id="C2_A"style="border:0px"></th> 
+				<th rowspan="3"style="border:0px"> <img id="img17" src="img/img17.jpg"></th>
+				</tr><tr>
+				<th style="border:0px">B = </th> 
+				<th id="C2_B"style="border:0px"></th>
+				</tr><tr>
+				<th style="border:0px">C = </th> 
+				<th id="C2_C"style="border:0px"></th>
+				</tr>
+			</table>
+			<table class="tabla2">
+			<tr class="fila1_2">
+			<th id="corr_C2_D">D</th>	
+			<th id="corr_C2_E">E</th>	
+			<th id="corr_C2_F">F</th>	
+			<th id="corr_C2_G">G</th>	
+			<th id="corr_C2_H">H</th>	
+			<th id="corr_C2_S">S</th>	
+			</tr><tr>
+			<th><input type="text" name="sol_C2_D" id="sol_C2_D"class="cuadrotexto"/></th>	
+			<th><input type="text" name="sol_C2_E" id="sol_C2_E"class="cuadrotexto"/></th>	
+			<th><input type="text" name="sol_C2_F" id="sol_C2_F"class="cuadrotexto"/></th>	
+			<th><input type="text" name="sol_C2_G" id="sol_C2_G"class="cuadrotexto"/></th>	
+			<th><input type="text" name="sol_C2_H" id="sol_C2_H"class="cuadrotexto"/></th>	
+			<th><input type="text" name="sol_C2_S" id="sol_C2_S"class="cuadrotexto"/></th>
+			<th><input type ="button" value= "corregir" id="botoncorregir"class="botoncorregir" onclick=corregir6respuestas(document.getElementById("sol_C2_D").value,document.getElementById("sol_C2_E").value,document.getElementById("sol_C2_F").value,document.getElementById("sol_C2_G").value,document.getElementById("sol_C2_H").value,document.getElementById("sol_C2_S").value,getElementById("corr_C2_D").value,getElementById("corr_C2_E").value,getElementById("corr_C2_F").value,getElementById("corr_C2_G").value,getElementById("corr_C2_H").value,getElementById("corr_C2_S").value,"textocorreccionC2")></th>
+			<th id="textocorreccionC2"></th>
+			</tr>
+			</table>
+			
+			</div>
+			</div>
+			<div class="clear">
+			</div>
+			<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+		</div>
+		
+		
+		
+		
+		
+		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		
+		
+		
+		<script>
+
+		function getRandom(){ //Genera un número aleatorio 0 o 1
+					var A=Math.random();
+					if (A<0.5){
+						A=0;
+					}else{
+						A=1;
+					}
+					return A;
+				}
+		function puertaOR (entrada1, entrada2){
+			var salida;//genera la salida de una puerta OR en funcion de las dos entradas
+			
+			if (entrada1||entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaAND (entrada1, entrada2){
+			var salida;
+			if (entrada1&&entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaNOT(entrada){
+			var salida
+			if (entrada==1){
+				salida=0;
+			}else{
+				salida=1;
+			}
+			return salida;
+		}
+
+		
+
+
+//------------------------------------Función corregir1 : 1 caja de texto
+		//-------la entrada C1 es el valor correcto de la respuesta y S1 el introducido en la caja de texto y los compara
+		function corregir1(C1, S1,correccion){//escribe en la casilla correcion cuando se pulsa el boton
+	
+			if (((S1!=0)&&(S1!=1))||S1==""){//si el valor de la caja de texto es distinto de 0 o 1 o no pone nada ¡solo valen 0 o 1!
+				document.getElementById(correccion).style.color="red";
+				document.getElementById(correccion).innerHTML="¡Sólo valen 0 y 1!";
+			}else if(C1==S1){//si el valor de la caja de texto y el de la funcion puerta OR coincide ¡Correcto!
+				document.getElementById(correccion).style.color="green";
+				document.getElementById(correccion).innerHTML="¡Correcto!";
+			}else{//si no incorrecto
+				document.getElementById(correccion).style.color="red";
+				document.getElementById(correccion).innerHTML="Incorrecto";
+			}
+		}
+//------------------------------------Función corregir2 RESPUESTAS : 2 cajaS de texto
+		function corregir2respuestas(sol1,sol2,corr1,corr2,textocorreccion){
+			
+			var contador=0;
+			if(((sol1!=0)&&(sol1!=1))||((sol2!=0)&&(sol2!=1))||sol1==""||sol2==""){
+				document.getElementById(textocorreccion).style.color="red";
+				document.getElementById(textocorreccion).innerHTML="¡Sólo valen 0 y 1!";	
+			}else{
+			
+				if (sol1==corr1){
+					contador=contador+1;
+				}
+				if (sol2==corr2){
+					contador=contador+1;
+				}
+				if (contador==2){
+					document.getElementById(textocorreccion).style.color="green";
+					document.getElementById(textocorreccion).innerHTML="¡Correcto!";
+				}else{
+					document.getElementById(textocorreccion).style.color="red";
+					document.getElementById(textocorreccion).innerHTML="Has fallado "+(2-contador)+" respuestas";
+				}
+			}
+		}
+	
+//------------------------------------Función corregir3 RESPUESTAS : 3 cajaS de texto
+		function corregir3respuestas(sol1,sol2,sol3,corr1,corr2,corr3,textocorreccion){
+			
+			var contador=0;
+			if(((sol1!=0)&&(sol1!=1))||((sol2!=0)&&(sol2!=1))||((sol3!=0)&&(sol3!=1))||sol1==""||sol2==""||sol3==""){
+				document.getElementById(textocorreccion).style.color="red";
+				document.getElementById(textocorreccion).innerHTML="¡Sólo valen 0 y 1!";	
+			}else{
+			
+				if (sol1==corr1){
+					contador=contador+1;
+				}
+				if (sol2==corr2){
+					contador=contador+1;
+				}
+				if (sol3==corr3){
+					contador=contador+1;
+				}
+				if (contador==3){
+					document.getElementById(textocorreccion).style.color="green";
+					document.getElementById(textocorreccion).innerHTML="¡Correcto!";
+				}else{
+					document.getElementById(textocorreccion).style.color="red";
+					document.getElementById(textocorreccion).innerHTML="Has fallado "+(3-contador)+" respuestas";
+				}
+			}
+		}
+		
+//------------------------------------Función corregir5RESPUESTAS : 5 cajaS de texto
+		function corregir5respuestas(sol1,sol2,sol3,sol4,sol5,corr1,corr2,corr3,corr4,corr5,textocorreccion){
+			
+			var contador=0;
+			if(((sol1!=0)&&(sol1!=1))||((sol2!=0)&&(sol2!=1))||((sol3!=0)&&(sol3!=1))||((sol4!=0)&&(sol4!=1))||((sol5!=0)&&(sol5!=1))||sol1==""||sol2==""||sol3==""||sol4==""||sol5==""){
+				document.getElementById(textocorreccion).style.color="red";
+				document.getElementById(textocorreccion).innerHTML="¡Sólo valen 0 y 1!";	
+			}else{
+				if (sol1==corr1){
+					contador=contador+1;
+				}
+				if (sol2==corr2){
+					contador=contador+1;
+				}
+				if (sol3==corr3){
+					contador=contador+1;
+				}
+				if (sol4==corr4){
+					contador=contador+1;
+				}
+				if (sol5==corr5){
+					contador=contador+1;
+				}
+				if (contador==5){
+					document.getElementById(textocorreccion).style.color="green";
+					document.getElementById(textocorreccion).innerHTML="¡Correcto!";
+				}else{
+					document.getElementById(textocorreccion).style.color="red";
+					document.getElementById(textocorreccion).innerHTML="Has fallado "+(5-contador)+" respuestas";
+				}
+			}
+		}
+		
+		//------------------------------------Función corregir6RESPUESTAS : 6 cajaS de texto
+		function corregir6respuestas(sol1,sol2,sol3,sol4,sol5,sol6,corr1,corr2,corr3,corr4,corr5,corr6,textocorreccion){
+			
+			var contador=0;
+			if(((sol1!=0)&&(sol1!=1))||((sol2!=0)&&(sol2!=1))||((sol3!=0)&&(sol3!=1))||((sol4!=0)&&(sol4!=1))||((sol5!=0)&&(sol5!=1))||((sol6!=0)&&(sol6!=1))||sol1==""||sol2==""||sol3==""||sol4==""||sol5==""||sol6==""){
+				document.getElementById(textocorreccion).style.color="red";
+				document.getElementById(textocorreccion).innerHTML="¡Sólo valen 0 y 1!";	
+			}else{
+				if (sol1==corr1){
+					contador=contador+1;
+				}
+				if (sol2==corr2){
+					contador=contador+1;
+				}
+				if (sol3==corr3){
+					contador=contador+1;
+				}
+				if (sol4==corr4){
+					contador=contador+1;
+				}
+				if (sol5==corr5){
+					contador=contador+1;
+				}
+				if (sol6==corr6){
+					contador=contador+1;
+				}
+				if (contador==6){
+					document.getElementById(textocorreccion).style.color="green";
+					document.getElementById(textocorreccion).innerHTML="¡Correcto!";
+				}else{
+					document.getElementById(textocorreccion).style.color="red";
+					document.getElementById(textocorreccion).innerHTML="Has fallado "+(6-contador)+" respuestas";
+				}
+			}
+		}
+//---------------------------EJERCICIO TABLA ALGEBRA DE BOOLE TABLA OR AND NOT NOR NAND----------------------------------------------------------------------------------------------------------------//
+		//--------------------------primera pregunta puerta OR-------------//
+		var A1=getRandom();
+		document.getElementById("A1").innerHTML=A1;//escribe la variable A1 aleatoria
+		var B1=getRandom();
+		document.getElementById("B1").innerHTML=B1;//escribe la variable B1 aleatoria
+		
+		document.getElementById("C1").value=puertaOR(A1,B1);//calcula el resultado de la puerta OR para las entradas A1 y B1
+		//--------------------------segunda pregunta puerta AND------------------//
+		var A2=getRandom();
+		document.getElementById("A2").innerHTML=A2;//escribe la variable A1 aleatoria
+		var B2=getRandom();
+		document.getElementById("B2").innerHTML=B2;//escribe la variable B1 aleatoria
+		
+		document.getElementById("C2").value=puertaAND(A2,B2);//calcula el resultado de la puertaAND
+		//----------------------tercera pregunta puerta NOT------------------------//
+		var A3=getRandom();
+		document.getElementById("A3").innerHTML=A3;
+		
+		document.getElementById("C3").value=puertaNOT(A3);
+		//----------------------cuarta pregunta puerta NOR------------------------//
+		var A4=getRandom();
+		document.getElementById("A4").innerHTML=A4;//escribe la variable A1 aleatoria
+		var B4=getRandom();
+		document.getElementById("B4").innerHTML=B4;//escribe la variable B1 aleatoria
+		
+		document.getElementById("C4").value=puertaNOT(puertaOR(A4,B4));//calcula el resultado de la puerta NOR
+		//----------------------cuarta pregunta puerta NAND------------------------//
+		var A5=getRandom();
+		document.getElementById("A5").innerHTML=A5;//escribe la variable A1 aleatoria
+		var B5=getRandom();
+		document.getElementById("B5").innerHTML=B5;//escribe la variable B1 aleatoria
+		
+		document.getElementById("C5").value=puertaNOT(puertaAND(A5,B5));//calcula el resultado de la puertaNAND
+		
+		
+//----------------------------------------------------------------------------------------------EJERCICIO PUERTAS LOGICAS CON DIBUJO-------------------
+		//----------------------------------------------------------------------------------------primera pregunta puerta OR con dibujo-------------//
+		var ej1_A1=getRandom();
+		document.getElementById("ej1_A1").innerHTML=ej1_A1;//escribe la variable A1 aleatoria
+		var ej1_B1=getRandom();
+		document.getElementById("ej1_B1").innerHTML=ej1_B1;//escribe la variable B1 aleatoria
+		
+		document.getElementById("ej1_C1").value=puertaOR(ej1_A1,ej1_B1);//calcula el resultado de la puerta OR para las entradas ej1_A1 y ej1_B1
+		//---------------------------------------------------------------------------------------- puerta AND con dibujo-------------//
+		var ej1_A2=getRandom();
+		document.getElementById("ej1_A2").innerHTML=ej1_A2;//escribe la variable A1 aleatoria
+		var ej1_B2=getRandom();
+		document.getElementById("ej1_B2").innerHTML=ej1_B2;//escribe la variable B1 aleatoria
+		
+		document.getElementById("ej1_C2").value=puertaAND(ej1_A2,ej1_B2);
+		//---------------------------------------------------------------------------------------- puerta NOT con dibujo-------------//
+		var ej1_A3=getRandom();
+		document.getElementById("ej1_A3").innerHTML=ej1_A3;//escribe la variable A1 aleatoria
+		
+		document.getElementById("ej1_C3").value=puertaNOT(ej1_A3);
+		//---------------------------------------------------------------------------------------- puerta NOR con dibujo-------------//
+		var ej1_A4=getRandom();
+		document.getElementById("ej1_A4").innerHTML=ej1_A4;//escribe la variable A1 aleatoria
+		var ej1_B4=getRandom();
+		document.getElementById("ej1_B4").innerHTML=ej1_B4;//escribe la variable B1 aleatoria
+		
+		document.getElementById("ej1_C4").value=puertaNOT(puertaOR(ej1_A4,ej1_B4));
+		//---------------------------------------------------------------------------------------- puerta NAND con dibujo-------------//
+		var ej1_A5=getRandom();
+		document.getElementById("ej1_A5").innerHTML=ej1_A5;//escribe la variable A1 aleatoria
+		var ej1_B5=getRandom();
+		document.getElementById("ej1_B5").innerHTML=ej1_B5;//escribe la variable B1 aleatoria
+		
+		document.getElementById("ej1_C5").value=puertaNOT(puertaAND(ej1_A5,ej1_B5));
+
+
+//-------------------------------------------------------------------------------------------EJERCICIO CIRCUITO LÓGICO 2-----------//
+
+		var C2_A=getRandom();
+		var C2_B=getRandom();
+		var C2_C=getRandom();
+		document.getElementById("C2_A").innerHTML=C2_A;//escribe la variable A
+		document.getElementById("C2_B").innerHTML=C2_B;
+		document.getElementById("C2_C").innerHTML=C2_C;
+		//Asignar las soluciones D, E, F, G, H y S
+		document.getElementById("corr_C2_D").value=puertaAND(C2_A,C2_B);
+		document.getElementById("corr_C2_E").value=puertaAND(C2_B,C2_C);
+		document.getElementById("corr_C2_F").value=puertaNOT(puertaAND(C2_B,C2_C));
+		document.getElementById("corr_C2_G").value=puertaOR(puertaAND(C2_A,C2_B),puertaNOT(puertaAND(C2_B,C2_C)));
+		document.getElementById("corr_C2_H").value=puertaNOT(C2_C);
+		document.getElementById("corr_C2_S").value=puertaOR(puertaOR(puertaAND(C2_A,C2_B),puertaNOT(puertaAND(C2_B,C2_C))),puertaNOT(C2_C));
+		
+		
+		
+		</script>
+
+	</body>
+</html>

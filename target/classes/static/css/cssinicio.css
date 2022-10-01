@@ -1,0 +1,109 @@
+body{
+	background-image:url(background.png);
+	background-attachment: fixed;
+    background-size: cover;
+}
+#principal{
+	width:1000px;
+	border:1px solid #000000;
+	margin:0 auto;
+	padding:5px;
+	font-family:"Verdana", cursive, sans-serif;
+	background-color:#89C22B;
+	border-radius:5px;
+}
+#cabecera{
+	height:100px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	font-variant:small-caps;
+	background-color:#B1DC6C;
+	border-radius:5px;
+	text-align:center;
+	font-size:30px;
+}
+#menu{
+	height:30 px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	background-color:#B1DC6C;
+	border-radius:5px;
+	font-weight:bold;
+	font-size:20px;
+}
+#logout_button{
+	display:inline;
+	background-color:white;
+	border:none;
+	font-family:"Verdana", cursive, sans-serif;
+	font-weight:bold;
+	font-size:20px;
+	cursor: pointer;
+	color: #551a8b;
+}
+#menu form{
+	display:inline;
+	border-radius:5px;
+	background-color:white;
+	text-decoration: underline;
+	color: #551a8b;
+	
+}
+#menu li{
+	display:inline;
+	border:1px solid #000000;
+	padding:15px;
+	border-radius:5px;
+	margin:20px;
+	background-color:white;
+}
+#menu ul{
+	margin: 15 px;
+	text-align:center;
+}
+
+#columnader{
+	width:960px;
+	border:1px solid #000000;
+	margin:5px;
+	float:left;
+	padding:15px;
+	background-color:white;
+	border-radius:5px;
+}
+.clear{
+	clear:both;
+}
+
+#clase{
+	width: 49%;
+	float: left;
+    border: solid 1px black;
+    margin-top:10px;
+    margin: 4px;
+    padding: 4px;
+    border-collapse: collapse;
+}
+
+#clase th{
+    border: solid 1px black;
+    border-collapse: collapse;
+    padding: 6px;
+}
+
+#añadirEjercicios{
+	text-align: left;
+}
+
+#pie{
+	height:160px;
+	border:1px solid #000000;
+	margin:5px;
+	padding:5px;
+	background-color:#2B7E07;
+	border-radius:5px;
+	color:white;
+	text-align:center;
+}

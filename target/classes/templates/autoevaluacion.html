@@ -1,0 +1,528 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+	<head>
+		<title> Autoevaluacion </title>
+		<link href="css\cssautoevaluacion.css" rel="stylesheet" type="text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+		<div id="columnader">
+		<p>¡Pon a prueba tus conocimientos! Aquí tienes un test con distintos ejercicios para poder evaluar tu avance.</p>
+		<hr>
+		
+		<ul>
+			<li>Halla la salida S de las distintas funciones lógicas en con dos variables de entrada (a y b):</li>
+			
+<!-- 		<form action="#" th:action="@{/hola}" th:object="${Integer}" method="post"> -->
+		<form action="/done" method="post">
+		<input type="hidden" name="variables" value="{{a1}}{{b1}}{{a2}}{{b2}}{{a3}}{{b3}}{{a4}}{{b4}}{{a5}}{{b5}}{{a6}}{{b6}}{{a7}}{{b7}}{{a8}}{{b8}}{{a9}}{{b9}}{{c9}}{{a10}}{{b10}}{{c10}}{{a11}}{{b11}}{{c11}}{{a12}}{{b12}}{{c12}}{{a13}}{{b13}}{{c13}}{{a14}}{{b14}}{{c14}}{{a15}}{{b15}}{{c15}}{{a16}}{{b16}}{{c16}}{{a18}}{{b18}}{{a19}}{{b19}}{{a20}}{{b20}}{{a21}}{{b21}}{{a22}}{{b22}}{{a23}}{{c23}}{{b23}}{{a24}}{{b24}}{{c24}}{{a25}}{{b25}}{{c25}}{{a26}}{{b26}}{{c26}}">
+			<table id="tabla1">
+				<tr id="fila1">
+					<th>a</th>
+					<th>b</th>
+					<th>Función Lógica</th>
+					<th>Solución</th>
+					<th style="display: none"></th>
+				</tr>
+				<tr>
+<!-- 					<th id="A_1" th:field="*{usuario}" > tontolaba</th> -->
+					{{#ej1}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_1">{{a1}}</th>
+					<th id="B_1">{{b1}}</th>
+					<th id="corr_1">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_1" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_1"></th>
+					{{/ej1}}
+				</tr>
+				<tr>
+					{{#ej2}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_2">{{a2}}</th>
+					<th id="B_2">{{b2}}</th>
+					<th id="corr_2">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_2" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_2"></th>
+					{{/ej2}}
+				</tr>
+				<tr>
+					{{#ej3}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_3">{{a3}}</th>
+					<th id="B_3">{{b3}}</th>
+					<th id="corr_3">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_3" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_3"></th>
+					{{/ej3}}
+				</tr>
+				<tr>
+					{{#ej4}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_4">{{a4}}</th>
+					<th id="B_4">{{b4}}</th>
+					<th id="corr_4">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_4" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_4"></th>
+					{{/ej4}}
+				</tr>
+				<tr>
+					{{#ej5}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_5">{{a5}}</th>
+					<th id="B_5">{{b5}}</th>
+					<th id="corr_5">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_5" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_5"></th>
+					{{/ej5}}
+				</tr>
+				<tr>
+					{{#ej6}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_6">{{a6}}</th>
+					<th id="B_6">{{b6}}</th>
+					<th id="corr_6">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_6" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_6"></th>
+					{{/ej6}}
+				</tr>
+				<tr>
+					{{#ej7}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_7">{{a7}}</th>
+					<th id="B_7">{{b7}}</th>
+					<th id="corr_7">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_7" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_7"></th>
+					{{/ej7}}
+				</tr>
+				<tr>
+					{{#ej8}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_8">{{a8}}</th>
+					<th id="B_8">{{b8}}</th>
+					<th id="corr_8">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_8" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_8"></th>
+					{{/ej8}}
+				</tr>
+			</table>
+			<hr>
+			<li>Halla la salida S de las distintas funciones lógicas en con tres variables de entrada (a, b y c):</li>
+			<table id="tabla2">
+				<tr id="fila1">
+					<th>a</th>
+					<th>b</th>
+					<th>c</th>
+					<th>Función Lógica</th>
+					<th>Solución</th>
+					<th style="display: none"></th>
+				</tr><tr>
+					{{#ej9}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_9">{{a9}}</th>
+					<th id="B_9">{{b9}}</th>
+					<th id="C_9">{{c9}}</th>
+					<th id="corr_9">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_9" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_9"></th>
+					{{/ej9}}
+				</tr><tr>
+					{{#ej10}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_10">{{a10}}</th>
+					<th id="B_10">{{b10}}</th>
+					<th id="C_10">{{c10}}</th>
+					<th id="corr_10">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_10" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_10"></th>
+					{{/ej10}}
+				</tr><tr>
+					{{#ej11}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_11">{{a11}}</th>
+					<th id="B_11">{{b11}}</th>
+					<th id="C_11">{{c11}}</th>
+					<th id="corr_11">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_11" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_11"></th>
+					{{/ej11}}
+				</tr><tr>
+					{{#ej12}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_12">{{a12}}</th>
+					<th id="B_12">{{b12}}</th>
+					<th id="C_12">{{c12}}</th>
+					<th id="corr_12">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_12" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_12"></th>
+					{{/ej12}}
+				</tr><tr>
+					{{#ej13}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_13">{{a13}}</th>
+					<th id="B_13">{{b13}}</th>
+					<th id="C_13">{{c13}}</th>
+					<th id="corr_13">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_13" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_13"></th>
+					{{/ej13}}
+				</tr><tr>
+					{{#ej14}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_14">{{a14}}</th>
+					<th id="B_14">{{b14}}</th>
+					<th id="C_14">{{c14}}</th>
+					<th id="corr_14">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_14" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_14"></th>
+					{{/ej14}}
+				</tr><tr>
+					{{#ej15}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_15">{{a15}}</th>
+					<th id="B_15">{{b15}}</th>
+					<th id="C_15">{{c15}}</th>
+					<th id="corr_15">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_15" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_15"></th>
+					{{/ej15}}
+				</tr><tr>
+					{{#ej16}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th id="A_16">{{a16}}</th>
+					<th id="B_16">{{b16}}</th>
+					<th id="C_16">{{c16}}</th>
+					<th id="corr_16">{{funcion_logica}}</th>
+					<th>S= <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_16" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_16"></th>
+					{{/ej16}}
+				</tr>
+			</table>
+			<hr><hr>
+			<li>Completa la siguiente tabla de verdad:</li>
+			<table id="tabla3">
+				<tr id="fila1">
+					{{#ej17}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>a</th>
+					<th>b</th>
+					<th>c</th>
+					<th>{{funcion_logica}}</th>
+					<th style="display: none"></th>
+				</tr><tr>
+					<th>0</th>
+					<th>0</th>
+					<th>0</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_17" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_17"></th>
+				</tr><tr>
+					<th>0</th>
+					<th>0</th>
+					<th>1</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_18" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_18"></th>
+				</tr><tr>
+					<th>0</th>
+					<th>1</th>
+					<th>0</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_19" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_19"></th>
+				</tr><tr>
+					<th>0</th>
+					<th>1</th>
+					<th>1</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_20" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_20"></th>
+				</tr><tr>
+					<th>1</th>
+					<th>0</th>
+					<th>0</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_21" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_21"></th>
+				</tr><tr>
+					<th>1</th>
+					<th>0</th>
+					<th>1</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_22" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_22"></th>
+				</tr><tr>
+					<th>1</th>
+					<th>1</th>
+					<th>0</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_23" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_23"></th>
+				</tr><tr>
+					<th>1</th>
+					<th>1</th>
+					<th>1</th>
+					<th><input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_24" class="cuadrotexto" required/></th>
+					<th style="display: none" id="P_24"></th>
+					{{/ej17}}
+				</tr>
+			</table>
+			
+			<hr><hr>
+			<li>Halla la salida S para las entradas (A y/o B) de las siguientes puertas lógicas:</li>
+			
+			
+			<table class="tabla4">
+				<tr><th colspan="5"><hr></th>
+				<tr>
+					{{#ej18}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A =</th>	
+					<th id="A_25">{{a18}}</th>
+					<th rowspan="2"><img src="{{imagen}}" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_25">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_25" class="cuadrotexto" required/></th>
+					<th rowspan="2" id="P_25" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_25">{{b18}}</th>
+				</tr><tr><th colspan="5"><hr></th>
+					{{/ej18}}
+				</tr><tr>	
+					{{#ej19}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A =</th>	
+					<th id="A_26">{{a19}}</th>
+					<th rowspan="2"><img src="{{imagen}}" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_26">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_26" class="cuadrotexto" required/></th>
+					<th rowspan="2" id="P_26" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_26">{{b19}}</th>
+				</tr><tr><th colspan="5"><hr></th>
+					{{/ej19}}
+				</tr><tr>	
+					{{#ej20}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A =</th>	
+					<th id="A_27">{{a20}}</th>
+					<th rowspan="2"><img src="{{imagen}}" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_27">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_27" class="cuadrotexto" required/></th>
+					<th rowspan="2" id="P_27" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_27">{{b20}}</th>
+				</tr><tr><th colspan="5"><hr></th>
+					{{/ej20}}
+				</tr><tr>
+					{{#ej21}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A =</th>	
+					<th id="A_28">{{a21}}</th>
+					<th rowspan="2"><img src="{{imagen}}" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_28">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_28" class="cuadrotexto" required/></th>
+					<th rowspan="2" id="P_28" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_28">{{b21}}</th>
+				</tr><tr><th colspan="5"><hr></th>
+					{{/ej21}}
+				</tr><tr>
+					{{#ej22}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A =</th>	
+					<th id="A_29">{{a22}}</th>
+					<th rowspan="2"><img src="{{imagen}}" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_29">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_29" class="cuadrotexto" required/></th>
+					<th rowspan="2" id="P_29" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_29">{{b22}}</th>
+				</tr><tr><th colspan="5"><hr></th>
+					{{/ej22}}
+				</tr>
+			</table>
+				
+			<hr><hr>
+			<li>Halla la salida S del siguiente circuito lógico:</li>
+	
+			<table id="tabla5">
+				<tr>
+					{{#ej23}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A = </th>
+					<th id="A_30">{{a23}}</th>
+					<th rowspan="3" id="corr_30"><img src="{{imagen}}" id="img18"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_30">{{b23}}</th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_30">{{c23}}</th>
+				</tr><tr>
+					<th colspan="2">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_30" class="cuadrotexto" required/></th>	
+					<th id="P_30" style="display: none"></th>
+					{{/ej23}}
+			</table>
+			<hr><li>Halla la salida S del siguiente circuito lógico:</li>
+			<table id="tabla6">
+				<tr>
+					{{#ej24}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+					<th>A = </th>
+					<th id="A_31">{{a24}}</th>
+					<th rowspan="2" id="corr_31"><img src="{{imagen}}" id="img19"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_31">{{b24}}</th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_31">{{c23}}</th>
+				</tr><tr>	
+					<th colspan="2">S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_31" class="cuadrotexto" required/></th>
+					<th id="P_31" style="display: none"></th>
+					{{/ej24}}
+				</tr>
+			</table>
+			<hr>
+			<li>Halla la salida S y los puntos intermedio (D,E,F,G y H) del siguiente circuito lógico:</li>
+			
+			<table id="tabla7">
+				{{#ej25}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+				<tr>
+					<th>A = </th>
+					<th id="A_32">{{a25}}</th>
+					<th rowspan="3"><img src="{{imagen}}" id="img20"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_32">{{b25}}</th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_32">{{c25}}</th>
+				</tr>
+			</table>
+			
+			<table id="tabla8">
+				<tr>
+					<th id="corr_D_32"> D = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="D_32" class="cuadrotexto" required/></th>
+					<th id="P_D_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_E_32"> E = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="E_32" class="cuadrotexto" required/></th>
+					<th id="P_E_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_F_32"> F = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="F_32" class="cuadrotexto" required/></th>
+					<th id="P_F_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_G_32"> G = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="G_32" class="cuadrotexto" required/></th>
+					<th id="P_G_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_H_32"> H = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="H_32" class="cuadrotexto" required/></th>
+					<th id="P_H_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_S_32"> S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_32" class="cuadrotexto" required/></th>
+					<th id="P_S_32" style="display: none"></th>
+				</tr>
+				{{/ej25}}
+			</table>
+			
+			<hr><li>Halla la salida S y los puntos intermedio (D,E,F,G y H) del siguiente circuito lógico:</li>
+			
+			<table id="tabla9">
+				{{#ej26}}
+					<input type="hidden" name="ej[]" value="{{id}}">
+				<tr>
+					<th>A = </th>
+					<th id="A_33">{{a26}}</th>
+					<th rowspan="3"><img src="{{imagen}}" id="img21"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_33">{{b26}}</th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_33">{{c26}}</th>
+				</tr>
+			</table>
+			
+			<table id="tabla10">
+				<tr>
+					<th id="corr_D_33"> D = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="D_33" class="cuadrotexto" required/></th>
+					<th id="P_D_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_E_33"> E = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="E_33" class="cuadrotexto" required/></th>
+					<th id="P_E_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_F_33"> F = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="F_33" class="cuadrotexto" required/></th>
+					<th id="P_F_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_G_33"> G = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="G_33" class="cuadrotexto" required/></th>
+					<th id="P_G_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_H_33"> H = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="H_33" class="cuadrotexto" required/></th>
+					<th id="P_H_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_S_33"> S = <input type="text" pattern="[0-1]{1}" title="Solo se admiten los valores 0 y 1" name="S[]" id="S_33" class="cuadrotexto" required/></th>
+					<th id="P_S_33" style="display: none"></th>
+				</tr>
+				{{/ej26}}
+			</table>
+			
+			</ul>
+
+			<div id="botonn">
+				<input type="submit" value="Corregir Test" id="botoncorregir" class="botoncorregir"/>
+				<input type="hidden" name="_csrf" value="{{token}}" />
+			</div>
+			<input type="reset" value="Reiniciar Test">
+		</form>
+							
+		</div>
+			<div class="clear">
+			</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
+</html>

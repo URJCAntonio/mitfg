@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org/"xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+	<head>
+		<title> Inicio </title>
+		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div id="principal" style="width:95%;">
+		
+			<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+			</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div id="columnader" style="width:97%;">
+				
+					<table id="clase" style="width:99%;">
+						<tr id="fila1">
+							<th colspan="4">Ejercicios Simples</th>	
+						</tr>
+						<tr id="fila1">
+							<th>ID</th>	
+							<th>Funcion lógica</th>
+							<th>Imagen</th>
+							<th>Fracción</th>
+						</tr>
+						{{#simples}}
+							<tr>
+								<th>{{key.id}}</th>
+								<th>{{key.funcion_logica}}</th>
+								<th><img src="{{key.imagen}}" id="imgpuertalogic"></th>
+								<th>{{value}}</th>
+							</tr>
+						{{/simples}}
+					</table>
+					
+					<table id="clase" style="width:99%;">
+						<tr id="fila1">
+							<th colspan="4">Ejercicios Medios</th>	
+						</tr>
+						<tr id="fila1">
+							<th>ID</th>	
+							<th>Funcion lógica</th>
+							<th>Imagen</th>
+							<th>Fracción</th>
+						</tr>
+						{{#medios}}
+							<tr>
+								<th>{{key.id}}</th>
+								<th>{{key.funcion_logica}}</th>
+								<th><img src="{{key.imagen}}" id="imgpuertalogic"></th>
+								<th>{{value}}</th>
+							</tr>
+						{{/medios}}
+					</table>
+					
+					<table id="clase" style="width:99%;">
+						<tr id="fila1">
+							<th colspan="4">Ejercicios Complejos</th>	
+						</tr>
+						<tr id="fila1">
+							<th>ID</th>	
+							<th>Funciones lógicas</th>
+							<th>Imagen</th>
+							<th>Fracción</th>
+						</tr>
+						{{#complejos}}
+							<tr>
+								<th rowspan="6">{{key.id}}</th>
+								<th>{{key.funcion_logicaD}}</th>
+								<th rowspan="6"><img src="{{key.imagen}}" id="imgpuertalogic"></th>
+								<th rowspan="6">{{value}}</th>
+							</tr>
+							<tr>
+								<th>{{key.funcion_logicaE}}</th>
+							</tr>
+							<tr>
+								<th>{{key.funcion_logicaF}}</th>
+							</tr>
+							<tr>
+								<th>{{key.funcion_logicaG}}</th>
+							</tr>
+							<tr>
+								<th>{{key.funcion_logicaH}}</th>
+							</tr>
+							<tr>
+								<th>{{key.funcion_logica}}</th>
+							</tr>
+						{{/complejos}}
+					</table>
+			</div>
+			<div class="clear">
+			</div>
+			<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Alumna: Carmen Muñoz Lorente; Director: Carlos Lázaro Carrascosa</p>
+			</div>
+		</div>
+		
+	</body>
+</html>

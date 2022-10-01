@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org/"xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+	<head>
+		<title> Inicio </title>
+		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div id="principal">
+		
+			<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+			</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div id="columnader">
+				<h3>Introducción</h3>
+				<p>El mundo digital es <b>analógico</b> por naturaleza, esto quiere decir que todas las magnitudes físicas como la temperatura, la presión, la velocidad, etc., lo son.</p>
+				<p>En cambio, la mayoría de los sistemas de control actuales tanto en la vida cotidiana (televisor, automovil, etc.), como en la industrial (llenado de botellas, control de almacén, etc.) disponen de un <b>procesador digital</b>.<p>
+				<p>Estos procesadores nos permiten controlar los aparatos de nuestro entorno mediante la electrónica digital, que utiliza el sistema binario mediante <b>señales digitales </b>que contienen ceros y unos.</p>
+				<p>Supongamos que nos interesa controlar un termostato de una casa, de tal manera que cuando la temperatura baje de una temperatura de referencia se encienda la calefacción de la casa.</p>
+				<p>El dispositivo funcionara de la siguiente manera:</p>
+				<ul><li>Cuando la temperatura de la casa sea <b>superior</b> de la deseada, el termostato no actúa, por lo que manda un mensaje de <b>0</b>, que quiere decir <b>"apagado"</b> o sin voltaje, de manera que se apagará la calefacción.</li>
+					<li>Cuando la temperatura de la casa sea <b>inferior</b> de la deseada, el termostato sí actúa, por lo que manda un mensaje de <b>1</b>, que quiere decir <b>"encendido"</b> o con voltaje, de manera que se encenderá la calefacción.</li>
+				</ul>
+				<p>Este sistema de codificación se denomina <b>CÓDIGO BINARIO</b> y es por el que se rige toda la electrónica digital, de tal manera que cualquier orden puede ser ordenada mediante una combinación de unos y ceros.</p>
+				<p>Para que los aparatos digitales puedan trabajar con este sistema de codificación el matemático británico George Boole introdujo en 1984 el <b>álgebra de Boole</b>. </p>
+			</div>
+			<div class="clear">
+			</div>
+			<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Alumna: Carmen Muñoz Lorente; Director: Carlos Lázaro Carrascosa</p>
+			</div>
+		</div>
+		
+		<script>
+
+		function getRandom(){ //Genera un número aleatorio 0 o 1
+					var A=Math.random();
+					if (A<0.5){
+						A=0;
+					}else{
+						A=1;
+					}
+					return A;
+				}
+		function puertaOR (entrada1, entrada2){
+			var salida;//genera la salida de una puerta OR en funcion de las dos entradas
+			
+			if (entrada1||entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaAND (entrada1, entrada2){
+			var salida;
+			if (entrada1&&entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaNOT(entrada){
+			var salida
+			if (entrada==1){
+				salida=0;
+			}else{
+				salida=1;
+			}
+			return salida;
+		}
+
+		//--------------------funciones logicas
+		var A_1=getRandom();
+		document.getElementById("A_1").innerHTML=A_1;//escribe la variable A1 aleatoria
+		document.getElementById("corr_1").value=puertaNOT(A_1);//calcula el resultado de la correccion
+		
+		var A_2=getRandom();
+		document.getElementById("A_2").innerHTML=A_2;
+		var B_2=getRandom();
+		document.getElementById("B_2").innerHTML=B_2;
+		document.getElementById("corr_2").value=puertaAND(A_2,B_2);
+		
+		var A_3=getRandom();
+		document.getElementById("A_3").innerHTML=A_3;
+		var B_3=getRandom();
+		document.getElementById("B_3").innerHTML=B_3;
+		document.getElementById("corr_3").value=puertaAND(A_3,puertaNOT(B_3));
+		
+		var A_4=getRandom();
+		document.getElementById("A_4").innerHTML=A_4;
+		var B_4=getRandom();
+		document.getElementById("B_4").innerHTML=B_4;
+		document.getElementById("corr_4").value=puertaOR(puertaNOT(A_4),B_4);
+		
+		var A_5=getRandom();
+		document.getElementById("A_5").innerHTML=A_5;
+		var B_5=getRandom();
+		document.getElementById("B_5").innerHTML=B_5;
+		document.getElementById("corr_5").value=puertaAND(A_5, puertaOR(puertaNOT(A_5),B_5));
+		
+		var A_6=getRandom();
+		document.getElementById("A_6").innerHTML=A_6;
+		var B_6=getRandom();
+		document.getElementById("B_6").innerHTML=B_6;
+		document.getElementById("corr_6").value=puertaNOT(puertaAND(A_6,B_6));
+		
+		var A_7=getRandom();
+		document.getElementById("A_7").innerHTML=A_7;
+		var B_7=getRandom();
+		document.getElementById("B_7").innerHTML=B_7;
+		document.getElementById("corr_7").value=puertaOR(puertaAND(puertaNOT(A_7),B_7),B_7);
+		
+		var A_8=getRandom();
+		document.getElementById("A_8").innerHTML=A_8;
+		var B_8=getRandom();
+		document.getElementById("B_8").innerHTML=B_8;
+		document.getElementById("corr_8").value=puertaOR(puertaNOT(puertaOR(A_8,B_8),B_8));
+		
+		
+		
+		var A_9=getRandom();
+		document.getElementById("A_9").innerHTML=A_9;
+		var B_9=getRandom();
+		document.getElementById("B_9").innerHTML=B_9;
+		var C_9=getRandom();
+		document.getElementById("C_9").innerHTML=C_9;
+		document.getElementById("corr_9").value=puertaOR(puertaAND(C_9,A_9),B_9);
+		
+		
+		var A_10=getRandom();
+		document.getElementById("A_10").innerHTML=A_10;
+		var B_10=getRandom();
+		document.getElementById("B_10").innerHTML=B_10;
+		var C_10=getRandom();
+		document.getElementById("C_10").innerHTML=C_10;
+		document.getElementById("corr_10").value=puertaOR(puertaAND(B_10,C_10),A_10);
+		
+		
+		var A_11=getRandom();
+		document.getElementById("A_11").innerHTML=A_11;
+		var B_11=getRandom();
+		document.getElementById("B_11").innerHTML=B_11;
+		var C_11=getRandom();
+		document.getElementById("C_11").innerHTML=C_11;
+		document.getElementById("corr_11").value=puertaAND(puertaOR(puertaNOT(A_11),puertaNOT(C_11)),B_11);
+		
+		
+		var A_12=getRandom();
+		document.getElementById("A_12").innerHTML=A_12;
+		var B_12=getRandom();
+		document.getElementById("B_12").innerHTML=B_12;
+		var C_12=getRandom();
+		document.getElementById("C_12").innerHTML=C_12;
+		document.getElementById("corr_12").value=puertaOR(puertaNOT(puertaAND(A_12,B_12),C_12));
+		
+		
+		var A_13=getRandom();
+		document.getElementById("A_13").innerHTML=A_13;
+		var B_13=getRandom();
+		document.getElementById("B_13").innerHTML=B_13;
+		var C_13=getRandom();
+		document.getElementById("C_13").innerHTML=C_13;
+		document.getElementById("corr_13").value=puertaOR(puertaNOT(puertaAND(A_13,C_13)),puertaAND(A_13,B_13));
+		
+		
+		var A_14=getRandom();
+		document.getElementById("A_14").innerHTML=A_14;
+		var B_14=getRandom();
+		document.getElementById("B_14").innerHTML=B_14;
+		var C_14=getRandom();
+		document.getElementById("C_14").innerHTML=C_14;
+		document.getElementById("corr_14").value=puertaOR(puertaAND(B_14,C_14),puertaNOT(puertaAND(A_14,C_14)));
+		
+		
+		var A_15=getRandom();
+		document.getElementById("A_15").innerHTML=A_15;
+		var B_15=getRandom();
+		document.getElementById("B_15").innerHTML=B_15;
+		var C_15=getRandom();
+		document.getElementById("C_15").innerHTML=C_15;
+		document.getElementById("corr_15").value=puertaAND(puertaNOT(puertaOR(A_15,B_15)),puertaNOT(puertaAND(A_15,C_15)));
+		
+		
+		var A_16=getRandom();
+		document.getElementById("A_16").innerHTML=A_16;
+		var B_16=getRandom();
+		document.getElementById("B_16").innerHTML=B_16;
+		var C_16=getRandom();
+		document.getElementById("C_16").innerHTML=C_16;
+		document.getElementById("corr_16").value=puertaAND(puertaNOT(puertaOR(A_16,C_16)),B_16);
+		
+		
+		//------------puertas logicas
+		
+		var A_25=getRandom();
+		document.getElementById("A_25").innerHTML=A_25;
+		var B_25=getRandom();
+		document.getElementById("B_25").innerHTML=B_25;
+		document.getElementById("corr_25").value=puertaOR(A_25,B_25);
+		
+		var A_26=getRandom();
+		document.getElementById("A_26").innerHTML=A_26;
+		var B_26=getRandom();
+		document.getElementById("B_26").innerHTML=B_26;
+		document.getElementById("corr_26").value=puertaNOT(puertaAND(A_26,B_26));
+		
+		var A_27=getRandom();
+		document.getElementById("A_27").innerHTML=A_27;
+		document.getElementById("corr_27").value=puertaNOT(A_27);
+		
+		
+		var A_28=getRandom();
+		document.getElementById("A_28").innerHTML=A_28;
+		var B_28=getRandom();
+		document.getElementById("B_28").innerHTML=B_28;
+		document.getElementById("corr_28").value=puertaNOT(puertaOR(A_28,B_28));
+		
+		var A_29=getRandom();
+		document.getElementById("A_29").innerHTML=A_29;
+		var B_29=getRandom();
+		document.getElementById("B_29").innerHTML=B_29;
+		document.getElementById("corr_29").value=puertaAND(A_29,B_29);
+		
+		//--------------------circuitos logicos
+
+		</script>
+	</body>
+</html>

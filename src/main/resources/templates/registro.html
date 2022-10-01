@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+	<head>
+		<title> Registro </title>
+		<link href="css\cssautoevaluacion.css" rel="stylesheet" type="text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div class="clear">
+			</div>
+		{{#ErrorContra}}
+        	<p style="color:red;text-align: center;">Las contraseñas no coinciden</p>
+        {{/ErrorContra}}
+        {{#ErrorNombre}}
+        	<p style="color:red;text-align: center">El nombre de usuario ya existe en la base de datos</p>
+        {{/ErrorNombre}}
+		<div id="columnader">
+			<h1>Registro de nuevo usuario</h1>
+        <br />
+        
+        <form action="/registro" method="post">
+
+            <table border="0" cellpadding="10">
+                <tr>
+                    <td>Nombre de usuario:</td>
+                    <td><input type="text" name="nombre" required/>
+                               </td>
+                </tr>
+                <tr>
+                    <td>Contraseña:</td>
+                    <td><input type="password" name="contra" required/>
+                               </td>
+                </tr>
+                <tr>
+                    <td>Repetir contraseña:</td>
+                    <td><input type="password" name="contra2" required/></td>
+                </tr>
+				<tr>
+					<td>Grupo:</td>
+					<td>
+						<select name="aula">
+							{{#lista}}
+							<option value="{{nombre}}">{{nombre}}</option>
+							{{/lista}}
+						</select>
+					</td>
+				</tr>
+                {{#ADMINISTRADOR}}
+				<tr>
+					<td>Rol:</td>
+					<td>
+						<select name="rol">
+							<option value="ALUMNOS">Alumno</option>
+							<option value="PROFESORES">Profesor</option>
+						</select>
+					</td>
+				</tr>
+				{{/ADMINISTRADOR}}
+				{{^ADMINISTRADOR}}
+				<tr>
+					<td><input type="hidden" name="rol" value="ALUMNOS"/>
+				</tr>
+				{{/ADMINISTRADOR}}
+                <tr>
+                    <td colspan="2"><input type="submit" value="registrar"/> </td>
+                    <input type="hidden" name="_csrf" value="{{token}}" />
+                </tr>
+            </table>
+            
+        </form>
+		</div>
+			<div class="clear">
+			</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
+</html>

@@ -1,0 +1,815 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+
+
+	<head>
+		<title> Autoevaluacion </title>
+		<link href="css\cssautoevaluacion.css" rel="stylesheet" type="text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div class="clear">
+			</div>
+		
+		<div id="columnader">
+		<p>¡Pon a prueba tus conocimientos! Aquí tienes un test con distintos ejercicios para poder evaluar tu avance.</p>
+		<hr>
+		
+		<ul>
+			<li>Halla la salida S de las distintas funciones lógicas en con dos variables de entrada (a y b):</li>
+		
+		<table id="tabla1">
+			<tr id="fila1">
+				<th>a</th>
+				<th>b</th>
+				<th>Función Lógica</th>
+				<th>Solución</th>
+				<th style="display: none"></th>
+			</tr><tr>
+				<th id="A_1"></th>
+				<th id="B_1"></th>
+				<th id="corr_1">S = <span style="text-decoration:overline">a</span></th>
+				<th>S= <input type="text" name="S_1" id="S_1" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir" class="botoncorregir"onclick=corregir1respuesta(getElementById("corr_1").value,getElementById("S_1").value,"P_1")></th><!--boton-->
+				<th style="display: none" id="P_1"></th>
+			</tr><tr>
+				<th id="A_2"></th>
+				<th id="B_2"></th>
+				<th id="corr_2">S = a * b</th>
+				<th>S= <input type="text" name="S_2" id="S_2" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_2").value,getElementById("S_2").value,"P_2")></th>
+				<th style="display: none" id="P_2"></th>
+			</tr><tr>
+				<th id="A_3"></th>
+				<th id="B_3"></th>
+				<th  id="corr_3">S = a * <span style="text-decoration:overline">b</span></th>
+				<th>S= <input type="text" name="S_3" id="S_3" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_3").value,getElementById("S_3").value,"P_3")></th>
+				<th style="display: none" id="P_3"></th>
+			</tr><tr>
+				<th id="A_4"></th>
+				<th id="B_4"></th>
+				<th id="corr_4">S = <span style="text-decoration:overline">a</span> + b</th>
+				<th>S= <input type="text" name="S_4" id="S_4" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_4").value,getElementById("S_4").value,"P_4")></th>
+				<th style="display: none" id="P_4"></th>
+			</tr><tr>
+				<th id="A_5"></th>
+				<th id="B_5"></th>
+				<th  id="corr_5">S = a * (<span style="text-decoration:overline">a</span> + b)</th>
+				<th>S= <input type="text" name="S_5" id="S_5" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_5").value,getElementById("S_5").value,"P_5")></th>
+				<th style="display: none" id="P_5"></th>
+			</tr><tr>
+				<th id="A_6"></th>
+				<th id="B_6"></th>
+				<th  id="corr_6">S = <span style="text-decoration:overline">a * b</span></th>
+				<th>S= <input type="text" name="S_6" id="S_6" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_6").value,getElementById("S_6").value,"P_6")></th>
+				<th style="display: none" id="P_6"></th>
+			</tr><tr>
+				<th id="A_7"></th>
+				<th id="B_7"></th>
+				<th  id="corr_7">S = <span style="text-decoration:overline">a</span> * b + b</th>
+				<th>S= <input type="text" name="S_7" id="S_7" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_7").value,getElementById("S_7").value,"P_7")></th>
+				<th style="display: none" id="P_7"></th>
+			</tr><tr>
+				<th id="A_8"></th>
+				<th id="B_8"></th>
+				<th id="corr_8">S = <span style="text-decoration:overline">a + b</span> + b</th>
+				<th>S= <input type="text" name="S_8" id="S_8" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_8").value,getElementById("S_8").value,"P_8")></th>
+				<th style="display: none" id="P_8"></th>
+			</tr>
+		</table>
+		<hr>
+		<li>Halla la salida S de las distintas funciones lógicas en con tres variables de entrada (a, b y c):</li>
+		
+		<table id="tabla2">
+			<tr id="fila1">
+				<th>a</th>
+				<th>b</th>
+				<th>c</th>
+				<th>Función Lógica</th>
+				<th>Solución</th>
+				<th style="display: none"></th>
+			</tr><tr>
+				<th id="A_9"></th>
+				<th id="B_9"></th>
+				<th id="C_9"></th>
+				<th id="corr_9">S = c * a + b</th>
+				<th>S= <input type="text" name="S_9" id="S_9" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_9").value,getElementById("S_9").value,"P_9")></th>
+				<th style="display: none" id="P_9"></th>
+			</tr><tr>
+				<th id="A_10"></th>
+				<th id="B_10"></th>
+				<th id="C_10"></th>
+				<th id="corr_10">S = a + b * c</th>
+				<th>S= <input type="text" name="S_10" id="S_10" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_10").value,getElementById("S_10").value,"P_10")></th>
+				<th style="display: none" id="P_10"></th>
+			</tr><tr>
+				<th id="A_11"></th>
+				<th id="B_11"></th>
+				<th id="C_11"></th>
+				<th id="corr_11">S = (<span style="text-decoration:overline">a</span> + <span style="text-decoration:overline">c</span>) * b</th>
+				<th>S= <input type="text" name="S_11" id="S_11" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_11").value,getElementById("S_11").value,"P_11")></th>
+				<th style="display: none" id="P_11"></th>
+			</tr><tr>
+				<th id="A_12"></th>
+				<th id="B_12"></th>
+				<th id="C_12"></th>
+				<th id="corr_12">S = <span style="text-decoration:overline">a * b</span> + c</th>
+				<th>S= <input type="text" name="S_12" id="S_12" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_12").value,getElementById("S_12").value,"P_12")></th>
+				<th style="display: none" id="P_12"></th>
+			</tr><tr>
+				<th id="A_13"></th>
+				<th id="B_13"></th>
+				<th id="C_13"></th>
+				<th id="corr_13">S = <span style="text-decoration:overline">a + c</span> + a * b</th>
+				<th>S= <input type="text" name="S_13" id="S_13" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_13").value,getElementById("S_13").value,"P_13")></th>
+				<th style="display: none" id="P_13"></th>
+			</tr><tr>
+				<th id="A_14"></th>
+				<th id="B_14"></th>
+				<th id="C_14"></th>
+				<th id="corr_14">S = b * c + <span style="text-decoration:overline">a * c</span></th>
+				<th>S= <input type="text" name="S_14" id="S_14" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_14").value,getElementById("S_14").value,"P_14")></th>
+				<th style="display: none" id="P_14"></th>
+			</tr><tr>
+				<th id="A_15"></th>
+				<th id="B_15"></th>
+				<th id="C_15"></th>
+				<th id="corr_15">S = <span style="text-decoration:overline">a + b</span> * <span style="text-decoration:overline">a * c</span></th>
+				<th>S= <input type="text" name="S_15" id="S_15" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_15").value,getElementById("S_15").value,"P_15")></th>
+				<th style="display: none" id="P_15"></th>
+			</tr><tr>
+				<th id="A_16"></th>
+				<th id="B_16"></th>
+				<th id="C_16"></th>
+				<th id="corr_16">S = (<span style="text-decoration:overline">a + c</span>)* b</th>
+				<th>S= <input type="text" name="S_16" id="S_16" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_16").value,getElementById("S_16").value,"P_16")></th>
+				<th style="display: none" id="P_16"></th>
+			</tr>
+		</table>
+		<hr><hr>
+		<li>Completa la siguiente tabla de verdad:</li>
+		<table id="tabla3">
+			<tr id="fila1">
+				<th>a</th>
+				<th>b</th>
+				<th>c</th>
+				<th>S= (a + <span style="text-decoration:overline">b</span>) * <span style="text-decoration:overline">a + c</span></th>
+				<th style="display: none"></th>
+			</tr><tr>
+				<th>0</th>
+				<th>0</th>
+				<th>0</th>
+				<th><input type="text" name="S_17" id="S_17" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(1,getElementById("S_17").value,"P_17")></th>
+				<th style="display: none" id="P_17"></th>
+			</tr><tr>
+				<th>0</th>
+				<th>0</th>
+				<th>1</th>
+				<th><input type="text" name="S_18" id="S_18" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_18").value,"P_18")></th>
+				<th style="display: none" id="P_18"></th>
+			</tr><tr>
+				<th>0</th>
+				<th>1</th>
+				<th>0</th>
+				<th><input type="text" name="S_19" id="S_19" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_19").value,"P_19")></th>
+				<th style="display: none" id="P_19"></th>
+			</tr><tr>
+				<th>0</th>
+				<th>1</th>
+				<th>1</th>
+				<th><input type="text" name="S_20" id="S_20" class="cuadrotexto"/></th>
+				
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_20").value,"P_20")></th>
+				<th style="display: none" id="P_20"></th>
+			</tr><tr>
+				<th>1</th>
+				<th>0</th>
+				<th>0</th>
+				<th><input type="text" name="S_21" id="S_21" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_21").value,"P_21")></th>
+				<th style="display: none" id="P_21"></th>
+			</tr><tr>
+				<th>1</th>
+				<th>0</th>
+				<th>1</th>
+				<th><input type="text" name="S_22" id="S_22" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_22").value,"P_22")></th>
+				<th style="display: none" id="P_22"></th>
+			</tr><tr>
+				<th>1</th>
+				<th>1</th>
+				<th>0</th>
+				<th><input type="text" name="S_23" id="S_23" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_23").value,"P_23")></th>
+				<th style="display: none" id="P_23"></th>
+			</tr><tr>
+				<th>1</th>
+				<th>1</th>
+				<th>1</th>
+				<th><input type="text" name="S_24" id="S_24" class="cuadrotexto"/></th>
+				<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(0,getElementById("S_24").value,"P_24")></th>
+				<th style="display: none" id="P_24"></th>
+			</tr>
+		</table>
+		
+		<hr><hr>
+		<li>Halla la salida S para las entradas (A y/o B) de las siguientes puertas lógicas:</li>
+		
+		
+		<table class="tabla4">
+				<tr><th colspan="5"><hr></th>
+				<tr>
+					<th>A =</th>	
+					<th id="A_25"></th>
+					<th rowspan="2"><img src="img/img2.jpg" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_25">S = <input type="text" name="S_25" id="S_25" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_25").value,getElementById("S_25").value,"P_25")></th>
+					<th rowspan="2" id="P_25" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_25"></th>
+				</tr><tr><th colspan="5"><hr></th>
+				</tr><tr>	
+					<th>A =</th>	
+					<th id="A_26"></th>
+					<th rowspan="2"><img src="img/img6.jpg" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_26">S = <input type="text" name="S_26" id="S_26" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_26").value,getElementById("S_26").value,"P_26")></th>
+					<th rowspan="2" id="P_26" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_26"></th>
+				</tr><tr><th colspan="5"><hr></th>
+				</tr><tr>	
+					<th>A =</th>	
+					<th id="A_27"></th>
+					<th><img src="img/img4.jpg" id="imgpuertalogic"></th>
+					<th id="corr_27">S = <input type="text" name="S_27" id="S_27" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_27").value,getElementById("S_27").value,"P_27")></th>
+					<th id="P_27" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr><th colspan="5"><hr></th>
+				</tr><tr>
+					<th>A =</th>	
+					<th id="A_28"></th>
+					<th rowspan="2"><img src="img/img5.jpg" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_28">S = <input type="text" name="S_28" id="S_28" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_28").value,getElementById("S_28").value,"P_28")></th>
+					<th rowspan="2" id="P_28" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_28"></th>
+				</tr><tr><th colspan="5"><hr></th>
+				</tr><tr>	
+					<th>A =</th>	
+					<th id="A_29"></th>
+					<th rowspan="2"><img src="img/img3.jpg" id="imgpuertalogic"></th>
+					<th rowspan="2" id="corr_29">S = <input type="text" name="S_29" id="S_29" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_29").value,getElementById("S_29").value,"P_29")></th>
+					<th rowspan="2" id="P_29" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
+				</tr><tr>
+					<th>B =</th>	
+					<th id="B_29"></th>
+				</tr><tr><th colspan="5"><hr></th>
+				</tr>
+			</table>
+				
+			<hr><hr>
+			<li>Halla la salida S del siguiente circuito lógico:</li>
+
+			<table id="tabla5">
+				<tr>
+					<th>A = </th>
+					<th id="A_30"></th>
+					<th rowspan="3" id="corr_30"><img src="img/img18.jpg" id="img18"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_30"></th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_30"></th>
+				</tr><tr>
+					<th colspan="2">S = <input type="text" name="S_30" id="S_30" class="cuadrotexto"/></th>	
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_30").value,getElementById("S_30").value,"P_30")></th>
+					<th id="P_30" style="display: none"></th>	
+			</table>
+			<hr><li>Halla la salida S del siguiente circuito lógico:</li>
+			<table id="tabla6">
+				<tr>
+					<th>A = </th>
+					<th id="A_31"></th>
+					<th rowspan="2" id="corr_31"><img src="img/img19.jpg" id="img19"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_31"></th>
+				</tr><tr>
+					<th colspan="2">S = <input type="text" name="S_31" id="S_31" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_31").value,getElementById("S_31").value,"P_31")></th>
+					<th id="P_31" style="display: none"></th>
+				</tr>
+			</table>
+			<hr>
+			<li>Halla la salida S y los puntos intermedio (D,E,F,G y H) del siguiente circuito lógico:</li>
+			
+			<table id="tabla7">
+				<tr>
+					<th>A = </th>
+					<th id="A_32"></th>
+					<th rowspan="3"><img src="img/img20.jpg" id="img20"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_32"></th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_32"></th>
+				</tr>
+			</table>
+			
+			<table id="tabla8">
+				<tr>
+					<th id="corr_D_32"> D = <input type="text" name="D_32" id="D_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_D_32").value,getElementById("D_32").value,"P_D_32")></th>
+					<th id="P_D_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_E_32"> E = <input type="text" name="E_32" id="E_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_E_32").value,getElementById("E_32").value,"P_E_32")></th>
+					<th id="P_E_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_F_32"> F = <input type="text" name="F_32" id="F_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_F_32").value,getElementById("F_32").value,"P_F_32")></th>
+					<th id="P_F_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_G_32"> G = <input type="text" name="G_32" id="G_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_G_32").value,getElementById("G_32").value,"P_G_32")></th>
+					<th id="P_G_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_H_32"> H = <input type="text" name="H_32" id="H_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_H_32").value,getElementById("H_32").value,"P_H_32")></th>
+					<th id="P_H_32" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_S_32"> S = <input type="text" name="S_32" id="S_32" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_S_32").value,getElementById("S_32").value,"P_S_32")></th>
+					<th id="P_S_32" style="display: none"></th>
+				</tr>
+			</table>
+			
+			<hr><li>Halla la salida S y los puntos intermedio (D,E,F,G y H) del siguiente circuito lógico:</li>
+			
+			<table id="tabla9">
+				<tr>
+					<th>A = </th>
+					<th id="A_33"></th>
+					<th rowspan="3"><img src="img/img21.jpg" id="img21"></th>
+				</tr><tr>
+					<th>B = </th>
+					<th id="B_33"></th>
+				</tr><tr>
+					<th>C = </th>
+					<th id="C_33"></th>
+				</tr>
+			</table>
+			
+			<table id="tabla10">
+				<tr>
+					<th id="corr_D_33"> D = <input type="text" name="D_33" id="D_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_D_33").value,getElementById("D_33").value,"P_D_33")></th>
+					<th id="P_D_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_E_33"> E = <input type="text" name="E_33" id="E_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_E_33").value,getElementById("E_33").value,"P_E_33")></th>
+					<th id="P_E_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_F_33"> F = <input type="text" name="F_33" id="F_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_F_33").value,getElementById("F_33").value,"P_F_33")></th>
+					<th id="P_F_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_G_33"> G = <input type="text" name="G_33" id="G_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_G_33").value,getElementById("G_33").value,"P_G_33")></th>
+					<th id="P_G_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_H_33"> H = <input type="text" name="H_33" id="H_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_H_33").value,getElementById("H_33").value,"P_H_33")></th>
+					<th id="P_H_33" style="display: none"></th>
+				</tr><tr>
+					<th id="corr_S_33"> S = <input type="text" name="S_33" id="S_33" class="cuadrotexto"/></th>
+					<th><input type ="button" value= "Corregir" id="botoncorregir1" class="botoncorregir1"onclick=corregir1respuesta(getElementById("corr_S_33").value,getElementById("S_33").value,"P_S_33")></th>
+					<th id="P_S_33" style="display: none"></th>
+				</tr>
+			</table>
+				
+			</ul>		
+		</div>
+			<div class="clear">
+			</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script>
+
+		function getRandom(){ //Genera un número aleatorio 0 o 1
+					var A=Math.random();
+					if (A<0.5){
+						A=0;
+					}else{
+						A=1;
+					}
+					return A;
+				}
+		function puertaOR (entrada1, entrada2){
+			var salida;//genera la salida de una puerta OR en funcion de las dos entradas
+			
+			if (entrada1||entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaAND (entrada1, entrada2){
+			var salida;
+			if (entrada1&&entrada2){
+				salida=1;
+			}else{
+				salida=0;
+				}
+			return salida;
+		}
+		function puertaNOT(entrada){
+			var salida
+			if (entrada==1){
+				salida=0;
+			}else{
+				salida=1;
+			}
+			return salida;
+		}
+
+		//--------------------funciones logicas
+		var A_1=getRandom();
+		document.getElementById("A_1").innerHTML=A_1;//escribe la variable A1 aleatoria
+		document.getElementById("corr_1").value=puertaNOT(A_1);//calcula el resultado de la correccion
+		
+		var A_2=getRandom();
+		document.getElementById("A_2").innerHTML=A_2;
+		var B_2=getRandom();
+		document.getElementById("B_2").innerHTML=B_2;
+		document.getElementById("corr_2").value=puertaAND(A_2,B_2);
+		
+		var A_3=getRandom();
+		document.getElementById("A_3").innerHTML=A_3;
+		var B_3=getRandom();
+		document.getElementById("B_3").innerHTML=B_3;
+		document.getElementById("corr_3").value=puertaAND(A_3,puertaNOT(B_3));
+		
+		var A_4=getRandom();
+		document.getElementById("A_4").innerHTML=A_4;
+		var B_4=getRandom();
+		document.getElementById("B_4").innerHTML=B_4;
+		document.getElementById("corr_4").value=puertaOR(puertaNOT(A_4),B_4);
+		
+		var A_5=getRandom();
+		document.getElementById("A_5").innerHTML=A_5;
+		var B_5=getRandom();
+		document.getElementById("B_5").innerHTML=B_5;
+		document.getElementById("corr_5").value=puertaAND(A_5, puertaOR(puertaNOT(A_5),B_5));
+		
+		var A_6=getRandom();
+		document.getElementById("A_6").innerHTML=A_6;
+		var B_6=getRandom();
+		document.getElementById("B_6").innerHTML=B_6;
+		document.getElementById("corr_6").value=puertaNOT(puertaAND(A_6,B_6));
+		
+		var A_7=getRandom();
+		document.getElementById("A_7").innerHTML=A_7;
+		var B_7=getRandom();
+		document.getElementById("B_7").innerHTML=B_7;
+		document.getElementById("corr_7").value=puertaOR(puertaAND(puertaNOT(A_7),B_7),B_7);
+		
+		var A_8=getRandom();
+		document.getElementById("A_8").innerHTML=A_8;
+		var B_8=getRandom();
+		document.getElementById("B_8").innerHTML=B_8;
+		document.getElementById("corr_8").value=puertaOR(puertaNOT(puertaOR(A_8,B_8)),B_8);
+		
+		
+		
+		var A_9=getRandom();
+		document.getElementById("A_9").innerHTML=A_9;
+		var B_9=getRandom();
+		document.getElementById("B_9").innerHTML=B_9;
+		var C_9=getRandom();
+		document.getElementById("C_9").innerHTML=C_9;
+		document.getElementById("corr_9").value=puertaOR(puertaAND(C_9,A_9),B_9);
+		
+		
+		var A_10=getRandom();
+		document.getElementById("A_10").innerHTML=A_10;
+		var B_10=getRandom();
+		document.getElementById("B_10").innerHTML=B_10;
+		var C_10=getRandom();
+		document.getElementById("C_10").innerHTML=C_10;
+		document.getElementById("corr_10").value=puertaOR(puertaAND(B_10,C_10),A_10);
+		
+		
+		var A_11=getRandom();
+		document.getElementById("A_11").innerHTML=A_11;
+		var B_11=getRandom();
+		document.getElementById("B_11").innerHTML=B_11;
+		var C_11=getRandom();
+		document.getElementById("C_11").innerHTML=C_11;
+		document.getElementById("corr_11").value=puertaAND(puertaOR(puertaNOT(A_11),puertaNOT(C_11)),B_11);
+		
+		
+		var A_12=getRandom();
+		document.getElementById("A_12").innerHTML=A_12;
+		var B_12=getRandom();
+		document.getElementById("B_12").innerHTML=B_12;
+		var C_12=getRandom();
+		document.getElementById("C_12").innerHTML=C_12;
+		document.getElementById("corr_12").value=puertaOR(puertaNOT(puertaAND(A_12,B_12)),C_12);
+		
+		
+		var A_13=getRandom();
+		document.getElementById("A_13").innerHTML=A_13;
+		var B_13=getRandom();
+		document.getElementById("B_13").innerHTML=B_13;
+		var C_13=getRandom();
+		document.getElementById("C_13").innerHTML=C_13;
+		document.getElementById("corr_13").value=puertaOR(puertaNOT(puertaAND(A_13,C_13)),puertaAND(A_13,B_13));
+		
+		
+		var A_14=getRandom();
+		document.getElementById("A_14").innerHTML=A_14;
+		var B_14=getRandom();
+		document.getElementById("B_14").innerHTML=B_14;
+		var C_14=getRandom();
+		document.getElementById("C_14").innerHTML=C_14;
+		document.getElementById("corr_14").value=puertaOR(puertaAND(B_14,C_14),puertaNOT(puertaAND(A_14,C_14)));
+		
+		
+		var A_15=getRandom();
+		document.getElementById("A_15").innerHTML=A_15;
+		var B_15=getRandom();
+		document.getElementById("B_15").innerHTML=B_15;
+		var C_15=getRandom();
+		document.getElementById("C_15").innerHTML=C_15;
+		document.getElementById("corr_15").value=puertaAND(puertaNOT(puertaOR(A_15,B_15)),puertaNOT(puertaAND(A_15,C_15)));
+		
+		
+		var A_16=getRandom();
+		document.getElementById("A_16").innerHTML=A_16;
+		var B_16=getRandom();
+		document.getElementById("B_16").innerHTML=B_16;
+		var C_16=getRandom();
+		document.getElementById("C_16").innerHTML=C_16;
+		document.getElementById("corr_16").value=puertaAND(puertaNOT(puertaOR(A_16,C_16)),B_16);
+		
+		
+		//------------puertas logicas
+		
+		var A_25=getRandom();
+		document.getElementById("A_25").innerHTML=A_25;
+		var B_25=getRandom();
+		document.getElementById("B_25").innerHTML=B_25;
+		document.getElementById("corr_25").value=puertaOR(A_25,B_25);
+		
+		var A_26=getRandom();
+		document.getElementById("A_26").innerHTML=A_26;
+		var B_26=getRandom();
+		document.getElementById("B_26").innerHTML=B_26;
+		document.getElementById("corr_26").value=puertaNOT(puertaAND(A_26,B_26));
+		
+		var A_27=getRandom();
+		document.getElementById("A_27").innerHTML=A_27;
+		document.getElementById("corr_27").value=puertaNOT(A_27);
+		
+		
+		var A_28=getRandom();
+		document.getElementById("A_28").innerHTML=A_28;
+		var B_28=getRandom();
+		document.getElementById("B_28").innerHTML=B_28;
+		document.getElementById("corr_28").value=puertaNOT(puertaOR(A_28,B_28));
+		
+		var A_29=getRandom();
+		document.getElementById("A_29").innerHTML=A_29;
+		var B_29=getRandom();
+		document.getElementById("B_29").innerHTML=B_29;
+		document.getElementById("corr_29").value=puertaAND(A_29,B_29);
+		
+		//--------------------circuitos logicos
+		
+		var A_30=getRandom();
+		document.getElementById("A_30").innerHTML=A_30;
+		var B_30=getRandom();
+		document.getElementById("B_30").innerHTML=B_30;
+		var C_30=getRandom();
+		document.getElementById("C_30").innerHTML=C_30;
+		document.getElementById("corr_30").value=puertaAND(puertaOR(A_30,B_30),C_30);
+		
+		var A_31=getRandom();
+		document.getElementById("A_31").innerHTML=A_31;
+		var B_31=getRandom();
+		document.getElementById("B_31").innerHTML=B_31;
+		document.getElementById("corr_31").value=puertaNOT(puertaAND(puertaOR(A_31,B_31),puertaNOT(B_31)));
+		
+		var A_32=getRandom();
+		document.getElementById("A_32").innerHTML=A_32;
+		var B_32=getRandom();
+		document.getElementById("B_32").innerHTML=B_32;
+		var C_32=getRandom();
+		document.getElementById("C_32").innerHTML=C_32;
+		document.getElementById("corr_D_32").value=puertaAND(A_32,B_32);
+		document.getElementById("corr_E_32").value=puertaNOT(B_32);
+		document.getElementById("corr_F_32").value=puertaNOT(puertaAND(puertaAND(A_32,B_32),puertaNOT(B_32)));
+		document.getElementById("corr_G_32").value=puertaNOT(puertaOR(puertaAND(A_32,B_32),puertaNOT(puertaAND(puertaAND(A_32,B_32),puertaNOT(B_32)))));
+		document.getElementById("corr_H_32").value=puertaOR(puertaNOT(B_32),C_32);
+		document.getElementById("corr_S_32").value=puertaAND(puertaNOT(puertaOR(puertaAND(A_32,B_32),puertaNOT(puertaAND(puertaAND(A_32,B_32),puertaNOT(B_32))))),puertaOR(puertaNOT(B_32),C_32));
+		
+		
+		var A_33=getRandom();
+		document.getElementById("A_33").innerHTML=A_33;
+		var B_33=getRandom();
+		document.getElementById("B_33").innerHTML=B_33;
+		var C_33=getRandom();
+		document.getElementById("C_33").innerHTML=C_33;
+		document.getElementById("corr_D_33").value=puertaNOT(B_33);
+		document.getElementById("corr_E_33").value=puertaAND(A_33,puertaNOT(B_33));
+		document.getElementById("corr_F_33").value=puertaNOT(puertaAND(A_33,puertaNOT(B_33)));
+		document.getElementById("corr_G_33").value=puertaNOT(B_33);
+		document.getElementById("corr_H_33").value=puertaAND(puertaNOT(B_33),C_33);
+		document.getElementById("corr_S_33").value=puertaOR(puertaNOT(puertaAND(A_33,puertaNOT(B_33))),puertaAND(puertaNOT(B_33),C_33));
+		
+		function corregir1respuesta(corr_1,S_1,P_1){
+				
+				if (S_1==""){
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="¡No has contestado!";
+					
+				}else if ((S_1!=0)&&(S_1!=1)){//si el valor de la caja de texto es distinto de 0 o 1 o no pone nada ¡solo valen 0 o 1!
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="¡Sólo valen 0 y 1!";
+					
+				}else if(corr_1==S_1){//si el valor de la caja de texto y el de la funcion puerta OR coincide ¡Correcto!
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="green";
+					document.getElementById(P_1).innerHTML="¡Correcto!";
+					correctas=1;
+				}else{//si no incorrecto
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="Incorrecto";	
+				}
+				
+			}
+
+		
+		function corregirtodo(corr_1,corr_2,corr_3,corr_4,corr_5,corr_6,corr_7,corr_8,corr_9,corr_10,corr_11,corr_12,corr_13,corr_14,corr_15,corr_16,corr_17,corr_18,corr_19,corr_20,corr_21,corr_22,corr_23,corr_24,corr_25,corr_26,corr_27,corr_28,corr_29,corr_30,corr_31,corr_D_32,corr_E_32,corr_F_32,corr_G_32,corr_H_32,corr_S_32,corr_D_33,corr_E_33,corr_F_33,corr_G_33,corr_H_33,corr_S_33,S_1, S_2, S_3, S_4, S_5, S_6, S_7, S_8, S_9, S_10, S_11, S_12, S_13, S_14, S_15, S_16, S_17, S_18, S_19, S_20, S_21, S_22, S_23, S_24, S_25, S_26, S_27, S_28, S_29, S_30, S_31, D_32, E_32, F_32, G_32, H_32, S_32, D_33, E_33, F_33, G_33, H_33, S_33, P_1, P_2, P_3, P_4, P_5, P_6, P_7, P_8, P_9, P_10, P_11, P_12, P_13, P_14, P_15, P_16, P_17, P_18, P_19, P_20, P_21, P_22, P_23, P_24, P_25, P_26, P_27, P_28, P_29, P_30, P_31, P_D_32, P_E_32, P_F_32, P_G_32, P_H_32, P_S_32, P_D_33, P_E_33, P_F_33, P_G_33, P_H_33, P_S_33, textofinal){
+		var correctas =0;
+			function corregir1(corr_1,S_1,P_1){
+				var correctas=0;
+				if (S_1==""){
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="¡No has contestado!";
+					
+				}else if ((S_1!=0)&&(S_1!=1)){//si el valor de la caja de texto es distinto de 0 o 1 o no pone nada ¡solo valen 0 o 1!
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="¡Sólo valen 0 y 1!";
+					
+				}else if(corr_1==S_1){//si el valor de la caja de texto y el de la funcion puerta OR coincide ¡Correcto!
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="green";
+					document.getElementById(P_1).innerHTML="¡Correcto!";
+					correctas=1;
+				}else{//si no incorrecto
+					document.getElementById(P_1).style.display="block";
+					document.getElementById(P_1).style.color="red";
+					document.getElementById(P_1).innerHTML="Incorrecto";	
+				}
+				return correctas;
+			}
+		
+		
+			
+			correctas = correctas + corregir1(corr_1,S_1, P_1);
+			correctas = correctas + corregir1(corr_2,S_2, P_2);
+			correctas = correctas + corregir1(corr_3,S_3, P_3);
+			correctas = correctas + corregir1(corr_4,S_4, P_4);
+			correctas = correctas + corregir1(corr_5,S_5, P_5);
+			correctas = correctas + corregir1(corr_6,S_6, P_6);
+			correctas = correctas + corregir1(corr_7,S_7, P_7);
+			correctas = correctas + corregir1(corr_8,S_8, P_8);
+			correctas = correctas + corregir1(corr_9,S_9, P_9);
+			correctas = correctas + corregir1(corr_10,S_10, P_10);
+			correctas = correctas + corregir1(corr_11,S_11, P_11);
+			correctas = correctas + corregir1(corr_12,S_12, P_12);
+			correctas = correctas + corregir1(corr_13,S_13, P_13);
+			correctas = correctas + corregir1(corr_14,S_14, P_14);
+			correctas = correctas + corregir1(corr_15,S_15, P_15);
+			correctas = correctas + corregir1(corr_16,S_16, P_16);
+			correctas = correctas + corregir1(corr_17,S_17, P_17);
+			correctas = correctas + corregir1(corr_18,S_18, P_18);
+			correctas = correctas + corregir1(corr_19,S_19, P_19);
+			correctas = correctas + corregir1(corr_20,S_20, P_20);
+			correctas = correctas + corregir1(corr_21,S_21, P_21);
+			correctas = correctas + corregir1(corr_22,S_22, P_22);
+			correctas = correctas + corregir1(corr_23,S_23, P_23);
+			correctas = correctas + corregir1(corr_24,S_24, P_24);
+			correctas = correctas + corregir1(corr_25,S_25, P_25);
+			correctas = correctas + corregir1(corr_26,S_26, P_26);
+			correctas = correctas + corregir1(corr_27,S_27, P_27);
+			correctas = correctas + corregir1(corr_28,S_28, P_28);
+			correctas = correctas + corregir1(corr_29,S_29, P_29);
+			correctas = correctas + corregir1(corr_30,S_30, P_30);
+			correctas = correctas + corregir1(corr_31,S_31, P_31);
+			correctas = correctas + corregir1(corr_D_32,D_32, P_D_32);
+			correctas = correctas + corregir1(corr_E_32,E_32, P_E_32);
+			correctas = correctas + corregir1(corr_F_32,F_32, P_F_32);
+			correctas = correctas + corregir1(corr_G_32,G_32, P_G_32);
+			correctas = correctas + corregir1(corr_H_32,H_32, P_H_32);
+			correctas = correctas + corregir1(corr_S_32,S_32, P_S_32);
+			correctas = correctas + corregir1(corr_D_33,D_33, P_D_33);
+			correctas = correctas + corregir1(corr_E_33,E_33, P_E_33);
+			correctas = correctas + corregir1(corr_F_33,F_33, P_F_33);
+			correctas = correctas + corregir1(corr_G_33,G_33, P_G_33);
+			correctas = correctas + corregir1(corr_H_33,H_33, P_H_33);
+			correctas = correctas + corregir1(corr_S_33,S_33, P_S_33);
+			
+		document.getElementById(textofinal).innerHTML="¡Has acertado "+correctas+" respuestas de un total de 43!";
+			
+			
+			
+		
+		}
+
+
+
+
+
+		</script>
+
+</body>
+
+</html>

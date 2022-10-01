@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+	<head>
+		<title> Inicio Sesión </title>
+		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+		<div id="columnader">
+        <br />
+        
+	        <form action="/borrar" method="post">
+	        	<table id="clase" style="width: 100%">
+					<tr>
+						<th colspan="3">Examenes</th>
+					</tr>
+					<tr>
+							<th>Generar examen en base</th>
+							<th>Borrar</th>
+						</tr>
+					{{#examenes}}
+						<tr>
+							<th><a href="/copiar{{id}}">{{nombre}}</a></th>
+							<th><input type="checkbox" name="borrar" value="{{id}}"/></th>
+						</tr>
+					{{/examenes}}
+				</table>
+				<input type="submit" value="Borrar"/>
+        		<input type="hidden" name="_csrf" value="{{token}}" />
+			</form>
+        
+		</div>
+		
+		
+           
+		<div class="clear">
+		</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
+</html>

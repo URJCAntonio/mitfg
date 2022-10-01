@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:th="http://www.thymeleaf.org/"
+    xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+
+	<head>
+		<title> Añadir Ejercicio </title>
+		<link href="css\cssautoevaluacion.css" rel="stylesheet" type="text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+		
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+		</div>
+		
+		<div id="menu">
+			<ul>
+				<li><a href="/">Inicio</a></li>
+				<li><a href="/contenidos">Contenidos</a></li>
+				{{#logged}}
+				{{#ALUMNOS}}
+				<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+				{{/ALUMNOS}}
+				{{#PROFESORES}}
+				<li><a href="/profes"> Mis Aulas</a></li>
+				{{/PROFESORES}}
+				{{#ADMINISTRADOR}}
+				<li><a href="/administradores"> Administrar</a></li>
+				{{/ADMINISTRADOR}}
+				<li>
+					<form action="/logout" method="post">
+						<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+			        	<input type="hidden" name="_csrf" value="{{token}}" />
+					</form>
+				 </li>
+				{{/logged}}
+				{{^logged}}
+				<li><a href="/login"> Iniciar Sesión</a></li>
+				{{/logged}}
+			</ul>
+		</div>
+		
+		<div id="columnader">
+			<form action="/addcomplejo" method="post">
+				<table border="0" cellpadding="10">
+	                <tr>
+	                    <td>Ejercicio complejo:</td>
+	                </tr>
+	                <tr>
+	                    <td>D = <input type="text" name="ejD" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td>E = <input type="text" name="ejE" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td>F = <input type="text" name="ejF" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td>G = <input type="text" name="ejG" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td>H = <input type="text" name="ejH" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td>S = <input type="text" name="ejS" pattern="[abc!+*()]{1,}" title="Solo se admiten los caracteres abc!+*() y no se pueden usar espacios" required></td>
+	                </tr>
+	                <tr>
+	                    <td><input type="text" name="img" placeholder="Introduce la url de la imagen con el circuito lógico" required></td>
+	                </tr>
+				</table>
+				<input type="submit" value="Añadir ejercicio"/>
+				<input type="hidden" name="_csrf" value="{{token}}" />
+			</form>
+		</div>
+			<div class="clear">
+			</div>
+		<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Carmen Muñoz Lorente</p>
+			</div>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
+</html>

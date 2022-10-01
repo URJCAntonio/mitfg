@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="es" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org/"xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
+
+	<head>
+		<title> Inicio </title>
+		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
+		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+	</head>
+	<body>
+		<div id="principal">
+		
+			<div id="cabecera">
+				<h2>Electr&oacute;nica Digital</h2>
+			</div>
+			
+			<div id="menu">
+				<ul>
+					<li><a href="/">Inicio</a></li>
+					<li><a href="/contenidos">Contenidos</a></li>
+					{{#logged}}
+					{{#ALUMNOS}}
+					<li><a href="/modoEvaluacion"> Autoevaluación</a></li>
+					{{/ALUMNOS}}
+					{{#PROFESORES}}
+					<li><a href="/profes"> Mis Aulas</a></li>
+					{{/PROFESORES}}
+					{{#ADMINISTRADOR}}
+					<li><a href="/administradores"> Administrar</a></li>
+					{{/ADMINISTRADOR}}
+					<li>
+						<form action="/logout" method="post">
+							<input type="submit" id ="logout_button" value="Cerrar Sesion"/>
+				        	<input type="hidden" name="_csrf" value="{{token}}" />
+						</form>
+					 </li>
+					{{/logged}}
+					{{^logged}}
+					<li><a href="/login"> Iniciar Sesión</a></li>
+					{{/logged}}
+				</ul>
+			</div>
+			
+			<div id="columnader">
+				{{#lista}}
+					<table id="clase">
+						<tr>
+							<th colspan="2">{{nombre}}</th>
+						</tr>
+						<tr>
+							<th>Alumno</th>
+							<th>Examenes</th>
+						</tr>
+							{{#alumnos}}
+							<tr id="fila1">
+								<th>{{nombre}}</th>
+								<th><a href="/examen{{id}}">Ver</a></th>
+							</tr>
+							{{/alumnos}}
+					</table>
+				{{/lista}}
+				<br>
+				<div class="clear"></div>
+				<table id="añadirEjercicios">
+					<tr>
+						<th><a href="/signin">Registra alumno</a></th>
+					</tr>
+					<tr>
+						<th><a href="/simple">Añadir ejercicio simple.</a></th>
+					</tr>
+					<tr>
+						<th><a href="/medio">Añadir ejercicio medio.</a></th>
+					</tr>
+					<tr>
+						<th><a href="/complejo">Añadir ejercicio complejo.</a></th>
+					</tr>
+					<tr>
+						<th><a href="/estadisticas">Revisar estasdisticas de ejercicios</a></th>
+					</tr>
+					<tr>
+						<th><a href="/examenes">VerExamenes</a></th>
+					</tr>
+					<tr>
+						<th><a href="/crearExamen">GenerarExamen</a></th>
+					</tr>
+				</table>
+			</div>
+			<div class="clear">
+			</div>
+			<div id="pie">
+			<p>Trabajo de Fin de Máster</p>
+			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
+			<p>Especialidad: Informática y Tecnología</p>
+			<p>Alumna: Carmen Muñoz Lorente; Director: Carlos Lázaro Carrascosa</p>
+			</div>
+		</div>
+		
+	</body>
+</html>
