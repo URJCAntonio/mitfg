@@ -9,7 +9,7 @@ import com.tfg.trabajoAnto.modelo.Aula;
 
 public interface RepoAula extends JpaRepository<Aula, Integer>{
 
-	@Query(value="SELECT * FROM aula WHERE 1", nativeQuery = true)
+	@Query(value="SELECT * FROM aula", nativeQuery = true)
 	List<Aula> getAllAulas();
 	
 	@Query(value="SELECT * FROM aula WHERE nombre = ?1", nativeQuery = true)

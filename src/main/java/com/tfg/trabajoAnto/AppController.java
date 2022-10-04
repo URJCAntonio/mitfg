@@ -147,7 +147,7 @@ public class AppController {
     	List<Integer> e = usuarios.getExamenesByUserId(id);
 		m.addAttribute("lista",e);
 		m.addAttribute("idAlumno",id);
-		return "/examenes";
+		return "examenes";
 	}
     
     
@@ -347,7 +347,7 @@ public class AppController {
 	public String examenes(Model m) {
     	List<ModeloExamen> e = repoModeloExamen.getAllExamen();
 		m.addAttribute("examenes",e);
-		return "/listaExamenes";
+		return "listaExamenes";
 	}
     
     @RequestMapping("/borrar")
