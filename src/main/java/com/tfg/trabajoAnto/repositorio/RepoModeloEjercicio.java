@@ -11,16 +11,16 @@ import com.tfg.trabajoAnto.modelo.ModeloEjercicio;
 
 public interface RepoModeloEjercicio extends JpaRepository<ModeloEjercicio, Integer>{
 
-	@Query(value="SELECT * FROM modelo_ejercicio WHERE 1", nativeQuery = true)
+	@Query(value="SELECT * FROM modelo_ejercicio", nativeQuery = true)
 	List<ModeloEjercicio> getAllEjercicios();
 	
-	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = \"Simple\"", nativeQuery = true)
+	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = 'Simple'", nativeQuery = true)
 	List<ModeloEjercicio> getAllSimples();
 	
-	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = \"Medio\"", nativeQuery = true)
+	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = 'Medio'", nativeQuery = true)
 	List<ModeloEjercicio> getAllMedios();
 	
-	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = \"Complejo\"", nativeQuery = true)
+	@Query(value="SELECT * FROM modelo_ejercicio WHERE dtype = 'Complejo'", nativeQuery = true)
 	List<ModeloEjercicio> getAllComplejos();
 	
 	@Query(value="SELECT * FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)

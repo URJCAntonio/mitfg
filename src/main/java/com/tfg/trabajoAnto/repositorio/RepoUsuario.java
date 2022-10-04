@@ -18,10 +18,10 @@ public interface RepoUsuario extends CrudRepository<Usuario, Integer>{
 	@Query(value="SELECT * FROM usuario WHERE 1", nativeQuery = true)
 	List<Usuario> getAllUsers();
 	
-	@Query(value="SELECT * FROM usuario WHERE dtype = \"Alumno\"", nativeQuery = true)
+	@Query(value="SELECT * FROM usuario WHERE dtype = 'Alumno'", nativeQuery = true)
 	List<Alumno> getAllAlumnos();
 	
-	@Query(value="SELECT * FROM usuario WHERE dtype = \"Profesor\"", nativeQuery = true)
+	@Query(value="SELECT * FROM usuario WHERE dtype = 'Profesor'", nativeQuery = true)
 	List<Profesor> getAllProfesores();
 	
 	@Query(value="SELECT * FROM usuario WHERE id = ?1", nativeQuery = true)

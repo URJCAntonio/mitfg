@@ -24,7 +24,7 @@ public interface RepoModeloExamen extends JpaRepository<ModeloExamen, Integer>{
 	@Query(value="SELECT examen_id FROM alumno_examen WHERE alumno_id = ?1", nativeQuery = true)
 	List<Integer> getExamenesByUserId(int i);
 	
-	@Query(value="SELECT \"hola\" FROM alumno_examen WHERE alumno_id = ?1 AND examen_id = ?2", nativeQuery = true)
+	@Query(value="SELECT 'hola' FROM alumno_examen WHERE alumno_id = ?1 AND examen_id = ?2", nativeQuery = true)
 	String checkUserExam(int alumno, int examen);
 	
 }
