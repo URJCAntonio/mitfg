@@ -224,7 +224,7 @@ public class AppController {
     @RequestMapping("/crearAula")
 	public String crearAula(Model m) {
     	m.addAttribute("lista",usuarios.getAllAlumnos());
-    	return "/crearAula";
+    	return "crearAula";
 	}
     
     //CREA LA NUEVA AULA Y RETORNA A LA PÁGINA DE INICIO.
@@ -295,7 +295,7 @@ public class AppController {
         	simp.setImagen(img);
     	}
     	repoModeloEjercicio.save(simp);
-		return "/profes";
+		return "profes";
 	}
     
     @RequestMapping("/addmedio")
@@ -308,7 +308,7 @@ public class AppController {
     		med.setImagen(img);
     	}
     	repoModeloEjercicio.save(med);
-		return "/profes";
+		return "profes";
 	}
     
     @RequestMapping("/addcomplejo")
@@ -317,7 +317,7 @@ public class AppController {
     	((Complejo) com).setFunciones_logicas("D = "+ejD, "E = "+ejE, "F = "+ejF, "G = "+ejG, "H = "+ejH, "S = "+ejS);
     	com.setImagen(img);
     	repoModeloEjercicio.save(com);
-		return "/profes";
+		return "profes";
 	}
     
     @RequestMapping("/revision")
