@@ -40,6 +40,7 @@ public class Ejercicio {
 	
 	public Ejercicio(String tipo) {
 		super();
+		this.c=2;
 		this.tipo = tipo;
 		
 		switch (tipo) {
