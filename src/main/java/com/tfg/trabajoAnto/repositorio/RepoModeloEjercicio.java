@@ -26,13 +26,13 @@ public interface RepoModeloEjercicio extends JpaRepository<ModeloEjercicio, Inte
 	@Query(value="SELECT * FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
 	ModeloEjercicio getEjercicioById(int i);
 	
-	@Query(value="SELECT CASE WHEN dtype = 'Simple' THEN true ELSE false END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
+	@Query(value="SELECT CASE WHEN dtype = 'Simple' THEN 1 ELSE 0 END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
 	int isSimpleById(int i);
 	
-	@Query(value="SELECT CASE WHEN dtype = 'Medio' THEN true ELSE false END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
+	@Query(value="SELECT CASE WHEN dtype = 'Medio' THEN 1 ELSE 0 END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
 	int isMedioById(int i);
 	
-	@Query(value="SELECT CASE WHEN dtype = 'Complejo' THEN true ELSE false END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
+	@Query(value="SELECT CASE WHEN dtype = 'Complejo' THEN 1 ELSE 0 END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
 	int isComplejoById(int i);
 	
 }
