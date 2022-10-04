@@ -345,7 +345,7 @@ public class AppController {
     
     @RequestMapping("/examenes")
 	public String examenes(Model m) {
-    	List<ModeloExamen> e = repoModeloExamen.findAll();
+    	List<ModeloExamen> e = repoModeloExamen.getAllExamen();
 		m.addAttribute("examenes",e);
 		return "/listaExamenes";
 	}

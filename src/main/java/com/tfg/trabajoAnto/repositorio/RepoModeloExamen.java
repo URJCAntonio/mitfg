@@ -12,6 +12,8 @@ import com.tfg.trabajoAnto.modelo.ModeloExamen;
 public interface RepoModeloExamen extends JpaRepository<ModeloExamen, Integer>{
 
 	//Optional<Examen> findByNombre(String nombre);
+	@Query(value="SELECT * FROM modelo_examen", nativeQuery = true)
+	List<ModeloExamen> getAllExamen();
 
 	@Query(value="SELECT * FROM modelo_examen WHERE id = ?1", nativeQuery = true)
     ModeloExamen getExamenById(int i);
