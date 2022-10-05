@@ -41,8 +41,6 @@ public interface RepoUsuario extends CrudRepository<Usuario, Integer>{
 	
 	@Modifying
 	@Transactional
-	@Query(value="UPDATE usuario SET enabled = !enabled WHERE nombre = ?1", nativeQuery = true)
-	void banUsuarioByNombre(String nombres);
-	
-	
+	@Query(value="UPDATE usuario SET enabled = NOT enabled WHERE nombre = ?1", nativeQuery = true)
+	void banUsuarioByNombre(String nombre);
 }
