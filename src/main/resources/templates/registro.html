@@ -79,9 +79,16 @@
 					<td>Grupo:</td>
 					<td>
 						<select name="aula">
-							{{#lista}}
-							<option value="{{nombre}}">{{nombre}}</option>
-							{{/lista}}
+							{{#ADMINISTRADOR}}
+								{{#lista}}
+									<option value="{{nombre}}">{{nombre}}</option>
+								{{/lista}}
+							{{/ADMINISTRADOR}}
+							{{#PROFESORES}}
+								{{#milista}}
+									<option value="{{nombre}}">{{nombre}}</option>
+								{{/milista}}
+							{{/PROFESORES}}
 						</select>
 					</td>
 				</tr>
