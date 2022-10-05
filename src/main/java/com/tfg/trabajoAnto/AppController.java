@@ -96,10 +96,16 @@ public class AppController {
 	@RequestMapping("/signin")
     public String registrarUsuario(Model m) {
 		
-    	List<Aula> aulas = usuarios.getAllAulas();
-    	List<Aula> Misaulas = usuarios.getAulasByProfesor((Profesor) usuarios.getUsuarioPorNombre((String)m.getAttribute("name")));
+    	List<Aula> aulas;
+    	Usuario usu = usuarios.getUsuarioPorNombre((String)m.getAttribute("name"));
+    	if(usu.Rol()=="PROFESORES") {
+    		aulas = usuarios.getAulasByProfesor((Profesor) usu);
+    	}else //if(usu.Rol()=="ADMINISTRADOR") 
+    	{
+    		aulas = usuarios.getAllAulas();
+    	}
+    	
     	m.addAttribute("lista",aulas);
-    	m.addAttribute("milista",Misaulas);
         return "registro";
     }
 	
