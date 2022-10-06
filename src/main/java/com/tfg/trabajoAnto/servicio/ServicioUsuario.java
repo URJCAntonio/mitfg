@@ -274,6 +274,32 @@ public class ServicioUsuario implements UserDetailsService{
 		return mapa;
 	}
 	
+	public HashMap<Alumno, Float> rankear(Alumno[] alumnos) {
+		HashMap<Alumno, Float> mapa = new HashMap<>();
+		for (Alumno alumno : alumnos) {
+			int i[] = {alumno.getId()};
+			List<Integer> idEjercicios = repoej.getIdEjerciciosSimples(i);
+			int n=0;
+			int d=0;
+			boolean dividir=false;
+			for (Integer integer : idEjercicios) {
+				dividir = true;
+				List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(i[0], integer);
+				for (Ejercicio ejercicio : estadisticas) {
+					boolean[] correctos = ejercicio.getCorrecto();
+					for (boolean c : correctos) {
+						if(c)n++;
+						d++;
+					}
+				}
+			}
+			if(dividir) {
+				mapa.put(alumno, (float)n/(float)d);
+			}
+		}
+		return mapa;
+	}
+	
 	//AULAS
 	public List<Aula> getAllAulas() {
 		return repoaula.getAllAulas();

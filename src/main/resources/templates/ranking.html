@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
 	<body>
-		<div id="principal">
+		<div id="principal" style="width:95%;">
 		
 			<div id="cabecera">
 				<h2>Electr&oacute;nica Digital</h2>
@@ -40,49 +40,24 @@
 				</ul>
 			</div>
 			
-			<div id="columnader">
-				{{#lista}}
-					<table id="clase">
+			<div id="columnader" style="width:97%;">
+				<h2>Aula: "{{aula.nombre}}"</h2>
+				<table id="clase" style="width:99%;">
+					<tr id="fila1">
+						<th colspan="4">ALUMNOS</th>	
+					</tr>
+					<tr id="fila1">
+						<th>ID</th>	
+						<th>Nombre</th>
+						<th>Porcentaje de acierto</th>
+					</tr>
+					{{#rank}}
 						<tr>
-							<th colspan="2"><a href="/estadisticasGrupales{{id}}">{{nombre}}</a></th>
-							<th colspan="2"><a href="/rankearAlumnos{{id}}">rankear</a></th>
+							<th>{{key.id}}</th>
+							<th>{{key.nombre}}</th>
+							<th>{{value}}</th>
 						</tr>
-						<tr>
-							<th>Alumno</th>
-							<th>Examenes</th>
-						</tr>
-							{{#alumnos}}
-							<tr id="fila1">
-								<th>{{nombre}}</th>
-								<th><a href="/examen{{id}}">Ver</a></th>
-							</tr>
-							{{/alumnos}}
-					</table>
-				{{/lista}}
-				<br>
-				<div class="clear"></div>
-				<table id="añadirEjercicios">
-					<tr>
-						<th><a href="/signin">Registra alumno</a></th>
-					</tr>
-					<tr>
-						<th><a href="/simple">Añadir ejercicio simple.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/medio">Añadir ejercicio medio.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/complejo">Añadir ejercicio complejo.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/estadisticas">Revisar estasdisticas de ejercicios</a></th>
-					</tr>
-					<tr>
-						<th><a href="/examenes">VerExamenes</a></th>
-					</tr>
-					<tr>
-						<th><a href="/crearExamen">GenerarExamen</a></th>
-					</tr>
+					{{/rank}}
 				</table>
 			</div>
 			<div class="clear">

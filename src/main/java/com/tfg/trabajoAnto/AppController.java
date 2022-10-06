@@ -494,6 +494,7 @@ public class AppController {
     	
     	return "estadisticas";
 	}
+    
     @RequestMapping("/estadisticasGrupales{id}")
 	public String estadisticasGrupales(Model m, @PathVariable int id) {
     	Aula aula = repoAulas.getAulaById(id);
@@ -512,6 +513,23 @@ public class AppController {
     	
     	
     	return "estadisticas";
+	}
+    
+    @RequestMapping("/rankearAlumnos{id}")
+	public String rankearAlumnos(Model m, @PathVariable int id) {
+    	Aula aula = repoAulas.getAulaById(id);
+    	Alumno[] alumnos = new Alumno[aula.getAlumnos().size()];
+    	int i=0;
+    	for (Alumno al : aula.getAlumnos()) {
+    		alumnos[i++]=al;
+		}
+    	
+    	HashMap<Alumno, Float> rank = usuarios.rankear(alumnos);
+    	
+    	m.addAttribute("rank",rank.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
+    	m.addAttribute("aula",aula);
+    	
+    	return "ranking";
 	}
     /******************************************************************************************************************************************/
     /*************************************************ALUMNO ONLY******************************************************************************/
