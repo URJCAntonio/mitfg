@@ -243,6 +243,48 @@ public class AppController {
     	return "redirect:/";
 	}
     
+    @RequestMapping("/listaAulas")
+   	public String listaAulas(Model m) {
+       	List<Aula> aulas = usuarios.getAllAulas();
+       	m.addAttribute("lista",aulas);
+   		return "listaAulas";
+   	}
+    
+    @RequestMapping("/gestionarAula{id}")
+   	public String gestionarAula(Model m,@PathVariable int id) {
+       	Aula aula = repoAulas.getAulaById(id);
+       	List<Alumno> alumnos = usuarios.getAllAlumnos();
+       	alumnos.removeAll(aula.getAlumnos());
+       	
+       	m.addAttribute("alumnosIn",aula.getAlumnos());
+       	m.addAttribute("alumnosOut",alumnos);
+       	m.addAttribute("aula",aula);
+   		return "asignarAlumnos";
+   	}
+  //MODIFICA LAS AULAS MARCADAS Y RETORNA A LA PÁGINA DE INICIO.
+    @RequestMapping("/asignarAlumnosSubmit")
+	public String asignarAlumnosSubmit(Model m,@RequestParam int id, @RequestParam String[] adquirir, @RequestParam String[] abandonar) {
+    	Aula aula = repoAulas.getAulaById(id);
+
+    	for (int i = 0; i < adquirir.length; i++) {
+			Alumno a = (Alumno) usuarios.getUsuarioPorNombre(adquirir[i]);
+			aula.getAlumnos().add(a);
+		}
+    	
+    	for (int i = 0; i < abandonar.length; i++) {
+			Alumno a = (Alumno) usuarios.getUsuarioPorNombre(abandonar[i]);
+			aula.getAlumnos().remove(a);
+		}
+    	repoAulas.save(aula);
+    	return "redirect:/";
+	}
+    @RequestMapping("/cambiarNombre")
+   	public String cambiarNombre(Model m,@RequestParam int id,@RequestParam String newName) {
+       	Aula aula = repoAulas.getAulaById(id);
+       	aula.setNombre(newName);
+       	repoAulas.save(aula);
+       	return "redirect:/";
+   	}
     
     /******************************************************************************************************************************************/
     /************************************************PROFESOR ONLY*****************************************************************************/
@@ -426,9 +468,10 @@ public class AppController {
     
     @RequestMapping("/estadisticasAlumno")
 	public String estadisticas(Model m, int id) {
-    	HashMap<Simple, String> simples = usuarios.getSimpleById(id);
-    	HashMap<Medio, String> medios = usuarios.getMedioById(id);
-    	HashMap<Complejo, String> complejos = usuarios.getComplejoById(id);
+    	int[] i = {id};
+    	HashMap<Simple, String> simples = usuarios.getSimpleById(i);
+    	HashMap<Medio, String> medios = usuarios.getMedioById(i);
+    	HashMap<Complejo, String> complejos = usuarios.getComplejoById(i);
     	
     	m.addAttribute("simples",simples.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
     	m.addAttribute("medios",medios.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
@@ -440,9 +483,28 @@ public class AppController {
     
     @RequestMapping("/estadisticas")
 	public String estadisticas(Model m) {
-    	HashMap<Simple, String> simples = usuarios.getSimpleById();
-    	HashMap<Medio, String> medios = usuarios.getMedioById();
-    	HashMap<Complejo, String> complejos = usuarios.getComplejoById();
+    	HashMap<Simple, String> simples = usuarios.getAllSimple();
+    	HashMap<Medio, String> medios = usuarios.getAllMedio();
+    	HashMap<Complejo, String> complejos = usuarios.getAllComplejo();
+    	
+    	m.addAttribute("simples",simples.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
+    	m.addAttribute("medios",medios.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
+    	m.addAttribute("complejos",complejos.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
+    	
+    	
+    	return "estadisticas";
+	}
+    @RequestMapping("/estadisticasGrupales{id}")
+	public String estadisticasGrupales(Model m, @PathVariable int id) {
+    	Aula aula = repoAulas.getAulaById(id);
+    	int[] ids = new int[aula.getAlumnos().size()];
+    	int i=0;
+    	for (Alumno al : aula.getAlumnos()) {
+			ids[i++]=al.getId();
+		}
+    	HashMap<Simple, String> simples = usuarios.getSimpleById(ids);
+    	HashMap<Medio, String> medios = usuarios.getMedioById(ids);
+    	HashMap<Complejo, String> complejos = usuarios.getComplejoById(ids);
     	
     	m.addAttribute("simples",simples.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
     	m.addAttribute("medios",medios.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
@@ -809,7 +871,7 @@ public class AppController {
     
     @RequestMapping("/misEstadisticas")
 	public String misEstadisticas(Model m) {
-    	int id = usuarios.getUsuarioPorNombre((String)m.getAttribute("name")).getId();
+    	int[] id = {usuarios.getUsuarioPorNombre((String)m.getAttribute("name")).getId()};
     	HashMap<Simple, String> simples = usuarios.getSimpleById(id);
     	HashMap<Medio, String> medios = usuarios.getMedioById(id);
     	HashMap<Complejo, String> complejos = usuarios.getComplejoById(id);

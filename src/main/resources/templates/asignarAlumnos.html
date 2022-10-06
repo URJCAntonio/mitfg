@@ -41,48 +41,54 @@
 			</div>
 			
 			<div id="columnader">
-				{{#lista}}
+			 	<form action="/cambiarNombre" method="post">
+			 		<table id="clase" style="width: 100%">
+						<tr>
+							<th colspan="3">Modificar nombre</th>
+						</tr>
+						<tr>
+							<th>{{aula.nombre}}</th>
+							<th>
+								<input type="text" name="newName"/>
+								<input type="submit" value="Modificar"/>
+							</th>
+						</tr>
+					</table>
+					<input type="hidden" name="_csrf" value="{{token}}"/>
+					<input type="hidden" name="id" value="{{aula.id}}">
+        		</form>
+				<form action="/asignarAlumnosSubmit" method="post">
 					<table id="clase">
 						<tr>
-							<th colspan="2"><a href="/estadisticasGrupales{{id}}">{{nombre}}</a></th>
+							<th colspan="2">Asignar alumnos</th>
 						</tr>
-						<tr>
-							<th>Alumno</th>
-							<th>Examenes</th>
-						</tr>
-							{{#alumnos}}
+						{{#alumnosOut}}
 							<tr id="fila1">
 								<th>{{nombre}}</th>
-								<th><a href="/examen{{id}}">Ver</a></th>
+								<th><input type="checkbox" name="adquirir" value="{{nombre}}"></th>
 							</tr>
-							{{/alumnos}}
+						{{/alumnosOut}}
 					</table>
-				{{/lista}}
-				<br>
-				<div class="clear"></div>
-				<table id="añadirEjercicios">
-					<tr>
-						<th><a href="/signin">Registra alumno</a></th>
-					</tr>
-					<tr>
-						<th><a href="/simple">Añadir ejercicio simple.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/medio">Añadir ejercicio medio.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/complejo">Añadir ejercicio complejo.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/estadisticas">Revisar estasdisticas de ejercicios</a></th>
-					</tr>
-					<tr>
-						<th><a href="/examenes">VerExamenes</a></th>
-					</tr>
-					<tr>
-						<th><a href="/crearExamen">GenerarExamen</a></th>
-					</tr>
-				</table>
+					<table id="clase">
+						<tr>
+							<th colspan="2">Desasignar alumnos</th>
+						</tr>
+							{{#alumnosIn}}
+							<tr id="fila1">
+								<th>{{nombre}}</th>
+								<th><input type="checkbox" name="abandonar" value="{{nombre}}"></th>
+							</tr>
+							{{/alumnosIn}}
+					</table>
+					<br>
+					<div class="clear"></div>
+			
+					<input type="submit" value="Modificar"/> 
+					<input type="hidden" name="_csrf" value="{{token}}" />
+		            <input type="hidden" name="adquirir"  value="">
+					<input type="hidden" name="abandonar" value="">
+					<input type="hidden" name="id" value="{{aula.id}}">
+        		</form>
 			</div>
 			<div class="clear">
 			</div>

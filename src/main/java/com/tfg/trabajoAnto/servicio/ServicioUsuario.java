@@ -120,8 +120,8 @@ public class ServicioUsuario implements UserDetailsService{
 	}
 
 	//USUARIOS
-	public List<Usuario> getUsuariosbyAula(Aula aula) {
-		return repousu.getUsuariosbyAulaId(aula.getId());
+	public List<Usuario> getUsuariosbyAulaId(int id) {
+		return repousu.getUsuariosbyAulaId(id);
 	}
 	
 	public List<Alumno> getAlumnosbyAula(Aula aula) {
@@ -148,28 +148,7 @@ public class ServicioUsuario implements UserDetailsService{
 		return false;
 	}
 	
-	public HashMap<Simple, String> getSimpleById(int id) {
-		HashMap<Simple, String> mapa = new HashMap<>();
-		List<Integer> idEjercicios = repoej.getIdEjerciciosSimples(id);
-		int n;
-		int d;
-		for (Integer integer : idEjercicios) {
-			n=0; d=0;
-			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
-			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
-			for (Ejercicio ejercicio : estadisticas) {
-				boolean[] correctos = ejercicio.getCorrecto();
-				for (boolean c : correctos) {
-					if(c)n++;
-					d++;
-				}
-			}
-			mapa.put((Simple) ej, n+"/"+d);
-		}
-		return mapa;
-	}
-	
-	public HashMap<Simple, String> getSimpleById() {
+	public HashMap<Simple, String> getAllSimple() {
 		HashMap<Simple, String> mapa = new HashMap<>();
 		List<Integer> idEjercicios = repoej.getIdEjerciciosSimples();
 		int n;
@@ -189,29 +168,8 @@ public class ServicioUsuario implements UserDetailsService{
 		}
 		return mapa;
 	}
-	
-	public HashMap<Medio, String> getMedioById(int id) {
-		HashMap<Medio, String> mapa = new HashMap<>();
-		List<Integer> idEjercicios = repoej.getIdEjerciciosMedios(id);
-		int n;
-		int d;
-		for (Integer integer : idEjercicios) {
-			n=0; d=0;
-			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
-			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
-			for (Ejercicio ejercicio : estadisticas) {
-				boolean[] correctos = ejercicio.getCorrecto();
-				for (boolean c : correctos) {
-					if(c)n++;
-					d++;
-				}
-			}
-			mapa.put((Medio) ej, n+"/"+d);
-		}
-		return mapa;
-	}
-	
-	public HashMap<Medio, String> getMedioById() {
+
+	public HashMap<Medio, String> getAllMedio() {
 		HashMap<Medio, String> mapa = new HashMap<>();
 		List<Integer> idEjercicios = repoej.getIdEjerciciosMedios();
 		int n;
@@ -231,29 +189,8 @@ public class ServicioUsuario implements UserDetailsService{
 		}
 		return mapa;
 	}
-	
-	public HashMap<Complejo, String> getComplejoById(int id) {
-		HashMap<Complejo, String> mapa = new HashMap<>();
-		List<Integer> idEjercicios = repoej.getIdEjerciciosComplejos(id);
-		int n;
-		int d;
-		for (Integer integer : idEjercicios) {
-			n=0; d=0;
-			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
-			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
-			for (Ejercicio ejercicio : estadisticas) {
-				boolean[] correctos = ejercicio.getCorrecto();
-				for (boolean c : correctos) {
-					if(c)n++;
-					d++;
-				}
-			}
-			mapa.put((Complejo) ej, n+"/"+d);
-		}
-		return mapa;
-	}
-	
-	public HashMap<Complejo, String> getComplejoById() {
+
+	public HashMap<Complejo, String> getAllComplejo() {
 		HashMap<Complejo, String> mapa = new HashMap<>();
 		List<Integer> idEjercicios = repoej.getIdEjerciciosComplejos();
 		int n;
@@ -274,6 +211,68 @@ public class ServicioUsuario implements UserDetailsService{
 		return mapa;
 	}
 	
+	public HashMap<Simple, String> getSimpleById(int[] id) {
+		HashMap<Simple, String> mapa = new HashMap<>();
+		List<Integer> idEjercicios = repoej.getIdEjerciciosSimples(id);
+		int n;
+		int d;
+		for (Integer integer : idEjercicios) {
+			n=0; d=0;
+			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
+			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
+			for (Ejercicio ejercicio : estadisticas) {
+				boolean[] correctos = ejercicio.getCorrecto();
+				for (boolean c : correctos) {
+					if(c)n++;
+					d++;
+				}
+			}
+			mapa.put((Simple) ej, n+"/"+d);
+		}
+		return mapa;
+	}
+	
+	public HashMap<Medio, String> getMedioById(int[] id) {
+		HashMap<Medio, String> mapa = new HashMap<>();
+		List<Integer> idEjercicios = repoej.getIdEjerciciosMedios(id);
+		int n;
+		int d;
+		for (Integer integer : idEjercicios) {
+			n=0; d=0;
+			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
+			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
+			for (Ejercicio ejercicio : estadisticas) {
+				boolean[] correctos = ejercicio.getCorrecto();
+				for (boolean c : correctos) {
+					if(c)n++;
+					d++;
+				}
+			}
+			mapa.put((Medio) ej, n+"/"+d);
+		}
+		return mapa;
+	}
+	
+	public HashMap<Complejo, String> getComplejoById(int[] id) {
+		HashMap<Complejo, String> mapa = new HashMap<>();
+		List<Integer> idEjercicios = repoej.getIdEjerciciosComplejos(id);
+		int n;
+		int d;
+		for (Integer integer : idEjercicios) {
+			n=0; d=0;
+			ModeloEjercicio ej = repoModEj.getEjercicioById(integer);
+			List<Ejercicio> estadisticas = repoej.getCorrectoIncorrecto(id, integer);
+			for (Ejercicio ejercicio : estadisticas) {
+				boolean[] correctos = ejercicio.getCorrecto();
+				for (boolean c : correctos) {
+					if(c)n++;
+					d++;
+				}
+			}
+			mapa.put((Complejo) ej, n+"/"+d);
+		}
+		return mapa;
+	}
 	
 	//AULAS
 	public List<Aula> getAllAulas() {

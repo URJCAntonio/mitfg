@@ -1,17 +1,21 @@
 <!DOCTYPE html>
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org/"xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
+
 	<head>
-		<title> Inicio </title>
+		<title> Inicio Sesión </title>
 		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-	</head>
-	<body>
-		<div id="principal">
 		
-			<div id="cabecera">
+		
+	</head>
+<body>
+		
+	<div id="principal">
+		
+		<div id="cabecera">
 				<h2>Electr&oacute;nica Digital</h2>
-			</div>
+		</div>
 			
 			<div id="menu">
 				<ul>
@@ -40,59 +44,35 @@
 				</ul>
 			</div>
 			
-			<div id="columnader">
-				{{#lista}}
-					<table id="clase">
+		<div id="columnader">
+	        	<table id="clase" style="width: 100%">
+					<tr>
+						<th colspan="3">Aulas</th>
+					</tr>
+					{{#lista}}
 						<tr>
-							<th colspan="2"><a href="/estadisticasGrupales{{id}}">{{nombre}}</a></th>
+							<th><a href="/gestionarAula{{id}}">{{nombre}}</a></th>
 						</tr>
-						<tr>
-							<th>Alumno</th>
-							<th>Examenes</th>
-						</tr>
-							{{#alumnos}}
-							<tr id="fila1">
-								<th>{{nombre}}</th>
-								<th><a href="/examen{{id}}">Ver</a></th>
-							</tr>
-							{{/alumnos}}
-					</table>
-				{{/lista}}
-				<br>
-				<div class="clear"></div>
-				<table id="añadirEjercicios">
-					<tr>
-						<th><a href="/signin">Registra alumno</a></th>
-					</tr>
-					<tr>
-						<th><a href="/simple">Añadir ejercicio simple.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/medio">Añadir ejercicio medio.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/complejo">Añadir ejercicio complejo.</a></th>
-					</tr>
-					<tr>
-						<th><a href="/estadisticas">Revisar estasdisticas de ejercicios</a></th>
-					</tr>
-					<tr>
-						<th><a href="/examenes">VerExamenes</a></th>
-					</tr>
-					<tr>
-						<th><a href="/crearExamen">GenerarExamen</a></th>
-					</tr>
+					{{/lista}}
 				</table>
-			</div>
-			<div class="clear">
-			</div>
-			<div id="pie">
+		</div>
+		
+		
+           
+		<div class="clear">
+		</div>
+		<div id="pie">
 			<p>Trabajo de Fin de Máster</p>
 			<p>Máster Universitario en Formación del Profesorado de Ed. Secundaria, Bachillerato, FP e Idiomas</p>
 			<p>Especialidad: Informática y Tecnología</p>
-			<p>Alumna: Carmen Muñoz Lorente; Director: Carlos Lázaro Carrascosa</p>
+			<p>Carmen Muñoz Lorente</p>
 			</div>
-		</div>
-		
-	</body>
+	</div>
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->		
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+	<!-------------------------------------------------------------------------------------------SCRIPT----------------------------------------------------------------------->	
+		<script type="text/javascript" src="js\autoevaluacion.js"> </script>
+
+</body>
+
 </html>
