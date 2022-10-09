@@ -35,5 +35,7 @@ public interface RepoModeloEjercicio extends JpaRepository<ModeloEjercicio, Inte
 	@Query(value="SELECT CASE WHEN dtype = 'Complejo' THEN 1 ELSE 0 END AS bool FROM modelo_ejercicio WHERE id = ?1", nativeQuery = true)
 	int isComplejoById(int i);
 	
+	@Query(value="SELECT * FROM modelo_ejercicio WHERE id > 19", nativeQuery = true)
+	List<ModeloEjercicio> getNewEjercicios();
 }
 	

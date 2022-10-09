@@ -41,6 +41,8 @@
 			</div>
 			
 			<div id="columnader">
+				<p>Nombre: {{profe.nombre}}</p>
+				<p>Institución: {{profe.institucion}}</p>
 			 	<form action="/asignarAulasSubmit" method="post">
 					<table id="clase">
 						<tr>
@@ -71,7 +73,7 @@
 					<input type="hidden" name="_csrf" value="{{token}}" />
 		            <input type="hidden" name="adquirir"  value="">
 					<input type="hidden" name="abandonar" value="">
-					<input type="hidden" name="nombre" value="{{nombre}}">
+					<input type="hidden" name="nombre" value="{{profe.nombre}}">
         		</form>
 			</div>
 			<div class="clear">

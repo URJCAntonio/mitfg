@@ -41,22 +41,46 @@
 			</div>
 			
 			<div id="columnader">
-			 	<form action="/cambiarNombre" method="post">
-			 		<table id="clase" style="width: 100%">
+			 	
+		 		<table id="clase" style="width: 100%">
+		 			<form action="/cambiarNombre" method="post">
 						<tr>
-							<th colspan="3">Modificar nombre</th>
+							<th colspan="4">Modificar</th>
 						</tr>
 						<tr>
-							<th>{{aula.nombre}}</th>
+							<th>Nombre: {{aula.nombre}}</th>
 							<th>
 								<input type="text" name="newName"/>
 								<input type="submit" value="Modificar"/>
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								<input type="hidden" name="id" value="{{aula.id}}">
 							</th>
-						</tr>
-					</table>
-					<input type="hidden" name="_csrf" value="{{token}}"/>
-					<input type="hidden" name="id" value="{{aula.id}}">
-        		</form>
+						</tr>	
+        			</form>
+        			<form action="/cambiarAsignatura" method="post">
+						<tr>
+							<th>Asignatura: {{aula.asignatura}}</th>
+							<th>
+								<input type="text" name="newAsignatura"/>
+								<input type="submit" value="Modificar"/>
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								<input type="hidden" name="id" value="{{aula.id}}">
+							</th>
+						</tr>	
+        			</form>
+        			<form action="/cambiarCurso" method="post">
+						<tr>
+							<th>Curso: {{aula.cursoAcademico}}</th>
+							<th>
+								<input type="text" name="newCurso"/>
+								<input type="submit" value="Modificar"/>
+								<input type="hidden" name="_csrf" value="{{token}}"/>
+								<input type="hidden" name="id" value="{{aula.id}}">
+							</th>
+						</tr>	
+        			</form>
+				</table>
+					
 				<form action="/asignarAlumnosSubmit" method="post">
 					<table id="clase">
 						<tr>

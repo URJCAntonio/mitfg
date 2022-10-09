@@ -44,8 +44,7 @@
 				{{#lista}}
 					<table id="clase">
 						<tr>
-							<th colspan="2"><a href="/estadisticasGrupales{{id}}">{{nombre}}</a></th>
-							<th colspan="2"><a href="/rankearAlumnos{{id}}">rankear</a></th>
+							<th colspan="2">{{nombre}}</th>
 						</tr>
 						<tr>
 							<th>Alumno</th>
@@ -57,6 +56,10 @@
 								<th><a href="/examen{{id}}">Ver</a></th>
 							</tr>
 							{{/alumnos}}
+						<tr>
+							<td style="text-align: center;"><a href="/estadisticasGrupales{{id}}">Estadísticas grupales</a></td>
+							<td style="text-align: center;"><a href="/rankearAlumnos{{id}}">Ver ranking</a></td>
+						</tr>
 					</table>
 				{{/lista}}
 				<br>
@@ -73,6 +76,9 @@
 					</tr>
 					<tr>
 						<th><a href="/complejo">Añadir ejercicio complejo.</a></th>
+					</tr>
+					<tr>
+						<th><a href="/borrarEjercicios">BorrarEjercicios.</a></th>
 					</tr>
 					<tr>
 						<th><a href="/estadisticas">Revisar estasdisticas de ejercicios</a></th>

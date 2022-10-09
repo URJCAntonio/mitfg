@@ -16,6 +16,7 @@ public abstract class Usuario {
 	
 	protected String nombre;
 	protected String contra;
+	protected String institucion;
 	protected boolean enabled = true;
 	
 	public int getId() {
@@ -44,6 +45,14 @@ public abstract class Usuario {
 
 	public boolean isEnabled() {
 		return enabled;
+	}
+
+	public String getInstitucion() {
+		return institucion;
+	}
+
+	public void setInstitucion(String institucion) {
+		this.institucion = institucion;
 	}
 
 	public void setEnabled(boolean enabled) {

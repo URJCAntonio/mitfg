@@ -35,6 +35,12 @@ public class Aula {
             )
     private Set<Alumno> alumnos = new HashSet<>();
 	
+	@Column(name = "curso")
+	private String cursoAcademico;
+	
+	@Column(name = "asignatura")
+	private String asignatura;
+	
 	public int getId() {
 		return id;
 	}
@@ -57,6 +63,22 @@ public class Aula {
 
 	public void setAlumnos(Set<Alumno> alumnos) {
 		this.alumnos = alumnos;
+	}
+
+	public String getCursoAcademico() {
+		return cursoAcademico;
+	}
+
+	public void setCursoAcademico(String cursoAcademico) {
+		this.cursoAcademico = cursoAcademico;
+	}
+
+	public String getAsignatura() {
+		return asignatura;
+	}
+
+	public void setAsignatura(String asignatura) {
+		this.asignatura = asignatura;
 	}
 	
 }

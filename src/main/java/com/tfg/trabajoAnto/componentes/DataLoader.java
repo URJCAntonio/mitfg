@@ -66,23 +66,28 @@ public class DataLoader {
     	Administrador admin = new Administrador();
     	admin.setNombre("AdministradorSupremo");
     	admin.setContra("kjds983njsd90u3h8dsf0");
+    	admin.setInstitucion("URJC");
         usuarios.registrarUsuario(admin);
         
     	
     	Profesor profe = new Profesor();
         profe.setNombre("pro");
         profe.setContra("1234");
+        profe.setInstitucion("URJC");
         usuarios.registrarUsuario(profe);
         
         Alumno alumno = new Alumno();
         alumno.setNombre("al");
         alumno.setContra("1234");
+        alumno.setInstitucion("URJC");
         usuarios.registrarUsuario(alumno);
     }
     
     private void LoadAulas() {
     	Aula aula = new Aula();
     	aula.setNombre("Primero");
+    	aula.setCursoAcademico("22-23");
+    	aula.setAsignatura("Tecnología");
     	repoAulas.save(aula);
     }
     
@@ -93,18 +98,26 @@ public class DataLoader {
     	
     	a = new Aula();
     	a.setNombre("Segundo");
+    	a.setCursoAcademico("22-23");
+    	a.setAsignatura("Tecnología");
     	repoAulas.save(a);
     	
     	a = new Aula();
     	a.setNombre("Tercero");
+    	a.setCursoAcademico("22-23");
+    	a.setAsignatura("Tecnología");
     	repoAulas.save(a);
     	
     	a = new Aula();
     	a.setNombre("Cuarto");
+    	a.setCursoAcademico("22-23");
+    	a.setAsignatura("Tecnología");
     	repoAulas.save(a);
     	
     	a = new Aula();
     	a.setNombre("Quinto");
+    	a.setCursoAcademico("22-23");
+    	a.setAsignatura("Tecnología");
     	repoAulas.save(a);
     	
     	//crear alumnos
@@ -112,31 +125,37 @@ public class DataLoader {
     	
     	al.setNombre("alP1");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
         
         al = new Alumno();
         al.setNombre("alS1");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
 
         al = new Alumno();
         al.setNombre("alS2");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
 
         al = new Alumno();
         al.setNombre("alS3");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
 
         al = new Alumno();
         al.setNombre("alT1");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
 
         al = new Alumno();
         al.setNombre("alT2");
     	al.setContra("1234");
+    	al.setInstitucion("URJC");
         usuarios.registrarUsuario(al);
         
         

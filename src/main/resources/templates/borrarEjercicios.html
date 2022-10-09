@@ -7,7 +7,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
 	<body>
-		<div id="principal">
+		<div id="principal" style="width:95%;">
 		
 			<div id="cabecera">
 				<h2>Electr&oacute;nica Digital</h2>
@@ -39,45 +39,31 @@
 					{{/logged}}
 				</ul>
 			</div>
-					
-			<div id="columnader">
-				<form action="/crearAulaSubmit" method="post">
-					<table id="clase">
-						<tr>
-							<th colspan="2">Alumnos</th>
+			
+			<div id="columnader" style="width:97%;">
+				<form action="/borrarEjerciciosSubmit" method="post">
+					<table id="clase" style="width:99%;">
+						<tr id="fila1">
+							<th colspan="4">Ejercicios Simples</th>	
+						</tr>
+						<tr id="fila1">
+							<th>ID</th>	
+							<th>Funcion lógica</th>
+							<th>Imagen</th>
+							<th>Borrar</th>
 						</tr>
 						{{#lista}}
-							<tr id="fila1">
-								<th>{{nombre}}</th>
-								<th><input type="checkbox" name="alumno" value="{{nombre}}"></th>
+							<tr>
+								<th>{{id}}</th>
+								<th>{{funcion_logica}}</th>
+								<th><img src="{{#imagen}}{{imagen}}{{/imagen}}" id="imgpuertalogic"></th>
+								<th><input type="checkbox" name="borrar" value="{{id}}"/></th>
 							</tr>
 						{{/lista}}
 					</table>
-					<table id="clase">
-						<tr>
-							<th>Curso académico</th>
-						</tr>
-						<tr>
-							<th><input type="text" name="curso" required/></th>
-						</tr>
-						
-					</table>
-					<table id="clase">
-						<tr>
-							<th>Asignatura</th>
-						</tr>
-						<tr>
-							<th><input type="text" name="asignatura" required/></th>
-						</tr>
-						
-					</table>
-					<br>
-					<div class="clear"></div>
-					<input type="text" name="aula" required/> 
-					<input type="submit" value="Crear Aula"/> 
+					<input type="submit" value="Borrar ejercicios" style="margin-left: 40%;width: 20%;height: 40px;margin-top: 10px;"/> 
 					<input type="hidden" name="_csrf" value="{{token}}" />
-					<input type="hidden" name="alumno" value="" />
-        		</form>
+				</form>
 			</div>
 			<div class="clear">
 			</div>

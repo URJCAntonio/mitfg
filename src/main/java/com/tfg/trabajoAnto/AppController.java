@@ -110,7 +110,7 @@ public class AppController {
     }
 	
     @RequestMapping("/registro")
-    public String terminarRegistro(Model m,@RequestParam String nombre, @RequestParam String contra, @RequestParam String contra2, @RequestParam String rol, @RequestParam String aula) {
+    public String terminarRegistro(Model m,@RequestParam String nombre, @RequestParam String contra, @RequestParam String contra2, @RequestParam String institucion, @RequestParam String rol, @RequestParam String aula) {
     	//CONTRASEÑAS COINCIDEN
     	if(!contra.equals(contra2)) {
     		m.addAttribute("ErrorContra",true);
@@ -125,6 +125,7 @@ public class AppController {
     	if (rol.equals("ALUMNOS")) {
     		Alumno alumno = new Alumno();
     		alumno.setNombre(nombre);
+    		alumno.setInstitucion(institucion);
     		alumno.setContra(contra);
     		Aula aul = repoAulas.getAulaByNombre(aula);
     		aul.getAlumnos().add(alumno);
@@ -134,10 +135,10 @@ public class AppController {
     	else {
 			Profesor profesor = new Profesor();
 			profesor.setNombre(nombre);
+        	profesor.setInstitucion(institucion);
         	profesor.setContra(contra);
             usuarios.registrarUsuario(profesor);
 		}
-    	
         return "redirect:/";
     }
     
@@ -192,7 +193,7 @@ public class AppController {
 	public String asignarAulas(Model m,@PathVariable String nombre) {
     	Profesor profesor = (Profesor) usuarios.getUsuarioPorNombre(nombre);
     	List<Aula> aulas = usuarios.getNuevasAulasProfesorId(profesor);
-    	m.addAttribute("nombre",nombre);
+    	m.addAttribute("profe",profesor);
     	m.addAttribute("lista",aulas);
     	m.addAttribute("misAulas",profesor.getAula());
 		return "asignarAulas";
@@ -217,9 +218,10 @@ public class AppController {
 	}
     @RequestMapping("/perfilAlumno{id}")
 	public String perfilAlumno(Model m,@PathVariable int id) {
+    	Alumno alumno = (Alumno) usuarios.getUsuarioPorId(id);
     	List<Integer> examenes = usuarios.getExamenesByUserId(id);
     	m.addAttribute("examenes",examenes);
-    	m.addAttribute("id",id);
+    	m.addAttribute("alumno",alumno);
 		return "perfilAlumno";
 	}
     @RequestMapping("/cambiarContra")
@@ -238,8 +240,8 @@ public class AppController {
     
     //CREA LA NUEVA AULA Y RETORNA A LA PÁGINA DE INICIO.
     @RequestMapping("/crearAulaSubmit")
-	public String crearAulaSubmit(Model m, @RequestParam String[] alumno, @RequestParam String aula) {
-    	usuarios.crearAula(aula,alumno);
+	public String crearAulaSubmit(Model m, @RequestParam String[] alumno, @RequestParam String aula, @RequestParam String curso , @RequestParam String asignatura) {
+    	usuarios.crearAula(aula,alumno,curso,asignatura);
     	return "redirect:/";
 	}
     
@@ -259,7 +261,7 @@ public class AppController {
        	m.addAttribute("alumnosIn",aula.getAlumnos());
        	m.addAttribute("alumnosOut",alumnos);
        	m.addAttribute("aula",aula);
-   		return "asignarAlumnos";
+       	return "asignarAlumnos";
    	}
   //MODIFICA LAS AULAS MARCADAS Y RETORNA A LA PÁGINA DE INICIO.
     @RequestMapping("/asignarAlumnosSubmit")
@@ -283,7 +285,21 @@ public class AppController {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setNombre(newName);
        	repoAulas.save(aula);
-       	return "redirect:/";
+       	return "/administradores";
+   	}
+    @RequestMapping("/cambiarCurso")
+   	public String cambiarCurso(Model m,@RequestParam int id,@RequestParam String newCurso) {
+       	Aula aula = repoAulas.getAulaById(id);
+       	aula.setCursoAcademico(newCurso);
+       	repoAulas.save(aula);
+       	return "/administradores";
+   	}
+    @RequestMapping("/cambiarAsignatura")
+   	public String cambiarAsignatura(Model m,@RequestParam int id,@RequestParam String newAsignatura) {
+       	Aula aula = repoAulas.getAulaById(id);
+       	aula.setAsignatura(newAsignatura);
+       	repoAulas.save(aula);
+       	return "/administradores";
    	}
     
     /******************************************************************************************************************************************/
@@ -530,6 +546,23 @@ public class AppController {
     	m.addAttribute("aula",aula);
     	
     	return "ranking";
+	}
+    
+    @RequestMapping("/borrarEjercicios")
+	public String borrarEjercicios(Model m) {
+    	List<ModeloEjercicio> lista =  repoModeloEjercicio.getNewEjercicios();
+    	
+    	m.addAttribute("lista",lista);
+    	return "borrarEjercicios";
+	}
+    
+    @RequestMapping("/borrarEjerciciosSubmit")
+	public String borrarEjerciciosSubmit(Model m, @RequestParam int[] borrar) {
+    	for (int i : borrar) {
+    		ModeloEjercicio modEj = repoModeloEjercicio.getEjercicioById(i);
+    		repoModeloEjercicio.delete(modEj);
+		}
+    	return "redirect:/";
 	}
     /******************************************************************************************************************************************/
     /*************************************************ALUMNO ONLY******************************************************************************/
@@ -868,10 +901,10 @@ public class AppController {
     
     @RequestMapping("/miPerfil")
 	public String miPerfil(Model m) {
-    	int id = usuarios.getUsuarioPorNombre((String)m.getAttribute("name")).getId();
-    	List<Integer> examenes = usuarios.getExamenesByUserId(id);
+    	Alumno alumno = (Alumno) usuarios.getUsuarioPorNombre((String)m.getAttribute("name"));
+    	List<Integer> examenes = usuarios.getExamenesByUserId(alumno.getId());
     	m.addAttribute("examenes",examenes);
-    	m.addAttribute("id",id);
+    	m.addAttribute("alumno",alumno);
 		return "perfilAlumno";
 	}
     

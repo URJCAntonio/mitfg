@@ -44,7 +44,8 @@
 				{{#Error}}
 					<p style="color: red">{{Error}}</p>
 				{{/Error}}
-				
+				<p>Nombre: {{alumno.nombre}}</p>
+				<p>Institución: {{alumno.institucion}}</p>
 				<table id="clase">
 						<tr id="fila1">
 							<th>examen</th>
@@ -56,7 +57,7 @@
 									<th>{{intValue}}</th>
 									<th><input type="submit" value="Revisar"/></th>
 									<input type="hidden" name="id" value={{intValue}}>
-									<input type="hidden" name="idAlumno" value={{id}}>
+									<input type="hidden" name="idAlumno" value={{alumno.id}}>
 					        		<input type="hidden" name="_csrf" value="{{token}}" />
 								</form>
 							</tr>
@@ -68,7 +69,7 @@
 			 	{{#ALUMNOS}}
 			 		<form action="/cambiarMiContra" method="post">
 				{{/ALUMNOS}}
-					<input type="hidden" name="id" value="{{id}}" />
+					<input type="hidden" name="id" value="{{alumno.id}}" />
 					<table id="clase">
 						<tr id="fila1">
 							<th colspan="3">Modificar contraseña</th>
