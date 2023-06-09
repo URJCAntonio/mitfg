@@ -6,6 +6,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="modelo_ejercicio")
@@ -22,13 +23,13 @@ public abstract class ModeloEjercicio {
 	@Column(name = "imagen")
 	protected String imagen;
 	
-	@Column(name = "a")
+	@Transient
 	private int a;
 	
-	@Column(name = "b")
+	@Transient
 	private int b;
 	
-	@Column(name = "c")
+	@Transient
 	private int c;
 	
 	public ModeloEjercicio() {

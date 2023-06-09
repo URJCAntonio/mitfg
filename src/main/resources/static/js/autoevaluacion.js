@@ -242,22 +242,22 @@
 				if (S_1==""){
 					document.getElementById(P_1).style.display="block";
 					document.getElementById(P_1).style.color="red";
-					document.getElementById(P_1).innerHTML="¡No has contestado!";
+					document.getElementById(P_1).innerHTML="<input type=\"hidden\" name=\"demo\" value=\"NC\"/>";
 					
 				}else if ((S_1!=0)&&(S_1!=1)){//si el valor de la caja de texto es distinto de 0 o 1 o no pone nada ¡solo valen 0 o 1!
 					document.getElementById(P_1).style.display="block";
 					document.getElementById(P_1).style.color="red";
-					document.getElementById(P_1).innerHTML="¡Sólo valen 0 y 1!";
+					document.getElementById(P_1).innerHTML="<input type=\"hidden\" name=\"demo\" value=\"0o1\"/>";
 					
 				}else if(corr_1==S_1){//si el valor de la caja de texto y el de la funcion puerta OR coincide ¡Correcto!
 					document.getElementById(P_1).style.display="block";
 					document.getElementById(P_1).style.color="green";
-					document.getElementById(P_1).innerHTML="¡Correcto!";
+					document.getElementById(P_1).innerHTML="<input type=\"hidden\" name=\"demo\" value=\"Correcto\"/>";
 					correctas=1;
 				}else{//si no incorrecto
 					document.getElementById(P_1).style.display="block";
 					document.getElementById(P_1).style.color="red";
-					document.getElementById(P_1).innerHTML="Incorrecto";	
+					document.getElementById(P_1).innerHTML="<input type=\"hidden\" name=\"demo\" value=\"Incorrecto\"/>";
 				}
 				return correctas;
 			}

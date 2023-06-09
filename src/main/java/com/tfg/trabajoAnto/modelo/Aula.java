@@ -27,6 +27,12 @@ public class Aula {
 	@Column(name = "nombre")
 	private String nombre;
 	
+	@Column(name = "curso")
+	private String cursoAcademico;
+	
+	@Column(name = "asignatura")
+	private String asignatura;
+	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
     @JoinTable(
             name = "aula_alumnos",
@@ -34,12 +40,6 @@ public class Aula {
             inverseJoinColumns = @JoinColumn(name = "alumno_id")
             )
     private Set<Alumno> alumnos = new HashSet<>();
-	
-	@Column(name = "curso")
-	private String cursoAcademico;
-	
-	@Column(name = "asignatura")
-	private String asignatura;
 	
 	public int getId() {
 		return id;
