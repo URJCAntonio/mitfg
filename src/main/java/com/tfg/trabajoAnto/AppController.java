@@ -106,14 +106,22 @@ public class AppController {
     		m.addAttribute("ErrorNombre",true);
     		return registrarUsuario(m);
     	}
+    	System.out.println(nombre);
+    	System.out.println(institucion);
+    	System.out.println(contra);
     	//REGISTRAR ALUMNO
     	if (rol.equals("ALUMNOS")) {
     		Alumno alumno = new Alumno();
     		alumno.setNombre(nombre);
     		alumno.setInstitucion(institucion);
     		alumno.setContra(contra);
-    		Aula aul = repoAulas.getAulaByNombre(aula);
-    		aul.getAlumnos().add(alumno);
+    		if (aula!="") {
+				System.out.println("aaa");
+    			Aula aul = repoAulas.getAulaByNombre(aula);
+        		aul.getAlumnos().add(alumno);
+			}else {
+				System.out.println("sss");
+			}
             usuarios.registrarUsuario(alumno);
 		}
     	//REGISTRAR PROFESOR

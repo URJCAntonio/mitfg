@@ -79,6 +79,7 @@
                     <td>Repetir contraseña:</td>
                     <td><input type="password" name="contra2" required/></td>
                 </tr>
+                {{^ADMINISTRADOR}}
 				<tr>
 					<td>Grupo:</td>
 					<td>
@@ -89,6 +90,7 @@
 						</select>
 					</td>
 				</tr>
+				{{/ADMINISTRADOR}}
                 {{#ADMINISTRADOR}}
 				<tr>
 					<td>Rol:</td>
@@ -99,6 +101,7 @@
 						</select>
 					</td>
 				</tr>
+				<input type="hidden" name="aula" value=""/>
 				{{/ADMINISTRADOR}}
 				{{^ADMINISTRADOR}}
 				<tr>
