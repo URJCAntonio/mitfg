@@ -78,21 +78,6 @@ public class AppController {
 		return "contenidos";
 	}
 	
-	@RequestMapping("/simple")
-	public String simple() {
-		return "addsimple";
-	}
-	
-	@RequestMapping("/medio")
-	public String medio() {
-		return "addmedio";
-	}
-	
-	@RequestMapping("/complejo")
-	public String complejo() {
-		return "addcomplejo";
-	}
-	
 	@RequestMapping("/signin")
     public String registrarUsuario(Model m) {
 		
@@ -114,21 +99,29 @@ public class AppController {
     	//CONTRASEÑAS COINCIDEN
     	if(!contra.equals(contra2)) {
     		m.addAttribute("ErrorContra",true);
-    		return "registro";
+    		return registrarUsuario(m);
     	}
     	//USUARIO YA EXISTENTE
     	else if(usuarios.getUsuarioPorNombre(nombre)!=null) {
     		m.addAttribute("ErrorNombre",true);
-    		return "registro";
+    		return registrarUsuario(m);
     	}
+    	System.out.println(nombre);
+    	System.out.println(institucion);
+    	System.out.println(contra);
     	//REGISTRAR ALUMNO
     	if (rol.equals("ALUMNOS")) {
     		Alumno alumno = new Alumno();
     		alumno.setNombre(nombre);
     		alumno.setInstitucion(institucion);
     		alumno.setContra(contra);
-    		Aula aul = repoAulas.getAulaByNombre(aula);
-    		aul.getAlumnos().add(alumno);
+    		if (aula!="") {
+				System.out.println("aaa");
+    			Aula aul = repoAulas.getAulaByNombre(aula);
+        		aul.getAlumnos().add(alumno);
+			}else {
+				System.out.println("sss");
+			}
             usuarios.registrarUsuario(alumno);
 		}
     	//REGISTRAR PROFESOR
@@ -152,16 +145,29 @@ public class AppController {
 		return "index";
 	}
     
-    @RequestMapping("/examen{id}")
-	public String mostrarExamenes(Model m, @PathVariable Integer id) {
-    	List<Integer> e = usuarios.getExamenesByUserId(id);
-		m.addAttribute("lista",e);
-		m.addAttribute("idAlumno",id);
-		return "examenes";
-	}
+    @RequestMapping("/revision")
+   	public String revision(Model m, @RequestParam Integer id, @RequestParam int idAlumno ) {
+       	
+       	List<Ejercicio> listaEjs = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simple");
+       	List<Ejercicio> listaEjsI = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simpleImg");
+       	List<Ejercicio> listaEjsTV = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simpleTV");
+       	List<Ejercicio> listaEjm = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medio");
+       	List<Ejercicio> listaEjmI = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medioImg");
+       	List<Ejercicio> listaEjmTV = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medioTV");
+       	List<Ejercicio> listaEjc = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "complejo");
+       	
+       	
+       	m.addAttribute("listaEjs",listaEjs);
+       	m.addAttribute("listaEjm",listaEjm);
+       	m.addAttribute("listaEjsTV",listaEjsTV);
+       	m.addAttribute("listaEjmTV",listaEjmTV);
+       	m.addAttribute("listaEjsI",listaEjsI);
+       	m.addAttribute("listaEjmI",listaEjmI);
+       	m.addAttribute("listaEjc",listaEjc);
+       	
+   		return "revision";
+   	}
     
-    
-
     /******************************************************************************************************************************************/
     /*************************************************ADMIN ONLY*******************************************************************************/
     /******************************************************************************************************************************************/
@@ -351,7 +357,20 @@ public class AppController {
     	repoModeloExamen.save(modeloExamen);
     	return "redirect:/";
 	}
-    
+    @RequestMapping("/simple")
+	public String simple() {
+		return "addsimple";
+	}
+	
+	@RequestMapping("/medio")
+	public String medio() {
+		return "addmedio";
+	}
+	
+	@RequestMapping("/complejo")
+	public String complejo() {
+		return "addcomplejo";
+	}
     @RequestMapping("/addsimple")
     public String addSimple(Model m,@RequestParam String ej, @RequestParam String img) {
     	ModeloEjercicio simp = new Simple();
@@ -362,7 +381,7 @@ public class AppController {
         	simp.setImagen(img);
     	}
     	repoModeloEjercicio.save(simp);
-		return "profes";
+		return "redirect:/profes";
 	}
     
     @RequestMapping("/addmedio")
@@ -375,7 +394,7 @@ public class AppController {
     		med.setImagen(img);
     	}
     	repoModeloEjercicio.save(med);
-		return "profes";
+		return "redirect:/profes";
 	}
     
     @RequestMapping("/addcomplejo")
@@ -384,30 +403,15 @@ public class AppController {
     	((Complejo) com).setFunciones_logicas("D = "+ejD, "E = "+ejE, "F = "+ejF, "G = "+ejG, "H = "+ejH, "S = "+ejS);
     	com.setImagen(img);
     	repoModeloEjercicio.save(com);
-		return "profes";
+		return "redirect:/profes";
 	}
     
-    @RequestMapping("/revision")
-	public String revision(Model m, @RequestParam Integer id, @RequestParam int idAlumno ) {
-    	
-    	List<Ejercicio> listaEjs = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simple");
-    	List<Ejercicio> listaEjsI = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simpleImg");
-    	List<Ejercicio> listaEjsTV = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "simpleTV");
-    	List<Ejercicio> listaEjm = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medio");
-    	List<Ejercicio> listaEjmI = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medioImg");
-    	List<Ejercicio> listaEjmTV = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "medioTV");
-    	List<Ejercicio> listaEjc = repoEjercicio.getEjerciciosDeAlumnoByExamenId(idAlumno, id, "complejo");
-    	
-    	
-    	m.addAttribute("listaEjs",listaEjs);
-    	m.addAttribute("listaEjm",listaEjm);
-    	m.addAttribute("listaEjsTV",listaEjsTV);
-    	m.addAttribute("listaEjmTV",listaEjmTV);
-    	m.addAttribute("listaEjsI",listaEjsI);
-    	m.addAttribute("listaEjmI",listaEjmI);
-    	m.addAttribute("listaEjc",listaEjc);
-    	
-		return "revision";
+    @RequestMapping("/examen{id}")
+	public String mostrarExamenes(Model m, @PathVariable Integer id) {
+    	List<Integer> e = usuarios.getExamenesByUserId(id);
+		m.addAttribute("lista",e);
+		m.addAttribute("idAlumno",id);
+		return "examenes";
 	}
     
     @RequestMapping("/examenes")
@@ -523,9 +527,9 @@ public class AppController {
     	HashMap<Medio, String> medios = usuarios.getMedioById(ids);
     	HashMap<Complejo, String> complejos = usuarios.getComplejoById(ids);
     	
-    	m.addAttribute("simples",simples.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
-    	m.addAttribute("medios",medios.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
-    	m.addAttribute("complejos",complejos.entrySet()); //NO ESTOY SEGURO DE HASTA QUE PUNTO ESTO ES UNA BUENA IDEA
+    	m.addAttribute("simples",simples.entrySet()); 
+    	m.addAttribute("medios",medios.entrySet()); 
+    	m.addAttribute("complejos",complejos.entrySet()); 
     	
     	
     	return "estadisticas";
@@ -581,6 +585,26 @@ public class AppController {
     @RequestMapping("/autoevaluacionFormal")
 	public String autoevaluacionFormal(Model m) {
 		return "autoevaluacionFormal";
+	}
+    
+    @RequestMapping("/autoevaluacionFormalSubmit")
+	public String autoevaluacionFormalSubmit(Model m, @RequestParam String[] demo) {
+    	Alumno al = (Alumno) usuarios.getUsuarioPorNombre((String)m.getAttribute("name"));
+    	int[] aciertos = al.getAciertos();
+    	int[] intentos = al.getIntentos();
+    	
+    	for (int i = 0; i < demo.length; i++) {
+			if(demo[i].equals("Correcto")) {
+				intentos[i]++;
+				aciertos[i]++;
+			}else if(demo[i].equals("Incorrecto")) {
+				intentos[i]++;
+			}
+		}
+    	al.setAciertos(aciertos);
+    	al.setIntentos(intentos);
+    	usuarios.save(al);
+    	return "redirect:/";
 	}
     
     @RequestMapping("/examinarse")
@@ -933,5 +957,21 @@ public class AppController {
     	
     	
     	return "estadisticas";
+	}
+    @RequestMapping("/miAutoevaluacion")
+	public String miAutoevaluacion(Model m) {
+    	Alumno al = (Alumno) usuarios.getUsuarioPorNombre((String)m.getAttribute("name"));
+    	int[] lista = new int[86];
+    	int[] aciertos = al.getAciertos();
+    	int[] intentos = al.getIntentos();
+    	
+    	for (int i = 0; i < 43; i++) {
+			
+			lista[i*2]=aciertos[i];
+			lista[i*2+1]=intentos[i];
+		}
+    	
+    	m.addAttribute("lista", lista);
+    	return "revisionFormal";
 	}
 }

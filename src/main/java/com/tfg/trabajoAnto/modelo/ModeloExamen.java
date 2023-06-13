@@ -23,7 +23,8 @@ public class ModeloExamen {
     @Column(name = "id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
-    
+	
+	@Column(name = "nombre")
 	private String nombre;
 	
 	@ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)

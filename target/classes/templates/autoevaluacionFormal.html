@@ -50,10 +50,9 @@
 		<div id="columnader">
 		<p>¡Pon a prueba tus conocimientos! Aquí tienes un test con distintos ejercicios para poder evaluar tu avance.</p>
 		<hr>
-		
 		<ul>
 			<li>Halla la salida S de las distintas funciones lógicas en con dos variables de entrada (a y b):</li>
-		<form action="#" th:action="@{/hola}" th:object="${patata}" method="post">
+		<form action="/autoevaluacionFormalSubmit" th:action="@{/hola}" th:object="${patata}" method="post">
 			<table id="tabla1">
 				<tr id="fila1">
 					<th>a</th>
@@ -65,49 +64,50 @@
 					<th id="A_1"></th>
 					<th id="B_1"></th>
 					<th id="corr_1">S = <span style="text-decoration:overline">a</span></th>
-					<th>S= <input type="text" name="S_1" id="S_1" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_1" id="S_1" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_1"></th>
+					
 				</tr><tr>
 					<th id="A_2"></th>
 					<th id="B_2"></th>
 					<th id="corr_2">S = a * b</th>
-					<th>S= <input type="text" name="S_2" id="S_2" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_2" id="S_2" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_2"></th>
 				</tr><tr>
 					<th id="A_3"></th>
 					<th id="B_3"></th>
 					<th  id="corr_3">S = a * <span style="text-decoration:overline">b</span></th>
-					<th>S= <input type="text" name="S_3" id="S_3" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_3" id="S_3" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_3"></th>
 				</tr><tr>
 					<th id="A_4"></th>
 					<th id="B_4"></th>
 					<th id="corr_4">S = <span style="text-decoration:overline">a</span> + b</th>
-					<th>S= <input type="text" name="S_4" id="S_4" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_4" id="S_4" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_4"></th>
 				</tr><tr>
 					<th id="A_5"></th>
 					<th id="B_5"></th>
 					<th  id="corr_5">S = a * (<span style="text-decoration:overline">a</span> + b)</th>
-					<th>S= <input type="text" name="S_5" id="S_5" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_5" id="S_5" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_5"></th>
 				</tr><tr>
 					<th id="A_6"></th>
 					<th id="B_6"></th>
 					<th  id="corr_6">S = <span style="text-decoration:overline">a * b</span></th>
-					<th>S= <input type="text" name="S_6" id="S_6" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_6" id="S_6" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_6"></th>
 				</tr><tr>
 					<th id="A_7"></th>
 					<th id="B_7"></th>
 					<th  id="corr_7">S = <span style="text-decoration:overline">a</span> * b + b</th>
-					<th>S= <input type="text" name="S_7" id="S_7" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_7" id="S_7" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_7"></th>
 				</tr><tr>
 					<th id="A_8"></th>
 					<th id="B_8"></th>
 					<th id="corr_8">S = <span style="text-decoration:overline">a + b</span> + b</th>
-					<th>S= <input type="text" name="S_8" id="S_8" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_8" id="S_8" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_8"></th>
 				</tr>
 			</table>
@@ -127,56 +127,56 @@
 					<th id="B_9"></th>
 					<th id="C_9"></th>
 					<th id="corr_9">S = c * a + b</th>
-					<th>S= <input type="text" name="S_9" id="S_9" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_9" id="S_9" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_9"></th>
 				</tr><tr>
 					<th id="A_10"></th>
 					<th id="B_10"></th>
 					<th id="C_10"></th>
 					<th id="corr_10">S = a + b * c</th>
-					<th>S= <input type="text" name="S_10" id="S_10" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_10" id="S_10" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_10"></th>
 				</tr><tr>
 					<th id="A_11"></th>
 					<th id="B_11"></th>
 					<th id="C_11"></th>
 					<th id="corr_11">S = (<span style="text-decoration:overline">a</span> + <span style="text-decoration:overline">c</span>) * b</th>
-					<th>S= <input type="text" name="S_11" id="S_11" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_11" id="S_11" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_11"></th>
 				</tr><tr>
 					<th id="A_12"></th>
 					<th id="B_12"></th>
 					<th id="C_12"></th>
 					<th id="corr_12">S = <span style="text-decoration:overline">a * b</span> + c</th>
-					<th>S= <input type="text" name="S_12" id="S_12" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_12" id="S_12" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_12"></th>
 				</tr><tr>
 					<th id="A_13"></th>
 					<th id="B_13"></th>
 					<th id="C_13"></th>
 					<th id="corr_13">S = <span style="text-decoration:overline">a + c</span> + a * b</th>
-					<th>S= <input type="text" name="S_13" id="S_13" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_13" id="S_13" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_13"></th>
 				</tr><tr>
 					<th id="A_14"></th>
 					<th id="B_14"></th>
 					<th id="C_14"></th>
 					<th id="corr_14">S = b * c + <span style="text-decoration:overline">a * c</span></th>
-					<th>S= <input type="text" name="S_14" id="S_14" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_14" id="S_14" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_14"></th>
 				</tr><tr>
 					<th id="A_15"></th>
 					<th id="B_15"></th>
 					<th id="C_15"></th>
 					<th id="corr_15">S = <span style="text-decoration:overline">a + b</span> * <span style="text-decoration:overline">a * c</span></th>
-					<th>S= <input type="text" name="S_15" id="S_15" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_15" id="S_15" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_15"></th>
 				</tr><tr>
 					<th id="A_16"></th>
 					<th id="B_16"></th>
 					<th id="C_16"></th>
 					<th id="corr_16">S = (<span style="text-decoration:overline">a + c</span>)* b</th>
-					<th>S= <input type="text" name="S_16" id="S_16" class="cuadrotexto"/></th>
+					<th>S= <input type="text" pattern="[0-1]{1}" name="S_16" id="S_16" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_16"></th>
 				</tr>
 			</table>
@@ -193,49 +193,49 @@
 					<th>0</th>
 					<th>0</th>
 					<th>0</th>
-					<th><input type="text" name="S_17" id="S_17" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_17" id="S_17" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_17"></th>
 				</tr><tr>
 					<th>0</th>
 					<th>0</th>
 					<th>1</th>
-					<th><input type="text" name="S_18" id="S_18" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_18" id="S_18" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_18"></th>
 				</tr><tr>
 					<th>0</th>
 					<th>1</th>
 					<th>0</th>
-					<th><input type="text" name="S_19" id="S_19" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_19" id="S_19" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_19"></th>
 				</tr><tr>
 					<th>0</th>
 					<th>1</th>
 					<th>1</th>
-					<th><input type="text" name="S_20" id="S_20" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_20" id="S_20" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_20"></th>
 				</tr><tr>
 					<th>1</th>
 					<th>0</th>
 					<th>0</th>
-					<th><input type="text" name="S_21" id="S_21" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_21" id="S_21" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_21"></th>
 				</tr><tr>
 					<th>1</th>
 					<th>0</th>
 					<th>1</th>
-					<th><input type="text" name="S_22" id="S_22" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_22" id="S_22" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_22"></th>
 				</tr><tr>
 					<th>1</th>
 					<th>1</th>
 					<th>0</th>
-					<th><input type="text" name="S_23" id="S_23" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_23" id="S_23" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_23"></th>
 				</tr><tr>
 					<th>1</th>
 					<th>1</th>
 					<th>1</th>
-					<th><input type="text" name="S_24" id="S_24" class="cuadrotexto"/></th>
+					<th><input type="text" pattern="[0-1]{1}" name="S_24" id="S_24" class="cuadrotexto"/></th>
 					<th style="display: none" id="P_24"></th>
 				</tr>
 			</table>
@@ -250,7 +250,7 @@
 					<th>A =</th>	
 					<th id="A_25"></th>
 					<th rowspan="2"><img src="img/img2.jpg" id="imgpuertalogic"></th>
-					<th rowspan="2" id="corr_25">S = <input type="text" name="S_25" id="S_25" class="cuadrotexto"/></th>
+					<th rowspan="2" id="corr_25">S = <input type="text" pattern="[0-1]{1}" name="S_25" id="S_25" class="cuadrotexto"/></th>
 					<th rowspan="2" id="P_25" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
 				</tr><tr>
 					<th>B =</th>	
@@ -260,7 +260,7 @@
 					<th>A =</th>	
 					<th id="A_26"></th>
 					<th rowspan="2"><img src="img/img6.jpg" id="imgpuertalogic"></th>
-					<th rowspan="2" id="corr_26">S = <input type="text" name="S_26" id="S_26" class="cuadrotexto"/></th>
+					<th rowspan="2" id="corr_26">S = <input type="text" pattern="[0-1]{1}" name="S_26" id="S_26" class="cuadrotexto"/></th>
 					<th rowspan="2" id="P_26" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
 				</tr><tr>
 					<th>B =</th>	
@@ -270,14 +270,14 @@
 					<th>A =</th>	
 					<th id="A_27"></th>
 					<th><img src="img/img4.jpg" id="imgpuertalogic"></th>
-					<th id="corr_27">S = <input type="text" name="S_27" id="S_27" class="cuadrotexto"/></th>
+					<th id="corr_27">S = <input type="text" name="S_27" pattern="[0-1]{1}" id="S_27" class="cuadrotexto"/></th>
 					<th id="P_27" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
 				</tr><tr><th colspan="5"><hr></th>
 				</tr><tr>
 					<th>A =</th>	
 					<th id="A_28"></th>
 					<th rowspan="2"><img src="img/img5.jpg" id="imgpuertalogic"></th>
-					<th rowspan="2" id="corr_28">S = <input type="text" name="S_28" id="S_28" class="cuadrotexto"/></th>
+					<th rowspan="2" id="corr_28">S = <input type="text" pattern="[0-1]{1}" name="S_28" id="S_28" class="cuadrotexto"/></th>
 					<th rowspan="2" id="P_28" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
 				</tr><tr>
 					<th>B =</th>	
@@ -287,7 +287,7 @@
 					<th>A =</th>	
 					<th id="A_29"></th>
 					<th rowspan="2"><img src="img/img3.jpg" id="imgpuertalogic"></th>
-					<th rowspan="2" id="corr_29">S = <input type="text" name="S_29" id="S_29" class="cuadrotexto"/></th>
+					<th rowspan="2" id="corr_29">S = <input type="text" pattern="[0-1]{1}" name="S_29" id="S_29" class="cuadrotexto"/></th>
 					<th rowspan="2" id="P_29" style="display: none"></th>		<!--casilla de correccion muestra el párrafo de correccion-->
 				</tr><tr>
 					<th>B =</th>	
@@ -311,7 +311,7 @@
 					<th>C = </th>
 					<th id="C_30"></th>
 				</tr><tr>
-					<th colspan="2">S = <input type="text" name="S_30" id="S_30" class="cuadrotexto"/></th>	
+					<th colspan="2">S = <input type="text" pattern="[0-1]{1}" name="S_30" id="S_30" class="cuadrotexto"/></th>	
 					<th id="P_30" style="display: none"></th>	
 			</table>
 			<hr><li>Halla la salida S del siguiente circuito lógico:</li>
@@ -324,7 +324,7 @@
 					<th>B = </th>
 					<th id="B_31"></th>
 				</tr><tr>
-					<th colspan="2">S = <input type="text" name="S_31" id="S_31" class="cuadrotexto"/></th>
+					<th colspan="2">S = <input type="text" pattern="[0-1]{1}" name="S_31" id="S_31" class="cuadrotexto"/></th>
 					<th id="P_31" style="display: none"></th>
 				</tr>
 			</table>
@@ -347,22 +347,22 @@
 			
 			<table id="tabla8">
 				<tr>
-					<th id="corr_D_32"> D = <input type="text" name="D_32" id="D_32" class="cuadrotexto"/></th>
+					<th id="corr_D_32"> D = <input type="text" pattern="[0-1]{1}" name="D_32" id="D_32" class="cuadrotexto"/></th>
 					<th id="P_D_32" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_E_32"> E = <input type="text" name="E_32" id="E_32" class="cuadrotexto"/></th>
+					<th id="corr_E_32"> E = <input type="text" pattern="[0-1]{1}" name="E_32" id="E_32" class="cuadrotexto"/></th>
 					<th id="P_E_32" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_F_32"> F = <input type="text" name="F_32" id="F_32" class="cuadrotexto"/></th>
+					<th id="corr_F_32"> F = <input type="text" pattern="[0-1]{1}" name="F_32" id="F_32" class="cuadrotexto"/></th>
 					<th id="P_F_32" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_G_32"> G = <input type="text" name="G_32" id="G_32" class="cuadrotexto"/></th>
+					<th id="corr_G_32"> G = <input type="text" pattern="[0-1]{1}" name="G_32" id="G_32" class="cuadrotexto"/></th>
 					<th id="P_G_32" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_H_32"> H = <input type="text" name="H_32" id="H_32" class="cuadrotexto"/></th>
+					<th id="corr_H_32"> H = <input type="text" pattern="[0-1]{1}" name="H_32" id="H_32" class="cuadrotexto"/></th>
 					<th id="P_H_32" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_S_32"> S = <input type="text" name="S_32" id="S_32" class="cuadrotexto"/></th>
+					<th id="corr_S_32"> S = <input type="text" pattern="[0-1]{1}" name="S_32" id="S_32" class="cuadrotexto"/></th>
 					<th id="P_S_32" style="display: none"></th>
 				</tr>
 			</table>
@@ -385,22 +385,22 @@
 			
 			<table id="tabla10">
 				<tr>
-					<th id="corr_D_33"> D = <input type="text" name="D_33" id="D_33" class="cuadrotexto"/></th>
+					<th id="corr_D_33"> D = <input type="text" pattern="[0-1]{1}" name="D_33" id="D_33" class="cuadrotexto"/></th>
 					<th id="P_D_33" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_E_33"> E = <input type="text" name="E_33" id="E_33" class="cuadrotexto"/></th>
+					<th id="corr_E_33"> E = <input type="text" pattern="[0-1]{1}" name="E_33" id="E_33" class="cuadrotexto"/></th>
 					<th id="P_E_33" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_F_33"> F = <input type="text" name="F_33" id="F_33" class="cuadrotexto"/></th>
+					<th id="corr_F_33"> F = <input type="text" pattern="[0-1]{1}" name="F_33" id="F_33" class="cuadrotexto"/></th>
 					<th id="P_F_33" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_G_33"> G = <input type="text" name="G_33" id="G_33" class="cuadrotexto"/></th>
+					<th id="corr_G_33"> G = <input type="text" pattern="[0-1]{1}" name="G_33" id="G_33" class="cuadrotexto"/></th>
 					<th id="P_G_33" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_H_33"> H = <input type="text" name="H_33" id="H_33" class="cuadrotexto"/></th>
+					<th id="corr_H_33"> H = <input type="text" pattern="[0-1]{1}" name="H_33" id="H_33" class="cuadrotexto"/></th>
 					<th id="P_H_33" style="display: none"></th>
 				</tr><tr>
-					<th id="corr_S_33"> S = <input type="text" name="S_33" id="S_33" class="cuadrotexto"/></th>
+					<th id="corr_S_33"> S = <input type="text" pattern="[0-1]{1}" name="S_33" id="S_33" class="cuadrotexto"/></th>
 					<th id="P_S_33" style="display: none"></th>
 				</tr>
 			</table>
@@ -409,8 +409,8 @@
 
 			<div id="botonn">
 			
-				<input type="button" value="Corregir Test" id="botoncorregir" class="botoncorregir" onclick=corregirtodo(getElementById("corr_1").value,getElementById("corr_2").value,getElementById("corr_3").value,getElementById("corr_4").value,getElementById("corr_5").value,getElementById("corr_6").value,getElementById("corr_7").value,getElementById("corr_8").value,getElementById("corr_9").value,getElementById("corr_10").value,getElementById("corr_11").value,getElementById("corr_12").value,getElementById("corr_13").value,getElementById("corr_14").value,getElementById("corr_15").value,getElementById("corr_16").value,1,0,0,0,0,0,0,0,getElementById("corr_25").value,getElementById("corr_26").value,getElementById("corr_27").value,getElementById("corr_28").value,getElementById("corr_29").value,getElementById("corr_30").value,getElementById("corr_31").value,getElementById("corr_D_32").value,getElementById("corr_E_32").value,getElementById("corr_F_32").value,getElementById("corr_G_32").value,getElementById("corr_H_32").value,getElementById("corr_S_32").value,getElementById("corr_D_33").value,getElementById("corr_E_33").value,getElementById("corr_F_33").value,getElementById("corr_G_33").value,getElementById("corr_H_33").value,getElementById("corr_S_33").value,document.getElementById("S_1").value,document.getElementById("S_2").value,document.getElementById("S_3").value,document.getElementById("S_4").value,document.getElementById("S_5").value,document.getElementById("S_6").value,document.getElementById("S_7").value,document.getElementById("S_8").value,document.getElementById("S_9").value,document.getElementById("S_10").value,document.getElementById("S_11").value,document.getElementById("S_12").value,document.getElementById("S_13").value,document.getElementById("S_14").value,document.getElementById("S_15").value,document.getElementById("S_16").value,document.getElementById("S_17").value,document.getElementById("S_18").value,document.getElementById("S_19").value,document.getElementById("S_20").value,document.getElementById("S_21").value,document.getElementById("S_22").value,document.getElementById("S_23").value,document.getElementById("S_24").value,document.getElementById("S_25").value,document.getElementById("S_26").value,document.getElementById("S_27").value,document.getElementById("S_28").value,document.getElementById("S_29").value,document.getElementById("S_30").value,document.getElementById("S_31").value,document.getElementById("D_32").value,document.getElementById("E_32").value,document.getElementById("F_32").value,document.getElementById("G_32").value,document.getElementById("H_32").value,document.getElementById("S_32").value,document.getElementById("D_33").value,document.getElementById("E_33").value,document.getElementById("F_33").value,document.getElementById("G_33").value,document.getElementById("H_33").value,document.getElementById("S_33").value,"P_1","P_2","P_3","P_4","P_5","P_6","P_7","P_8","P_9","P_10","P_11","P_12","P_13","P_14","P_15","P_16","P_17","P_18","P_19","P_20","P_21","P_22","P_23","P_24","P_25","P_26","P_27","P_28","P_29","P_30","P_31","P_D_32","P_E_32","P_F_32","P_G_32","P_H_32","P_S_32","P_D_33","P_E_33","P_F_33","P_G_33","P_H_33","P_S_33","textofinal")>
-				
+				<input type="submit" value="Corregir Test" id="botoncorregir" class="botoncorregir" onclick=corregirtodo(getElementById("corr_1").value,getElementById("corr_2").value,getElementById("corr_3").value,getElementById("corr_4").value,getElementById("corr_5").value,getElementById("corr_6").value,getElementById("corr_7").value,getElementById("corr_8").value,getElementById("corr_9").value,getElementById("corr_10").value,getElementById("corr_11").value,getElementById("corr_12").value,getElementById("corr_13").value,getElementById("corr_14").value,getElementById("corr_15").value,getElementById("corr_16").value,1,0,0,0,0,0,0,0,getElementById("corr_25").value,getElementById("corr_26").value,getElementById("corr_27").value,getElementById("corr_28").value,getElementById("corr_29").value,getElementById("corr_30").value,getElementById("corr_31").value,getElementById("corr_D_32").value,getElementById("corr_E_32").value,getElementById("corr_F_32").value,getElementById("corr_G_32").value,getElementById("corr_H_32").value,getElementById("corr_S_32").value,getElementById("corr_D_33").value,getElementById("corr_E_33").value,getElementById("corr_F_33").value,getElementById("corr_G_33").value,getElementById("corr_H_33").value,getElementById("corr_S_33").value,document.getElementById("S_1").value,document.getElementById("S_2").value,document.getElementById("S_3").value,document.getElementById("S_4").value,document.getElementById("S_5").value,document.getElementById("S_6").value,document.getElementById("S_7").value,document.getElementById("S_8").value,document.getElementById("S_9").value,document.getElementById("S_10").value,document.getElementById("S_11").value,document.getElementById("S_12").value,document.getElementById("S_13").value,document.getElementById("S_14").value,document.getElementById("S_15").value,document.getElementById("S_16").value,document.getElementById("S_17").value,document.getElementById("S_18").value,document.getElementById("S_19").value,document.getElementById("S_20").value,document.getElementById("S_21").value,document.getElementById("S_22").value,document.getElementById("S_23").value,document.getElementById("S_24").value,document.getElementById("S_25").value,document.getElementById("S_26").value,document.getElementById("S_27").value,document.getElementById("S_28").value,document.getElementById("S_29").value,document.getElementById("S_30").value,document.getElementById("S_31").value,document.getElementById("D_32").value,document.getElementById("E_32").value,document.getElementById("F_32").value,document.getElementById("G_32").value,document.getElementById("H_32").value,document.getElementById("S_32").value,document.getElementById("D_33").value,document.getElementById("E_33").value,document.getElementById("F_33").value,document.getElementById("G_33").value,document.getElementById("H_33").value,document.getElementById("S_33").value,"P_1","P_2","P_3","P_4","P_5","P_6","P_7","P_8","P_9","P_10","P_11","P_12","P_13","P_14","P_15","P_16","P_17","P_18","P_19","P_20","P_21","P_22","P_23","P_24","P_25","P_26","P_27","P_28","P_29","P_30","P_31","P_D_32","P_E_32","P_F_32","P_G_32","P_H_32","P_S_32","P_D_33","P_E_33","P_F_33","P_G_33","P_H_33","P_S_33","textofinal")>
+				<input type="hidden" name="_csrf" value="{{token}}" />
 				
 				<h3 id="textofinal"></h3>
 			</div>

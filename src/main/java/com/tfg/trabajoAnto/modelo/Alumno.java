@@ -1,8 +1,6 @@
 package com.tfg.trabajoAnto.modelo;
 
-import java.util.ArrayList;
 import java.util.HashSet;
-import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -22,10 +20,15 @@ public class Alumno extends Usuario{
             inverseJoinColumns = @JoinColumn(name = "examen_id")
             )
 	private Set<ModeloExamen> examenes= new HashSet<>();
-	
+	private int[] intentos = new int[43];
+	private int[] aciertos = {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0};
 	public Alumno() {
 		super();
 		// TODO Auto-generated constructor stub
+		for(int i=0;i<43;i++) {
+			intentos[i]=0;
+			aciertos[i]=0;
+		}
 	}
 
 	public Set<ModeloExamen> getExamenes() {
@@ -36,6 +39,22 @@ public class Alumno extends Usuario{
 		this.examenes = examenes;
 	}
 	
+	public int[] getIntentos() {
+		return intentos;
+	}
+
+	public void setIntentos(int[] intentos) {
+		this.intentos = intentos;
+	}
+
+	public int[] getAciertos() {
+		return aciertos;
+	}
+
+	public void setAciertos(int[] aciertos) {
+		this.aciertos = aciertos;
+	}
+
 	@Override
 	public String Rol() {
 		return "ALUMNOS";

@@ -2,7 +2,7 @@
 <html lang="es" xmlns="http://www.w3.org/1999/xhtml"xmlns:th="http://www.thymeleaf.org/"xmlns:sec="https://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 
 	<head>
-		<title> Inicio </title>
+		<title> Alumnado </title>
 		<link href="css\cssinicio.css" rel="stylesheet" type"text/css" >
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	</head>
@@ -53,10 +53,13 @@
 						<th><a href="misEstadisticas">Mis estadisticas</a></th>
 					</tr>
 					<tr>
-						<th><a href="/autoevaluacionCasual">Autoevaluación casual</a></th>
+						<th><a href="miAutoevaluacion">Mis estadisticas Autoevaluación</a></th>
 					</tr>
 					<tr>
-						<th><a href="/autoevaluacionFormal">Autoevaluación formal</a></th>
+						<th><a title="Se podrán corregir las preguntas individualmente y no se guardarán estadísticas." href="/autoevaluacionCasual">Autoevaluación casual</a></th>
+					</tr>
+					<tr>
+						<th><a title="Se corregirá el examen entero y se almacenarán estadísticas." href="/autoevaluacionFormal">Autoevaluación formal</a></th>
 					</tr>
 					<form action="/examinarse" method="post">
 						<tr>

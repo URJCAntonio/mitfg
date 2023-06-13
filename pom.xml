@@ -62,6 +62,12 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-mustache</artifactId>
 		</dependency>
+		<dependency>
+			<groupId>com.yugabyte</groupId>
+			<artifactId>jdbc-yugabytedb</artifactId>
+			<version>42.3.5-yb-2</version>
+		</dependency>
+		
 	</dependencies>
 
 	<build>
