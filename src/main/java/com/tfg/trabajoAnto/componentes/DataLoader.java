@@ -37,14 +37,16 @@ public class DataLoader {
         this.repoEjercicio = repoEjercicio;
         this.repoModelo = repoModelo;
         
+        /*
         Administrador admin = new Administrador();
     	admin.setNombre("AdministradorSupremo");
     	admin.setContra("kjds983njsd90u3h8dsf0");
     	admin.setInstitucion("URJC");
         usuarios.registrarUsuario(admin);
+        */
         
         //LoadRoles();
-        //LoadUsers();
+        LoadUsers();
         //LoadAulas();
         InicializarEjercicios();
         //Pruebas_de_campo();
