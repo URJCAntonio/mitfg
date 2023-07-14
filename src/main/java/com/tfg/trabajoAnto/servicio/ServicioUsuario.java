@@ -321,8 +321,8 @@ public class ServicioUsuario implements UserDetailsService{
 	public void crearAula(String aula, String[] alumnos, String curso, String asignatura) {
 		Aula au = new Aula();
     	au.setNombre(aula);
-    	au.setAsignatura(aula);
-    	au.setCursoAcademico(aula);
+    	au.setAsignatura(asignatura);
+    	au.setCursoAcademico(curso);
     	
     	for (String alumno : alumnos) {
     		au.getAlumnos().add((Alumno) repousu.getUserByUsername(alumno));
