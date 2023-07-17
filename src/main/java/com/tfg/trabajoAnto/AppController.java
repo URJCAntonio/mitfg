@@ -248,7 +248,7 @@ public class AppController {
     @RequestMapping("/crearAulaSubmit")
 	public String crearAulaSubmit(Model m, @RequestParam String[] alumno, @RequestParam String aula, @RequestParam String curso , @RequestParam String asignatura) {
     	
-    	if(repoAulas.getAulaByNombre(aula)!=null) {
+    	if(usuarios.getAulaByNombre(aula)!=null) {
     		m.addAttribute("ErrorNombre",true);
     		return crearAula(m);
     	}
@@ -293,6 +293,10 @@ public class AppController {
 	}
     @RequestMapping("/cambiarNombre")
    	public String cambiarNombre(Model m,@RequestParam int id,@RequestParam String newName) {
+    	if(usuarios.getAulaByNombre(newName)!=null) {
+    		m.addAttribute("ErrorNombre",true);
+           	return "redirect:/gestionarAula"+id;
+    	}
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setNombre(newName);
        	repoAulas.save(aula);
