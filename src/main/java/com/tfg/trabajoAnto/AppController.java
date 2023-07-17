@@ -247,6 +247,11 @@ public class AppController {
     //CREA LA NUEVA AULA Y RETORNA A LA PÁGINA DE INICIO.
     @RequestMapping("/crearAulaSubmit")
 	public String crearAulaSubmit(Model m, @RequestParam String[] alumno, @RequestParam String aula, @RequestParam String curso , @RequestParam String asignatura) {
+    	
+    	if(repoAulas.getAulaByNombre(aula)!=null) {
+    		m.addAttribute("ErrorNombre",true);
+    		return crearAula(m);
+    	}
     	usuarios.crearAula(aula,alumno,curso,asignatura);
     	return "redirect:/";
 	}
@@ -291,21 +296,21 @@ public class AppController {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setNombre(newName);
        	repoAulas.save(aula);
-       	return "/administradores";
+       	return "administradores";
    	}
     @RequestMapping("/cambiarCurso")
    	public String cambiarCurso(Model m,@RequestParam int id,@RequestParam String newCurso) {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setCursoAcademico(newCurso);
        	repoAulas.save(aula);
-       	return "/administradores";
+       	return "administradores";
    	}
     @RequestMapping("/cambiarAsignatura")
    	public String cambiarAsignatura(Model m,@RequestParam int id,@RequestParam String newAsignatura) {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setAsignatura(newAsignatura);
        	repoAulas.save(aula);
-       	return "/administradores";
+       	return "administradores";
    	}
     
     /******************************************************************************************************************************************/

@@ -327,9 +327,7 @@ public class ServicioUsuario implements UserDetailsService{
     	for (String alumno : alumnos) {
     		au.getAlumnos().add((Alumno) repousu.getUserByUsername(alumno));
 		}
-    	if(repoaula.getAulaByNombre(aula)!=null) {
-        	repoaula.save(au);
-    	}
+        repoaula.save(au);
 	}
 	
 	//EJERCICIOS
