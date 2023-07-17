@@ -296,7 +296,7 @@ public class AppController {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setNombre(newName);
        	repoAulas.save(aula);
-       	return "administradores";
+       	return "redirect:/gestionarAula"+id;
    	}
     @RequestMapping("/cambiarCurso")
    	public String cambiarCurso(Model m,@RequestParam int id,@RequestParam String newCurso) {
