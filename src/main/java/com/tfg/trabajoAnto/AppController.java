@@ -303,14 +303,14 @@ public class AppController {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setCursoAcademico(newCurso);
        	repoAulas.save(aula);
-       	return "administradores";
+       	return "redirect:/gestionarAula"+id;
    	}
     @RequestMapping("/cambiarAsignatura")
    	public String cambiarAsignatura(Model m,@RequestParam int id,@RequestParam String newAsignatura) {
        	Aula aula = repoAulas.getAulaById(id);
        	aula.setAsignatura(newAsignatura);
        	repoAulas.save(aula);
-       	return "administradores";
+       	return "redirect:/gestionarAula"+id;
    	}
     
     /******************************************************************************************************************************************/

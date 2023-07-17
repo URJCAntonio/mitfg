@@ -53,7 +53,7 @@ public class SpringSecurityConfigurador extends WebSecurityConfigurerAdapter{
         	
         	.antMatchers("/profes","/crearExamen","/crearExamenSubmit","/simple","/medio","/complejo","/addsimple","/addmedio","/addcomplejo",
         			"/examenes","/borrar","/copiar{id}","/estadisticasAlumno","/estadisticas","/estadisticasGrupales{id}","/rankearAlumnos{id}",
-        			"/cambiarCurso","/borrarEjercicios","/borrarEjerciciosSubmit").hasAnyAuthority("PROFESORES")
+        			"/borrarEjercicios","/borrarEjerciciosSubmit").hasAnyAuthority("PROFESORES")
         	
         	.antMatchers("/modoEvaluacion","/autoevaluacionCasual","/autoevaluacionFormal","/autoevaluacionFormalSubmit","/examinarse","/examinarseSubmit",
         			"/miPerfil","/cambiarMiContra","/misEstadisticas","/miAutoevaluacion").hasAnyAuthority("ALUMNOS")
